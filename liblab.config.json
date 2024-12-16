@@ -1,0 +1,36 @@
+{
+  "sdkName": "magicbell-swift-client",
+  "specFilePath": "https://site.magicbell.cloud/docs/api/openapi.user.json",
+  "apiName": "magicbell-api",
+  "languages": ["swift"],
+  "auth": ["bearer"],
+  "customizations": {
+    "includeOptionalSnippetParameters": true,
+    "authentication": {
+      "access": {
+        "prefix": "Bearer"
+      }
+    },
+    "inferServiceNames": false,
+    "injectedModels": [],
+    "license": {
+      "type": "MIT"
+    },
+    "responseHeaders": false,
+    "retry": {
+      "enabled": true,
+      "maxAttempts": 3,
+      "retryDelay": 150
+    }
+  },
+  "languageOptions": {
+    "swift": {
+      "githubRepoName": "magicbell-swift-client",
+      "sdkVersion": "0.1.1",
+      "liblabVersion": "2"
+    }
+  },
+  "publishing": {
+    "githubOrg": "magicbell"
+  }
+}
