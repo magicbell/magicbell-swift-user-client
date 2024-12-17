@@ -1,33 +1,29 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
-  name: "MagicbellSwiftClient",
-  platforms: [.macOS(.v14), .iOS(.v15)],
+  name: "MagicBellClient",
+  platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .visionOS(.v1)],
   products: [
-    .library(
-      name: "MagicbellSwiftClient",
-      targets: ["MagicbellSwiftClient"]),
-    .executable(
-      name: "MagicbellSwiftClientExample",
-      targets: ["MagicbellSwiftClientExample"]
-    ),
+    .library(name: "MagicBellClient", targets: ["MagicBellClient"]),
+    .executable(name: "MagicBellClientExample", targets: ["MagicBellClientExample"]),
+  ],
+  dependencies: [
+    .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
+    .package(url: "https://github.com/apple/swift-openapi-runtime", from: "1.0.0"),
+    .package(url: "https://github.com/apple/swift-openapi-urlsession", from: "1.0.0"),
   ],
   targets: [
     .target(
-      name: "MagicbellSwiftClient",
+      name: "MagicBellClient",
       dependencies: [
-        "Channels",
-        "Integrations",
-        "MagicbellSwiftClientInternal",
+        .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+        .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
       ]),
     .executableTarget(
-      name: "MagicbellSwiftClientExample", dependencies: ["MagicbellSwiftClient"]
-    ),
-    .target(name: "Channels", dependencies: ["Shared", "MagicbellSwiftClientInternal"]),
-    .target(name: "Integrations", dependencies: ["Shared", "MagicbellSwiftClientInternal"]),
-    .target(name: "Shared", dependencies: ["MagicbellSwiftClientInternal"]),
-    .target(name: "MagicbellSwiftClientInternal", dependencies: []),
+      name: "MagicBellClientExample",
+      dependencies: ["MagicBellClient"]
+    )
   ]
 )
