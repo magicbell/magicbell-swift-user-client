@@ -26,9 +26,11 @@ jobs:
 
       - name: Build SourceDocs
         run: |
+          echo $PATH
           git clone https://github.com/stigi/SourceDocs.git --branch xcode16 /tmp/sourcedocs
           pushd /tmp/sourcedocs
-          make
+          make build
+          cp .build/release/sourcedocs /usr/local/bin
           popd
 
       - name: Regen `magicbell-java-client`
