@@ -1,6 +1,13 @@
 import { execSync } from "node:child_process";
 import { mkdirSync } from "node:fs";
 import * as fs from "node:fs/promises";
+import path from "node:path";
+
+async function move(oldPath: string, newPath: string) {
+  await fs.rm(newPath, { recursive: true, force: true });
+  await fs.mkdir(path.dirname(newPath), { recursive: true });
+  await fs.rename(oldPath, newPath);
+}
 
 function hasChangesInPath(path: string) {
   try {
@@ -54,11 +61,13 @@ async function build() {
 
   // Generating Documentation
   execSync(
-    "sourcedocs generate --clean --reproducible-docs -a -t -o=documentation",
+    "sourcedocs generate --clean --reproducible-docs -a -t -o=output/documentation",
     {
       stdio: "inherit",
     }
   );
+  
+  await move("output/documentation/MagicBellClient", "documentation")
 }
 
 void build().finally(async () => {
