@@ -14,7 +14,6 @@ OpenAPI 3.0.3 Specification for MagicBell API.
 - [Setup \& Configuration](#setup--configuration)
   - [Supported Language Versions](#supported-language-versions)
   - [Installation](#installation)
-    - [CocoaPods](#cocoapods)
     - [Swift Package Manager](#swift-package-manager)
   - [Authentication](#authentication)
     - [Access Token Authentication](#access-token-authentication)
@@ -34,19 +33,7 @@ This SDK is compatible with the following versions:
 
 ## Installation
 
-
-
-### CocoaPods
-
-If you use [CocoaPods](https://cocoapods.org), place the following within your `Podfile`:
-
-```ruby
-pod 'MagicBellClient', '>=0.1.0'
-```
-
-**IMPORTANT**: Make sure you specify `use_frameworks!` in your `Podfile`.
-
-Then, run `pod install`.
+This package depends on the [Swift OpenAPI Runtime](https://github.com/apple/swift-openapi-runtime) which is only available via Swift Package Manager.
 
 ### Swift Package Manager
 
