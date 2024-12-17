@@ -5,7 +5,7 @@ import OpenAPIURLSession
 let token =
     "eyJhbGciOiJSUzI1NiIsImtpZCI6InRyYW5zaWVudCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FwaS5tYWdpY2JlbGwuY29tIiwiZXhwIjoxNzM2OTg4NjI3LCJpYXQiOjE3MzQzOTY2MjcsImp0aSI6IjAxOTNkMjE4LTQ4ZmMtNzBhOS04NjEyLTFiMDQ5MGQyMzAxMiIsIlJvbGUiOiJVU0VSIiwiVXNlcktleSI6eyJJRCI6ImNhMGFmOTUyLTU3OGItNDUyNC1iZmQ4LTE0OTc0ZTYzMTE2MyIsIkV4dGVybmFsSUQiOiIiLCJFbWFpbCI6InVsbHJpY2hAbWFnaWNiZWxsLmlvIn0sIlByb2plY3RLZXkiOnsiSUQiOjgzNTcsIk5hbWUiOiJBbmRyb2lkIFNESyIsIkFQSUtleSI6ImNhOTUzNGNiMDAyOTk0NjhhOWM4ODU2ZThiNDFjOWQxNjQzMDEyOWQiLCJXb3Jrc3BhY2VJRCI6MTEyMX19.B7weG_TcmZCiOXElOxCrZBQ4g0tnAq5sZmO0znfm96VuyKpZq1kQZ2bOsK7R7sf2WpeeBuAe1fdtrM-qpYVxJWLs5frDf_TULO8SEZywpN1FvpPKyZeDwY3NCM4vfe-Us8l2h5rRWg1vyzl1zglKNqeKKWaUhsLyzBpwhiYtcVQ"
 
-let fakeDevieToken =
+let fakeDeviceToken =
     "111051c0ade3a85236dc8aa7f704098230980046e0a06d0ea9af01d749a5def2"
 
 @main
@@ -23,7 +23,7 @@ struct MainApp {
             body: .json(
                 .init(
                     app_id: "com.example.app",
-                    device_token: fakeDevieToken,
+                    device_token: fakeDeviceToken,
                     installation_id: .development)))
         let postResponse = try await client.save_mobile_push_apns_token(input)
 

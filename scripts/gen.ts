@@ -1,23 +1,12 @@
 import { execSync } from "node:child_process";
-import { mkdir, mkdirSync } from "node:fs";
+import { mkdirSync } from "node:fs";
 import * as fs from "node:fs/promises";
-import * as path from "node:path";
+import path from "node:path";
 
 async function move(oldPath: string, newPath: string) {
   await fs.rm(newPath, { recursive: true, force: true });
   await fs.mkdir(path.dirname(newPath), { recursive: true });
   await fs.rename(oldPath, newPath);
-}
-
-async function readJSON(path: string) {
-  return fs
-    .readFile(path, { encoding: "utf-8" })
-    .then((data) => JSON.parse(data));
-}
-
-async function writeJSON(path: string, data: any) {
-  data = typeof data === 'string' ? data : JSON.stringify(data, null, 2) + '\n';
-  return fs.writeFile(path, data, { encoding: 'utf-8' });
 }
 
 function hasChangesInPath(path: string) {
@@ -29,21 +18,29 @@ function hasChangesInPath(path: string) {
   }
 }
 
+function assertCorrectSourceDocs() {
+  const sourcedocsVersion = execSync("sourcedocs version", {
+    encoding: "utf8",
+  });
+  if (sourcedocsVersion !== "SourceDocs v0.0.0 MB fork\n") {
+    // Make sure you use the fork when running the script locally:
+    // https://github.com/magicbell/SourceDocs/tree/magicbell
+    throw `Expected MagicBell fork of SourceDocs, but got a different build: ${sourcedocsVersion}`;
+  }
+}
+assertCorrectSourceDocs();
+
 async function build() {
   await fs.rm("output", { recursive: true, force: true });
   mkdirSync("output");
 
-  let specPath = 'output/openapi.user.json'
+  let specPath = "output/openapi.user.json";
   execSync(
     `curl -o ${specPath} https://site.magicbell.cloud/docs/api/openapi.user.json`,
     {
       stdio: "inherit",
     }
   );
-
-  const spec = await readJSON(specPath)
-  spec['openapi'] = '3.0.4'
-  await writeJSON(specPath, spec)
 
   execSync(
     `swift run \
@@ -57,9 +54,20 @@ async function build() {
     }
   );
 
-  execSync("sourcedocs generate -a -t -o=documentation", {
-    stdio: "inherit",
-  });
+  if (!hasChangesInPath("Sources")) {
+    console.log("No changes detected in output.");
+    return;
+  }
+
+  // Generating Documentation
+  execSync(
+    "sourcedocs generate --clean --reproducible-docs -a -t -o=output/documentation",
+    {
+      stdio: "inherit",
+    }
+  );
+  
+  await move("output/documentation/MagicBellClient", "documentation")
 }
 
 void build().finally(async () => {

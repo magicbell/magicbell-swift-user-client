@@ -6,11 +6,16 @@ const version = pkgJson.version;
 
 const replacements = [
   {
-    files: [
-    ],
+    files: ["README.md"],
     from: [
+      /MagicBellClient Swift SDK \d.\d.\d/g,
+      /pod 'MagicBellClient', '>=\d.\d.\d'/g,
+      /.upToNextMajor(from: "\d.\d.\d")/g,
     ],
     to: [
+      `MagicBellClient Swift SDK ${version}`,
+      `pod 'MagicBellClient', '>=${version}'`,
+      `.upToNextMajor(from: "${version}")`,
     ],
   },
 ];
