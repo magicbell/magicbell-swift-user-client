@@ -2,6 +2,43 @@
 
 # `Client`
 
+**Contents**
+
+- [Methods](#methods)
+  - `init(serverURL:configuration:transport:middlewares:)`
+  - `get_mobile_push_apns_tokens(_:)`
+  - `save_mobile_push_apns_token(_:)`
+  - `get_mobile_push_apns_token(_:)`
+  - `discard_mobile_push_apns_token(_:)`
+  - `get_mobile_push_expo_tokens(_:)`
+  - `save_mobile_push_expo_token(_:)`
+  - `get_mobile_push_expo_token(_:)`
+  - `discard_mobile_push_expo_token(_:)`
+  - `get_mobile_push_fcm_tokens(_:)`
+  - `save_mobile_push_fcm_token(_:)`
+  - `get_mobile_push_fcm_token(_:)`
+  - `discard_mobile_push_fcm_token(_:)`
+  - `get_slack_tokens(_:)`
+  - `save_slack_token(_:)`
+  - `get_slack_token(_:)`
+  - `discard_slack_token(_:)`
+  - `get_teams_tokens(_:)`
+  - `save_teams_token(_:)`
+  - `get_teams_token(_:)`
+  - `discard_teams_token(_:)`
+  - `get_web_push_tokens(_:)`
+  - `save_web_push_token(_:)`
+  - `get_web_push_token(_:)`
+  - `discard_web_push_token(_:)`
+  - `save_inbox_installation(_:)`
+  - `start_inbox_installation(_:)`
+  - `save_slack_installation(_:)`
+  - `finish_slack_installation(_:)`
+  - `start_slack_installation(_:)`
+  - `save_templates_installation(_:)`
+  - `save_web_push_installation(_:)`
+  - `start_web_push_installation(_:)`
+
 ```swift
 public struct Client: APIProtocol
 ```

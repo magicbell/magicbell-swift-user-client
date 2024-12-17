@@ -2,6 +2,11 @@
 
 # `Operations.save_teams_token`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum save_teams_token
 ```

@@ -2,6 +2,15 @@
 
 # `Schemas.InboxConfig`
 
+**Contents**
+
+- [Properties](#properties)
+  - `images`
+  - `locale`
+  - `theme`
+- [Methods](#methods)
+  - `init(images:locale:theme:)`
+
 ```swift
 public struct InboxConfig: Codable, Hashable, Sendable
 ```

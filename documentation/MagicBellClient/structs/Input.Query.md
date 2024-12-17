@@ -2,6 +2,15 @@
 
 # `Input.Query`
 
+**Contents**
+
+- [Properties](#properties)
+  - `page_lbrack_size_rbrack_`
+  - `page_lbrack_after_rbrack_`
+  - `page_lbrack_before_rbrack_`
+- [Methods](#methods)
+  - `init(page_lbrack_size_rbrack_:page_lbrack_after_rbrack_:page_lbrack_before_rbrack_:)`
+
 ```swift
 public struct Query: Sendable, Hashable
 ```

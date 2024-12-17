@@ -2,6 +2,11 @@
 
 # `Operations.get_slack_tokens`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum get_slack_tokens
 ```

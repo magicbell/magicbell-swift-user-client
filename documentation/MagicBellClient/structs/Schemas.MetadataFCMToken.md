@@ -2,6 +2,14 @@
 
 # `Schemas.MetadataFCMToken`
 
+**Contents**
+
+- [Properties](#properties)
+  - `data`
+  - `metadata`
+- [Methods](#methods)
+  - `init(data:metadata:)`
+
 ```swift
 public struct MetadataFCMToken: Codable, Hashable, Sendable
 ```

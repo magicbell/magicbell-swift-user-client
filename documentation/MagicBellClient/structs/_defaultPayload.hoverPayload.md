@@ -2,6 +2,13 @@
 
 # `_defaultPayload.hoverPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `backgroundColor`
+- [Methods](#methods)
+  - `init(backgroundColor:)`
+
 ```swift
 public struct hoverPayload: Codable, Hashable, Sendable
 ```

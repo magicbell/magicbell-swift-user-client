@@ -2,6 +2,19 @@
 
 # `InboxConfig.themePayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `banner`
+  - `dialog`
+  - `footer`
+  - `header`
+  - `icon`
+  - `notification`
+  - `unseenBadge`
+- [Methods](#methods)
+  - `init(banner:dialog:footer:header:icon:notification:unseenBadge:)`
+
 ```swift
 public struct themePayload: Codable, Hashable, Sendable
 ```

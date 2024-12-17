@@ -2,6 +2,14 @@
 
 # `save_mobile_push_apns_token.Output`
 
+**Contents**
+
+- [Cases](#cases)
+  - `created(_:)`
+  - `undocumented(statusCode:_:)`
+- [Properties](#properties)
+  - `created`
+
 ```swift
 @frozen public enum Output: Sendable, Hashable
 ```

@@ -2,6 +2,18 @@
 
 # `_defaultPayload.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `backgroundColor`
+  - `borderRadius`
+  - `fontFamily`
+  - `fontSize`
+  - `hover`
+  - `margin`
+  - `state`
+  - `textColor`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

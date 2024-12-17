@@ -2,6 +2,14 @@
 
 # `Schemas.WebPushToken`
 
+**Contents**
+
+- [Properties](#properties)
+  - `endpoint`
+  - `keys`
+- [Methods](#methods)
+  - `init(endpoint:keys:)`
+
 ```swift
 public struct WebPushToken: Codable, Hashable, Sendable
 ```

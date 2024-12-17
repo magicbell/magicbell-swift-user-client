@@ -2,6 +2,11 @@
 
 # `Operations.start_inbox_installation`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum start_inbox_installation
 ```

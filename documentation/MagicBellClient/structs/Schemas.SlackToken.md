@@ -2,6 +2,15 @@
 
 # `Schemas.SlackToken`
 
+**Contents**
+
+- [Properties](#properties)
+  - `oauth`
+  - `webhook`
+- [Methods](#methods)
+  - `init(oauth:webhook:)`
+  - `init(from:)`
+
 ```swift
 public struct SlackToken: Codable, Hashable, Sendable
 ```

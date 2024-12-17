@@ -2,6 +2,15 @@
 
 # `Schemas.TemplatesInstallation`
 
+**Contents**
+
+- [Properties](#properties)
+  - `category`
+  - `channel`
+  - `text`
+- [Methods](#methods)
+  - `init(category:channel:text:)`
+
 ```swift
 public struct TemplatesInstallation: Codable, Hashable, Sendable
 ```

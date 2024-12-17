@@ -2,6 +2,14 @@
 
 # `bannerPayload.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `backgroundColor`
+  - `backgroundOpacity`
+  - `fontSize`
+  - `textColor`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

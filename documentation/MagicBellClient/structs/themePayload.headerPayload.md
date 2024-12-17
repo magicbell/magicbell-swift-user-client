@@ -2,6 +2,17 @@
 
 # `themePayload.headerPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `backgroundColor`
+  - `borderRadius`
+  - `fontFamily`
+  - `fontSize`
+  - `textColor`
+- [Methods](#methods)
+  - `init(backgroundColor:borderRadius:fontFamily:fontSize:textColor:)`
+
 ```swift
 public struct headerPayload: Codable, Hashable, Sendable
 ```

@@ -2,6 +2,13 @@
 
 # `APNSToken.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `app_id`
+  - `device_token`
+  - `installation_id`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

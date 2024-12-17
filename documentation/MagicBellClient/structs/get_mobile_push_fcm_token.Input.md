@@ -2,6 +2,14 @@
 
 # `get_mobile_push_fcm_token.Input`
 
+**Contents**
+
+- [Properties](#properties)
+  - `path`
+  - `headers`
+- [Methods](#methods)
+  - `init(path:headers:)`
+
 ```swift
 public struct Input: Sendable, Hashable
 ```

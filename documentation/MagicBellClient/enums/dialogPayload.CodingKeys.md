@@ -2,6 +2,13 @@
 
 # `dialogPayload.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `accentColor`
+  - `backgroundColor`
+  - `textColor`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

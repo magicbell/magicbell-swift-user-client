@@ -2,6 +2,17 @@
 
 # `save_teams_token.AcceptableContentType`
 
+**Contents**
+
+- [Cases](#cases)
+  - `json`
+  - `other(_:)`
+- [Properties](#properties)
+  - `rawValue`
+  - `allCases`
+- [Methods](#methods)
+  - `init(rawValue:)`
+
 ```swift
 @frozen public enum AcceptableContentType: AcceptableProtocol
 ```
@@ -38,9 +49,3 @@ public static var allCases: [Self]
 ```swift
 public init?(rawValue: Swift.String)
 ```
-
-#### Parameters
-
-| Name | Description |
-| ---- | ----------- |
-| rawValue | The raw value to use for the new instance. |

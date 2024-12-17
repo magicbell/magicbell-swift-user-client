@@ -2,6 +2,13 @@
 
 # `SlackToken.webhookPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `url`
+- [Methods](#methods)
+  - `init(url:)`
+
 ```swift
 public struct webhookPayload: Codable, Hashable, Sendable
 ```

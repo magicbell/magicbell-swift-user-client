@@ -2,6 +2,14 @@
 
 # `Schemas.ArrayOfMetadataSlackTokens`
 
+**Contents**
+
+- [Properties](#properties)
+  - `data`
+  - `links`
+- [Methods](#methods)
+  - `init(data:links:)`
+
 ```swift
 public struct ArrayOfMetadataSlackTokens: Codable, Hashable, Sendable
 ```

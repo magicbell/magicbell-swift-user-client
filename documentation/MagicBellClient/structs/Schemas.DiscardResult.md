@@ -2,6 +2,14 @@
 
 # `Schemas.DiscardResult`
 
+**Contents**
+
+- [Properties](#properties)
+  - `discarded_at`
+  - `id`
+- [Methods](#methods)
+  - `init(discarded_at:id:)`
+
 ```swift
 public struct DiscardResult: Codable, Hashable, Sendable
 ```

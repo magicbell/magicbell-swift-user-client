@@ -2,6 +2,13 @@
 
 # `oauthPayload.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `channel_id`
+  - `installation_id`
+  - `scope`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

@@ -2,6 +2,13 @@
 
 # `Links.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `first`
+  - `next`
+  - `prev`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

@@ -2,6 +2,17 @@
 
 # `themePayload.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `banner`
+  - `dialog`
+  - `footer`
+  - `header`
+  - `icon`
+  - `notification`
+  - `unseenBadge`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

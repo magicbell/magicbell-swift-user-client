@@ -2,6 +2,14 @@
 
 # `Schemas.MetadataWebPushToken`
 
+**Contents**
+
+- [Properties](#properties)
+  - `data`
+  - `metadata`
+- [Methods](#methods)
+  - `init(data:metadata:)`
+
 ```swift
 public struct MetadataWebPushToken: Codable, Hashable, Sendable
 ```

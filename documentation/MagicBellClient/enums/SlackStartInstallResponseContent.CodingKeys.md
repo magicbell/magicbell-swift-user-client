@@ -2,6 +2,13 @@
 
 # `SlackStartInstallResponseContent.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `app_id`
+  - `auth_url`
+  - `scopes`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

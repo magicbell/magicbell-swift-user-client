@@ -2,6 +2,14 @@
 
 # `Schemas.FCMToken`
 
+**Contents**
+
+- [Properties](#properties)
+  - `device_token`
+  - `installation_id`
+- [Methods](#methods)
+  - `init(device_token:installation_id:)`
+
 ```swift
 public struct FCMToken: Codable, Hashable, Sendable
 ```
