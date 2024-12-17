@@ -23,6 +23,18 @@ jobs:
           node-version: 20
       - uses: bahmutov/npm-install@v1
 
+      - name: Install Swift
+        uses: sersoft-gmbh/swifty-linux-action@v3
+        with:
+          release-version: 5.5
+
+      - name: Build SourceDocs
+        run: |
+          git clone git@github.com:stigi/SourceDocs.git --branch xcode16 /tmp/sourcedocs
+          pushd /tmp/sourcedocs
+          make
+          popd
+
       - name: Regen `magicbell-java-client`
         run: yarn codegen
         env:

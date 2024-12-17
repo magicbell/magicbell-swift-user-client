@@ -44,6 +44,11 @@ async function build() {
     return;
   }
   await move(`output/swift/README.md`, `./README.md`);
+
+  // TODO: Use liblab generated docs, once they become available
+  await execSync(`sourcedocs generate --all-modules`)
+  await move(`Documentation`, `./output/documentation`);
+  await move(`output/documentation`, `./documentation`);
 }
 
 void build().finally(() => {
