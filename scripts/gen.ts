@@ -40,9 +40,26 @@ async function build() {
     return;
   }
 
-  execSync("sourcedocs generate -a -t -o=documentation", {
-    stdio: "inherit",
+  // Generating Documentation
+  const sourcedocsVersion = execSync("sourcedocs version", {
+    stdio: "ignore",
+    encoding: "utf8",
   });
+  if (sourcedocsVersion !== "SourceDocs v0.0.0 MB fork") {
+    // Make sure you use the fork when running the script locally:
+    // https://github.com/magicbell/SourceDocs/tree/magicbell
+    console.error(
+      "Expected MagicBell for of SourceDocs, but got a different build."
+    );
+    return;
+  }
+  
+  execSync(
+    "sourcedocs generate --clean --reproducible-docs -a -t -o=documentation",
+    {
+      stdio: "inherit",
+    }
+  );
 }
 
 void build().finally(async () => {
