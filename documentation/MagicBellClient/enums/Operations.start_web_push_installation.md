@@ -2,11 +2,6 @@
 
 # `Operations.start_web_push_installation`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum start_web_push_installation
 ```

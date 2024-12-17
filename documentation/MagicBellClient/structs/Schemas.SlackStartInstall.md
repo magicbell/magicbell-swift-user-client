@@ -2,17 +2,6 @@
 
 # `Schemas.SlackStartInstall`
 
-**Contents**
-
-- [Properties](#properties)
-  - `app_id`
-  - `auth_url`
-  - `extra_scopes`
-  - `redirect_url`
-- [Methods](#methods)
-  - `init(app_id:auth_url:extra_scopes:redirect_url:)`
-  - `init(from:)`
-
 ```swift
 public struct SlackStartInstall: Codable, Hashable, Sendable
 ```

@@ -2,12 +2,6 @@
 
 # `SlackToken.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `oauth`
-  - `webhook`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

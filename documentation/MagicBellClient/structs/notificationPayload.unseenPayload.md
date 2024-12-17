@@ -2,16 +2,6 @@
 
 # `notificationPayload.unseenPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `backgroundColor`
-  - `hover`
-  - `state`
-  - `textColor`
-- [Methods](#methods)
-  - `init(backgroundColor:hover:state:textColor:)`
-
 ```swift
 public struct unseenPayload: Codable, Hashable, Sendable
 ```

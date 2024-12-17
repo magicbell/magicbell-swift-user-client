@@ -2,11 +2,6 @@
 
 # `Operations.discard_mobile_push_apns_token`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum discard_mobile_push_apns_token
 ```

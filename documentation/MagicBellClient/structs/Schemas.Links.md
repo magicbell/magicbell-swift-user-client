@@ -2,15 +2,6 @@
 
 # `Schemas.Links`
 
-**Contents**
-
-- [Properties](#properties)
-  - `first`
-  - `next`
-  - `prev`
-- [Methods](#methods)
-  - `init(first:next:prev:)`
-
 ```swift
 public struct Links: Codable, Hashable, Sendable
 ```

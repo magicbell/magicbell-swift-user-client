@@ -2,11 +2,6 @@
 
 # `Operations.save_slack_installation`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum save_slack_installation
 ```

@@ -2,14 +2,6 @@
 
 # `Schemas.ArrayOfMetadataAPNSTokens`
 
-**Contents**
-
-- [Properties](#properties)
-  - `data`
-  - `links`
-- [Methods](#methods)
-  - `init(data:links:)`
-
 ```swift
 public struct ArrayOfMetadataAPNSTokens: Codable, Hashable, Sendable
 ```

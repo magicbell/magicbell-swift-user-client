@@ -2,14 +2,6 @@
 
 # `finish_slack_installation.Input`
 
-**Contents**
-
-- [Properties](#properties)
-  - `headers`
-  - `body`
-- [Methods](#methods)
-  - `init(headers:body:)`
-
 ```swift
 public struct Input: Sendable, Hashable
 ```

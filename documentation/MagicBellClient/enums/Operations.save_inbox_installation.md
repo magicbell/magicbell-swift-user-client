@@ -2,11 +2,6 @@
 
 # `Operations.save_inbox_installation`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum save_inbox_installation
 ```

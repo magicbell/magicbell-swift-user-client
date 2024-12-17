@@ -2,11 +2,6 @@
 
 # `Operations.save_web_push_token`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum save_web_push_token
 ```

@@ -15,6 +15,11 @@ async function readJSON(path: string) {
     .then((data) => JSON.parse(data));
 }
 
+async function writeJSON(path: string, data: any) {
+  data = typeof data === 'string' ? data : JSON.stringify(data, null, 2) + '\n';
+  return fs.writeFile(path, data, { encoding: 'utf-8' });
+}
+
 function hasChangesInPath(path: string) {
   try {
     execSync(`git diff --quiet HEAD ${path}`, { stdio: "ignore" });
@@ -28,20 +33,25 @@ async function build() {
   await fs.rm("output", { recursive: true, force: true });
   mkdirSync("output");
 
+  let specPath = 'output/openapi.user.json'
   execSync(
-    "curl -o output/openapi.user.json https://site.magicbell.cloud/docs/api/openapi.user.json",
+    `curl -o ${specPath} https://site.magicbell.cloud/docs/api/openapi.user.json`,
     {
       stdio: "inherit",
     }
   );
 
+  const spec = await readJSON(specPath)
+  spec['openapi'] = '3.0.4'
+  await writeJSON(specPath, spec)
+
   execSync(
-    "swift run \
+    `swift run \
     swift-openapi-generator generate \
     --mode types --mode client \
     --access-modifier public \
     --output-directory Sources/MagicBellClient/generated \
-    output/openapi.user.json",
+    ${specPath}`,
     {
       stdio: "inherit",
     }

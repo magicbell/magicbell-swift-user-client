@@ -2,13 +2,6 @@
 
 # `Input.Headers`
 
-**Contents**
-
-- [Properties](#properties)
-  - `accept`
-- [Methods](#methods)
-  - `init(accept:)`
-
 ```swift
 public struct Headers: Sendable, Hashable
 ```

@@ -2,14 +2,6 @@
 
 # `unseenPayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `backgroundColor`
-  - `hover`
-  - `state`
-  - `textColor`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

@@ -2,15 +2,6 @@
 
 # `Schemas.APNSToken`
 
-**Contents**
-
-- [Properties](#properties)
-  - `app_id`
-  - `device_token`
-  - `installation_id`
-- [Methods](#methods)
-  - `init(app_id:device_token:installation_id:)`
-
 ```swift
 public struct APNSToken: Codable, Hashable, Sendable
 ```

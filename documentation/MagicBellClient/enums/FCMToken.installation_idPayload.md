@@ -2,12 +2,6 @@
 
 # `FCMToken.installation_idPayload`
 
-**Contents**
-
-- [Cases](#cases)
-  - `development`
-  - `production`
-
 ```swift
 @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable
 ```

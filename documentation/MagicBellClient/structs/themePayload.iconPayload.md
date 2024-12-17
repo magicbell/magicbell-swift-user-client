@@ -2,14 +2,6 @@
 
 # `themePayload.iconPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `borderColor`
-  - `width`
-- [Methods](#methods)
-  - `init(borderColor:width:)`
-
 ```swift
 public struct iconPayload: Codable, Hashable, Sendable
 ```

@@ -2,12 +2,6 @@
 
 # `iconPayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `borderColor`
-  - `width`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

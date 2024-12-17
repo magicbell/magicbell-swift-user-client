@@ -2,16 +2,6 @@
 
 # `authed_userPayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `access_token`
-  - `expires_in`
-  - `id`
-  - `refresh_token`
-  - `scope`
-  - `token_type`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

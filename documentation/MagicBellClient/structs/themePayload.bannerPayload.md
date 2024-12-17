@@ -2,16 +2,6 @@
 
 # `themePayload.bannerPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `backgroundColor`
-  - `backgroundOpacity`
-  - `fontSize`
-  - `textColor`
-- [Methods](#methods)
-  - `init(backgroundColor:backgroundOpacity:fontSize:textColor:)`
-
 ```swift
 public struct bannerPayload: Codable, Hashable, Sendable
 ```

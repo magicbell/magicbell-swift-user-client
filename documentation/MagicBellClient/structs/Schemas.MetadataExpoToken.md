@@ -2,14 +2,6 @@
 
 # `Schemas.MetadataExpoToken`
 
-**Contents**
-
-- [Properties](#properties)
-  - `data`
-  - `metadata`
-- [Methods](#methods)
-  - `init(data:metadata:)`
-
 ```swift
 public struct MetadataExpoToken: Codable, Hashable, Sendable
 ```

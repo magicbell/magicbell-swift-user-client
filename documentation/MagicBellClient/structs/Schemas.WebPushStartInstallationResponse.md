@@ -2,14 +2,6 @@
 
 # `Schemas.WebPushStartInstallationResponse`
 
-**Contents**
-
-- [Properties](#properties)
-  - `auth_token`
-  - `public_key`
-- [Methods](#methods)
-  - `init(auth_token:public_key:)`
-
 ```swift
 public struct WebPushStartInstallationResponse: Codable, Hashable, Sendable
 ```

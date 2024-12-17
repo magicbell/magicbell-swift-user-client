@@ -2,11 +2,6 @@
 
 # `statePayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `color`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

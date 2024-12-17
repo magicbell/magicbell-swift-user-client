@@ -2,15 +2,6 @@
 
 # `Schemas.SlackStartInstallResponseContent`
 
-**Contents**
-
-- [Properties](#properties)
-  - `app_id`
-  - `auth_url`
-  - `scopes`
-- [Methods](#methods)
-  - `init(app_id:auth_url:scopes:)`
-
 ```swift
 public struct SlackStartInstallResponseContent: Codable, Hashable, Sendable
 ```

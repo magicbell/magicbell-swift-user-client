@@ -2,14 +2,6 @@
 
 # `TokenMetadata.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `created_at`
-  - `discarded_at`
-  - `id`
-  - `updated_at`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

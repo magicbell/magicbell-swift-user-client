@@ -2,14 +2,6 @@
 
 # `Schemas.ArrayOfMetadataExpoTokens`
 
-**Contents**
-
-- [Properties](#properties)
-  - `data`
-  - `links`
-- [Methods](#methods)
-  - `init(data:links:)`
-
 ```swift
 public struct ArrayOfMetadataExpoTokens: Codable, Hashable, Sendable
 ```

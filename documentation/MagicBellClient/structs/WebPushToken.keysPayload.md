@@ -2,14 +2,6 @@
 
 # `WebPushToken.keysPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `auth`
-  - `p256dh`
-- [Methods](#methods)
-  - `init(auth:p256dh:)`
-
 ```swift
 public struct keysPayload: Codable, Hashable, Sendable
 ```

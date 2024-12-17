@@ -2,13 +2,6 @@
 
 # `Schemas.ExpoToken`
 
-**Contents**
-
-- [Properties](#properties)
-  - `device_token`
-- [Methods](#methods)
-  - `init(device_token:)`
-
 ```swift
 public struct ExpoToken: Codable, Hashable, Sendable
 ```

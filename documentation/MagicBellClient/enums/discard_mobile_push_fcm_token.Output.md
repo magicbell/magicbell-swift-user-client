@@ -2,14 +2,6 @@
 
 # `discard_mobile_push_fcm_token.Output`
 
-**Contents**
-
-- [Cases](#cases)
-  - `ok(_:)`
-  - `undocumented(statusCode:_:)`
-- [Properties](#properties)
-  - `ok`
-
 ```swift
 @frozen public enum Output: Sendable, Hashable
 ```

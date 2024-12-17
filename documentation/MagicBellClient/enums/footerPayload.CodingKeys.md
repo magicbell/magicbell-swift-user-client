@@ -2,14 +2,6 @@
 
 # `footerPayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `backgroundColor`
-  - `borderRadius`
-  - `fontSize`
-  - `textColor`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

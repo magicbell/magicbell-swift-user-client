@@ -2,11 +2,6 @@
 
 # `Operations.discard_mobile_push_expo_token`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum discard_mobile_push_expo_token
 ```

@@ -2,14 +2,6 @@
 
 # `Schemas.MetadataTeamsToken`
 
-**Contents**
-
-- [Properties](#properties)
-  - `data`
-  - `metadata`
-- [Methods](#methods)
-  - `init(data:metadata:)`
-
 ```swift
 public struct MetadataTeamsToken: Codable, Hashable, Sendable
 ```

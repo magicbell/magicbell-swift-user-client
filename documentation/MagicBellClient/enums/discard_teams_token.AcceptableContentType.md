@@ -2,17 +2,6 @@
 
 # `discard_teams_token.AcceptableContentType`
 
-**Contents**
-
-- [Cases](#cases)
-  - `json`
-  - `other(_:)`
-- [Properties](#properties)
-  - `rawValue`
-  - `allCases`
-- [Methods](#methods)
-  - `init(rawValue:)`
-
 ```swift
 @frozen public enum AcceptableContentType: AcceptableProtocol
 ```

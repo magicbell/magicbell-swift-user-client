@@ -2,13 +2,6 @@
 
 # `InboxConfig.imagesPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `emptyInboxUrl`
-- [Methods](#methods)
-  - `init(emptyInboxUrl:)`
-
 ```swift
 public struct imagesPayload: Codable, Hashable, Sendable
 ```

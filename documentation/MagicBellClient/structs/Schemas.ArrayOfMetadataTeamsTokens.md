@@ -2,14 +2,6 @@
 
 # `Schemas.ArrayOfMetadataTeamsTokens`
 
-**Contents**
-
-- [Properties](#properties)
-  - `data`
-  - `links`
-- [Methods](#methods)
-  - `init(data:links:)`
-
 ```swift
 public struct ArrayOfMetadataTeamsTokens: Codable, Hashable, Sendable
 ```

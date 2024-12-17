@@ -2,13 +2,6 @@
 
 # `unseenPayload.statePayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `color`
-- [Methods](#methods)
-  - `init(color:)`
-
 ```swift
 public struct statePayload: Codable, Hashable, Sendable
 ```

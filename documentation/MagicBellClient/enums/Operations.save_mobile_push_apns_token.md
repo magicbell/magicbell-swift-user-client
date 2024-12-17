@@ -2,11 +2,6 @@
 
 # `Operations.save_mobile_push_apns_token`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum save_mobile_push_apns_token
 ```

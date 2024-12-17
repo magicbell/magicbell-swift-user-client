@@ -2,13 +2,6 @@
 
 # `Output.Created`
 
-**Contents**
-
-- [Properties](#properties)
-  - `body`
-- [Methods](#methods)
-  - `init(body:)`
-
 ```swift
 public struct Created: Sendable, Hashable
 ```

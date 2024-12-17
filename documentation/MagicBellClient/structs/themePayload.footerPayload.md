@@ -2,16 +2,6 @@
 
 # `themePayload.footerPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `backgroundColor`
-  - `borderRadius`
-  - `fontSize`
-  - `textColor`
-- [Methods](#methods)
-  - `init(backgroundColor:borderRadius:fontSize:textColor:)`
-
 ```swift
 public struct footerPayload: Codable, Hashable, Sendable
 ```

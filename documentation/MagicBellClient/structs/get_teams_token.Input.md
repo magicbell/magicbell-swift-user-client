@@ -2,14 +2,6 @@
 
 # `get_teams_token.Input`
 
-**Contents**
-
-- [Properties](#properties)
-  - `path`
-  - `headers`
-- [Methods](#methods)
-  - `init(path:headers:)`
-
 ```swift
 public struct Input: Sendable, Hashable
 ```

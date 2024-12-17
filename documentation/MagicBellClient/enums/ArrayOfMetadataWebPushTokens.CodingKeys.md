@@ -2,12 +2,6 @@
 
 # `ArrayOfMetadataWebPushTokens.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `data`
-  - `links`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

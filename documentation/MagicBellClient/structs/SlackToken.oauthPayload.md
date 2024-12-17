@@ -2,15 +2,6 @@
 
 # `SlackToken.oauthPayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `channel_id`
-  - `installation_id`
-  - `scope`
-- [Methods](#methods)
-  - `init(channel_id:installation_id:scope:)`
-
 ```swift
 public struct oauthPayload: Codable, Hashable, Sendable
 ```

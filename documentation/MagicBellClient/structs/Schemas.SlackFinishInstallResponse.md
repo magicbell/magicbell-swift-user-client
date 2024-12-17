@@ -2,15 +2,6 @@
 
 # `Schemas.SlackFinishInstallResponse`
 
-**Contents**
-
-- [Properties](#properties)
-  - `app_id`
-  - `code`
-  - `redirect_url`
-- [Methods](#methods)
-  - `init(app_id:code:redirect_url:)`
-
 ```swift
 public struct SlackFinishInstallResponse: Codable, Hashable, Sendable
 ```

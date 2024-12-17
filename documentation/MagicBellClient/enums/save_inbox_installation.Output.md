@@ -2,14 +2,6 @@
 
 # `save_inbox_installation.Output`
 
-**Contents**
-
-- [Cases](#cases)
-  - `created(_:)`
-  - `undocumented(statusCode:_:)`
-- [Properties](#properties)
-  - `created`
-
 ```swift
 @frozen public enum Output: Sendable, Hashable
 ```

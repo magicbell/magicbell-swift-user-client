@@ -2,13 +2,6 @@
 
 # `TemplatesInstallation.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `category`
-  - `channel`
-  - `text`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

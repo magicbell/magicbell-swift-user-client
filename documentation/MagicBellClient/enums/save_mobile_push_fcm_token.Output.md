@@ -2,14 +2,6 @@
 
 # `save_mobile_push_fcm_token.Output`
 
-**Contents**
-
-- [Cases](#cases)
-  - `created(_:)`
-  - `undocumented(statusCode:_:)`
-- [Properties](#properties)
-  - `created`
-
 ```swift
 @frozen public enum Output: Sendable, Hashable
 ```

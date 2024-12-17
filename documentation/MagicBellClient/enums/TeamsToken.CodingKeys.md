@@ -2,11 +2,6 @@
 
 # `TeamsToken.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `webhook`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

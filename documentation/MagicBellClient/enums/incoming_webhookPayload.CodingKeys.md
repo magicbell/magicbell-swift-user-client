@@ -2,13 +2,6 @@
 
 # `incoming_webhookPayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `channel`
-  - `configuration_url`
-  - `url`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

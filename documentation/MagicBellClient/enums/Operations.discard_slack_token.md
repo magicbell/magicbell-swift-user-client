@@ -2,11 +2,6 @@
 
 # `Operations.discard_slack_token`
 
-**Contents**
-
-- [Properties](#properties)
-  - `id`
-
 ```swift
 public enum discard_slack_token
 ```

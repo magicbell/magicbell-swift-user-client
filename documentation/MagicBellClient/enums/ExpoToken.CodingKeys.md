@@ -2,11 +2,6 @@
 
 # `ExpoToken.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `device_token`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

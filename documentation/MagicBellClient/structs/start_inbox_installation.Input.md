@@ -2,13 +2,6 @@
 
 # `start_inbox_installation.Input`
 
-**Contents**
-
-- [Properties](#properties)
-  - `headers`
-- [Methods](#methods)
-  - `init(headers:)`
-
 ```swift
 public struct Input: Sendable, Hashable
 ```

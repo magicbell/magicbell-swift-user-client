@@ -2,13 +2,6 @@
 
 # `Input.Path`
 
-**Contents**
-
-- [Properties](#properties)
-  - `token_id`
-- [Methods](#methods)
-  - `init(token_id:)`
-
 ```swift
 public struct Path: Sendable, Hashable
 ```

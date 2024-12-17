@@ -2,13 +2,6 @@
 
 # `Ok.Body`
 
-**Contents**
-
-- [Cases](#cases)
-  - `json(_:)`
-- [Properties](#properties)
-  - `json`
-
 ```swift
 @frozen public enum Body: Sendable, Hashable
 ```

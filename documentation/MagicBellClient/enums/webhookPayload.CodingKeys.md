@@ -2,11 +2,6 @@
 
 # `webhookPayload.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `url`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

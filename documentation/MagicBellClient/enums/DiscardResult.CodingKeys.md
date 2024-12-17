@@ -2,12 +2,6 @@
 
 # `DiscardResult.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `discarded_at`
-  - `id`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

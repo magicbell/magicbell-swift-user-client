@@ -2,13 +2,6 @@
 
 # `themePayload.unseenBadgePayload`
 
-**Contents**
-
-- [Properties](#properties)
-  - `backgroundColor`
-- [Methods](#methods)
-  - `init(backgroundColor:)`
-
 ```swift
 public struct unseenBadgePayload: Codable, Hashable, Sendable
 ```

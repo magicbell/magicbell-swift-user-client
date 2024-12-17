@@ -2,12 +2,6 @@
 
 # `MetadataExpoToken.CodingKeys`
 
-**Contents**
-
-- [Cases](#cases)
-  - `data`
-  - `metadata`
-
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

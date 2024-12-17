@@ -2,14 +2,6 @@
 
 # `get_slack_tokens.Input`
 
-**Contents**
-
-- [Properties](#properties)
-  - `query`
-  - `headers`
-- [Methods](#methods)
-  - `init(query:headers:)`
-
 ```swift
 public struct Input: Sendable, Hashable
 ```
