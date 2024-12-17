@@ -1,4 +1,5 @@
-name: Regen
+name: Regen magicbell-swift-client
+
 on:
   workflow_dispatch:
   schedule:
