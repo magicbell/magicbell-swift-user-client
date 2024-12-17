@@ -11,11 +11,23 @@ function hasChangesInPath(path: string) {
   }
 }
 
+function assertCorrectSourceDocs() {
+  const sourcedocsVersion = execSync("sourcedocs version", {
+    encoding: "utf8",
+  });
+  if (sourcedocsVersion !== "SourceDocs v0.0.0 MB fork\n") {
+    // Make sure you use the fork when running the script locally:
+    // https://github.com/magicbell/SourceDocs/tree/magicbell
+    throw `Expected MagicBell fork of SourceDocs, but got a different build: ${sourcedocsVersion}`;
+  }
+}
+assertCorrectSourceDocs();
+
 async function build() {
   await fs.rm("output", { recursive: true, force: true });
   mkdirSync("output");
 
-  let specPath = 'output/openapi.user.json'
+  let specPath = "output/openapi.user.json";
   execSync(
     `curl -o ${specPath} https://site.magicbell.cloud/docs/api/openapi.user.json`,
     {
@@ -41,19 +53,6 @@ async function build() {
   }
 
   // Generating Documentation
-  const sourcedocsVersion = execSync("sourcedocs version", {
-    stdio: "ignore",
-    encoding: "utf8",
-  });
-  if (sourcedocsVersion !== "SourceDocs v0.0.0 MB fork") {
-    // Make sure you use the fork when running the script locally:
-    // https://github.com/magicbell/SourceDocs/tree/magicbell
-    console.error(
-      "Expected MagicBell for of SourceDocs, but got a different build."
-    );
-    return;
-  }
-  
   execSync(
     "sourcedocs generate --clean --reproducible-docs -a -t -o=documentation",
     {
