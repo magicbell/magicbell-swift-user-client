@@ -1,24 +1,6 @@
 import { execSync } from "node:child_process";
-import { mkdir, mkdirSync } from "node:fs";
+import { mkdirSync } from "node:fs";
 import * as fs from "node:fs/promises";
-import * as path from "node:path";
-
-async function move(oldPath: string, newPath: string) {
-  await fs.rm(newPath, { recursive: true, force: true });
-  await fs.mkdir(path.dirname(newPath), { recursive: true });
-  await fs.rename(oldPath, newPath);
-}
-
-async function readJSON(path: string) {
-  return fs
-    .readFile(path, { encoding: "utf-8" })
-    .then((data) => JSON.parse(data));
-}
-
-async function writeJSON(path: string, data: any) {
-  data = typeof data === 'string' ? data : JSON.stringify(data, null, 2) + '\n';
-  return fs.writeFile(path, data, { encoding: 'utf-8' });
-}
 
 function hasChangesInPath(path: string) {
   try {
@@ -41,10 +23,6 @@ async function build() {
     }
   );
 
-  const spec = await readJSON(specPath)
-  spec['openapi'] = '3.0.4'
-  await writeJSON(specPath, spec)
-
   execSync(
     `swift run \
     swift-openapi-generator generate \
@@ -56,6 +34,11 @@ async function build() {
       stdio: "inherit",
     }
   );
+
+  if (!hasChangesInPath("Sources")) {
+    console.log("No changes detected in output.");
+    return;
+  }
 
   execSync("sourcedocs generate -a -t -o=documentation", {
     stdio: "inherit",
