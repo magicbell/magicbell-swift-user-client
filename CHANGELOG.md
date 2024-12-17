@@ -1,5 +1,13 @@
 # magicbell-swift-client
 
+## 0.1.1
+
+### Patch Changes
+
+- [`123873f`](https://github.com/magicbell/magicbell-swift-client/commit/123873f78f8b93102e60b3d7789caa20662adf86) Thanks [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)! - Adjusts generations scripts for documentation and code
+
+- [`123873f`](https://github.com/magicbell/magicbell-swift-client/commit/123873f78f8b93102e60b3d7789caa20662adf86) Thanks [@github-actions[bot]](https://github.com/github-actions%5Bbot%5D)! - Adds release discussion workflow
+
 ## 0.1.0
 
 ### Minor Changes
