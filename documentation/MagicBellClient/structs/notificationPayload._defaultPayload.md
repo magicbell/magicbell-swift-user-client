@@ -2,6 +2,20 @@
 
 # `notificationPayload._defaultPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `backgroundColor`
+  - `borderRadius`
+  - `fontFamily`
+  - `fontSize`
+  - `hover`
+  - `margin`
+  - `state`
+  - `textColor`
+- [Methods](#methods)
+  - `init(backgroundColor:borderRadius:fontFamily:fontSize:hover:margin:state:textColor:)`
+
 ```swift
 public struct _defaultPayload: Codable, Hashable, Sendable
 ```

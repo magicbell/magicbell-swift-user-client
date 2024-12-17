@@ -2,6 +2,23 @@
 
 # `SlackInstallation.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `access_token`
+  - `app_id`
+  - `authed_user`
+  - `bot_user_id`
+  - `enterprise`
+  - `expires_in`
+  - `id`
+  - `incoming_webhook`
+  - `is_enterprise_install`
+  - `refresh_token`
+  - `scope`
+  - `team`
+  - `token_type`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

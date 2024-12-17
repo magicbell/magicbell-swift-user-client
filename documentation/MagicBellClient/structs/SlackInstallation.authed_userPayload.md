@@ -2,6 +2,18 @@
 
 # `SlackInstallation.authed_userPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `access_token`
+  - `expires_in`
+  - `id`
+  - `refresh_token`
+  - `scope`
+  - `token_type`
+- [Methods](#methods)
+  - `init(access_token:expires_in:id:refresh_token:scope:token_type:)`
+
 ```swift
 public struct authed_userPayload: Codable, Hashable, Sendable
 ```

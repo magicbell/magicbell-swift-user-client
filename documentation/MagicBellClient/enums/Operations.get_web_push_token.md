@@ -2,6 +2,11 @@
 
 # `Operations.get_web_push_token`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum get_web_push_token
 ```

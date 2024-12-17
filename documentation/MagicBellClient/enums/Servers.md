@@ -2,6 +2,11 @@
 
 # `Servers`
 
+**Contents**
+
+- [Methods](#methods)
+  - `server1()`
+
 ```swift
 public enum Servers
 ```

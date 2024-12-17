@@ -2,6 +2,11 @@
 
 # `Operations.start_slack_installation`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum start_slack_installation
 ```

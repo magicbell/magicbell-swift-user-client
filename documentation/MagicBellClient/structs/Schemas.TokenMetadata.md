@@ -2,6 +2,16 @@
 
 # `Schemas.TokenMetadata`
 
+**Contents**
+
+- [Properties](#properties)
+  - `created_at`
+  - `discarded_at`
+  - `id`
+  - `updated_at`
+- [Methods](#methods)
+  - `init(created_at:discarded_at:id:updated_at:)`
+
 ```swift
 public struct TokenMetadata: Codable, Hashable, Sendable
 ```

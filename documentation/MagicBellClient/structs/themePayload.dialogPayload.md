@@ -2,6 +2,15 @@
 
 # `themePayload.dialogPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `accentColor`
+  - `backgroundColor`
+  - `textColor`
+- [Methods](#methods)
+  - `init(accentColor:backgroundColor:textColor:)`
+
 ```swift
 public struct dialogPayload: Codable, Hashable, Sendable
 ```

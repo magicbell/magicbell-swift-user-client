@@ -2,6 +2,11 @@
 
 # `Operations.discard_teams_token`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum discard_teams_token
 ```

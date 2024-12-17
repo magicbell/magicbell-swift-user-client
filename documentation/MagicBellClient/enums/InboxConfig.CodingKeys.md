@@ -2,6 +2,13 @@
 
 # `InboxConfig.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `images`
+  - `locale`
+  - `theme`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

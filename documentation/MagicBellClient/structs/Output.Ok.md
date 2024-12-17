@@ -2,6 +2,13 @@
 
 # `Output.Ok`
 
+**Contents**
+
+- [Properties](#properties)
+  - `body`
+- [Methods](#methods)
+  - `init(body:)`
+
 ```swift
 public struct Ok: Sendable, Hashable
 ```

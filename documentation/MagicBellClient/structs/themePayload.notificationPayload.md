@@ -2,6 +2,15 @@
 
 # `themePayload.notificationPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `_default`
+  - `unread`
+  - `unseen`
+- [Methods](#methods)
+  - `init(_default:unread:unseen:)`
+
 ```swift
 public struct notificationPayload: Codable, Hashable, Sendable
 ```

@@ -2,6 +2,14 @@
 
 # `get_slack_token.Output`
 
+**Contents**
+
+- [Cases](#cases)
+  - `ok(_:)`
+  - `undocumented(statusCode:_:)`
+- [Properties](#properties)
+  - `ok`
+
 ```swift
 @frozen public enum Output: Sendable, Hashable
 ```

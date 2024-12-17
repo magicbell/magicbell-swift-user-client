@@ -2,6 +2,12 @@
 
 # `WebPushStartInstallationResponse.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `auth_token`
+  - `public_key`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

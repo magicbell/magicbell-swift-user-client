@@ -2,6 +2,12 @@
 
 # `WebPushToken.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `endpoint`
+  - `keys`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

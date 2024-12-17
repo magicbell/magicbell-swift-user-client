@@ -2,6 +2,11 @@
 
 # `Input.Body`
 
+**Contents**
+
+- [Cases](#cases)
+  - `json(_:)`
+
 ```swift
 @frozen public enum Body: Sendable, Hashable
 ```

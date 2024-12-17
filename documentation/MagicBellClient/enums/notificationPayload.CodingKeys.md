@@ -2,6 +2,13 @@
 
 # `notificationPayload.CodingKeys`
 
+**Contents**
+
+- [Cases](#cases)
+  - `_default`
+  - `unread`
+  - `unseen`
+
 ```swift
 public enum CodingKeys: String, CodingKey
 ```

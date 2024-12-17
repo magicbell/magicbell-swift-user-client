@@ -2,6 +2,15 @@
 
 # `SlackInstallation.incoming_webhookPayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `channel`
+  - `configuration_url`
+  - `url`
+- [Methods](#methods)
+  - `init(channel:configuration_url:url:)`
+
 ```swift
 public struct incoming_webhookPayload: Codable, Hashable, Sendable
 ```

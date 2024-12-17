@@ -2,6 +2,11 @@
 
 # `Operations.save_templates_installation`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum save_templates_installation
 ```

@@ -2,6 +2,14 @@
 
 # `SlackInstallation.enterprisePayload`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+  - `name`
+- [Methods](#methods)
+  - `init(id:name:)`
+
 ```swift
 public struct enterprisePayload: Codable, Hashable, Sendable
 ```

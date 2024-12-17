@@ -2,6 +2,13 @@
 
 # `Schemas.TeamsToken`
 
+**Contents**
+
+- [Properties](#properties)
+  - `webhook`
+- [Methods](#methods)
+  - `init(webhook:)`
+
 ```swift
 public struct TeamsToken: Codable, Hashable, Sendable
 ```

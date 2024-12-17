@@ -2,6 +2,11 @@
 
 # `Operations.discard_web_push_token`
 
+**Contents**
+
+- [Properties](#properties)
+  - `id`
+
 ```swift
 public enum discard_web_push_token
 ```
