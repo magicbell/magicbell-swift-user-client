@@ -7,26 +7,10 @@ const version = pkgJson.version;
 const replacements = [
   {
     files: [
-      "liblab.config.json",
-      "README.md",
-      "pom.xml",
-      "example/pom.xml",
-      "kotlin-example/pom.xml",
     ],
-
     from: [
-      /\"sdkVersion\": \"\d.\d.\d\"/g,
-      /implementation group: com.magicbell.client, name: magicbell-java-client, version: \d.\d.\d/g,
-      /MagicbellJavaClient Java SDK \d.\d.\d/g,
-      /- SDK version: `\d.\d.\d`/g,
-      /<artifactId>magicbell-java-client<\/artifactId>\n.*<version>\d.\d.\d<\/version>/g,
     ],
     to: [
-      `"sdkVersion": "${version}"`,
-      `implementation group: com.magicbell.client, name: magicbell-java-client, version: ${version}`,
-      `MagicbellJavaClient Java SDK ${version}`,
-      `- SDK version: \`${version}\``,
-      (artifactVersion: string) => artifactVersion.replace(/\d.\d.\d/, version),
     ],
   },
 ];
