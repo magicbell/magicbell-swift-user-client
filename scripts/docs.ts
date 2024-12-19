@@ -52,8 +52,18 @@ for (const file of docs) {
   md.reIndentHeadings(ast, 1);
   md.mapLinks(ast, rewriteHref);
 
-  const title = md.getTitle(ast);
-  md.insertFrontMatter(ast, { title });
+  let titleComponents = path.parse(file).name.split(".");
+  // Removing noisy namespaces
+  if (titleComponents.length > 1 && titleComponents[0] === "Components") {
+    titleComponents.shift();
+  }
+  if (titleComponents.length > 1 && titleComponents[0] === "Schemas") {
+    titleComponents.shift();
+  }
+  if (titleComponents.length > 1 && titleComponents[0] === "Operations") {
+    titleComponents.shift();
+  }
+  md.insertFrontMatter(ast, { title: titleComponents.join(".") });
   md.removeFirstHeading(ast);
 
   await md.write(ast, path.join(outdir, pascalToHyphenCase(file) + "x"));
