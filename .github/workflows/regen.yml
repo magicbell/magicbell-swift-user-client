@@ -32,7 +32,7 @@ jobs:
           cp .build/release/sourcedocs /usr/local/bin
           popd
 
-      - name: Regen `magicbell-java-client`
+      - name: Regen `magicbell-swift-client`
         run: yarn codegen
         env:
           LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
