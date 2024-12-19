@@ -1,5 +1,11 @@
 # magicbell-swift-client
 
+## 0.2.0
+
+### Minor Changes
+
+- [#11](https://github.com/magicbell/magicbell-swift-client/pull/11) [`d381964`](https://github.com/magicbell/magicbell-swift-client/commit/d3819643a8b6416afea5f621a503bb2b6b9f7828) Thanks [@MagicBella](https://github.com/MagicBella)! - Automatic minor version bump for changes in `magicbell-swift-client`.
+
 ## 0.1.1
 
 ### Patch Changes
