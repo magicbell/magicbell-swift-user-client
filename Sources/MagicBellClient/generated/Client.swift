@@ -10,7 +10,7 @@ import struct Foundation.Data
 import struct Foundation.Date
 #endif
 import HTTPTypes
-/// OpenAPI 3.1.0 Specification for MagicBell API.
+/// OpenAPI 3.0.3 Specification for MagicBell API.
 public struct Client: APIProtocol {
     /// The underlying HTTP client.
     private let client: UniversalClient
