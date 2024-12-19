@@ -47,12 +47,14 @@ async function build() {
     swift-openapi-generator generate \
     --mode types --mode client \
     --access-modifier public \
-    --output-directory Sources/MagicBellClient/generated \
+    --output-directory output/sources \
     ${specPath}`,
     {
       stdio: "inherit",
     }
   );
+
+  move("output/sources", "Sources/MagicBellClient/generated")
 
   if (!hasChangesInPath("Sources")) {
     console.log("No changes detected in output.");
