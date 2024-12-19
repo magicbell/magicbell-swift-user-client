@@ -1,4 +1,4 @@
-# MagicBellClient Swift SDK 0.1.1
+# MagicBellClient Swift SDK 0.2.0
 
 Welcome to the MagicBellClient SDK documentation. This guide will help you get started with integrating and using the MagicBellClient SDK in your project.
 
@@ -8,7 +8,7 @@ OpenAPI 3.0.3 Specification for MagicBell API.
 
 ## Table of Contents
 
-- [MagicBellClient Swift SDK 0.1.1](#magicbellclient-swift-sdk-010)
+- [MagicBellClient Swift SDK 0.2.0](#magicbellclient-swift-sdk-010)
   - [About the API](#about-the-api)
   - [Table of Contents](#table-of-contents)
 - [Setup \& Configuration](#setup--configuration)
