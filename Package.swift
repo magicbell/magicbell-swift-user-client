@@ -3,11 +3,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "MagicBellClient",
+  name: "MagicBellUserClient",
   platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .visionOS(.v1)],
   products: [
-    .library(name: "MagicBellClient", targets: ["MagicBellClient"]),
-    .executable(name: "MagicBellClientExample", targets: ["MagicBellClientExample"]),
+    .library(name: "MagicBellUserClient", targets: ["MagicBellUserClient"]),
+    .executable(name: "Example", targets: ["Example"]),
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
@@ -16,14 +16,14 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "MagicBellClient",
+      name: "MagicBellUserClient",
       dependencies: [
         .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
         .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
       ]),
     .executableTarget(
-      name: "MagicBellClientExample",
-      dependencies: ["MagicBellClient"]
+      name: "Example",
+      dependencies: ["MagicBellUserClient"]
     )
   ]
 )

@@ -54,7 +54,7 @@ async function build() {
     }
   );
 
-  await move("output/sources", "Sources/MagicBellClient/generated")
+  await move("output/sources", "Sources/MagicBellUserClient/generated")
 
   if (!hasChangesInPath("Sources")) {
     console.log("No changes detected in output.");
@@ -69,7 +69,7 @@ async function build() {
     }
   );
   
-  await move("output/documentation/MagicBellClient", "documentation")
+  await move("output/documentation/MagicBellUserClient", "documentation")
 }
 
 void build().finally(async () => {

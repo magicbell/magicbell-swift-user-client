@@ -1,5 +1,5 @@
 import Foundation
-import MagicBellClient
+import MagicBellUserClient
 import OpenAPIURLSession
 
 let token =
@@ -12,7 +12,7 @@ let fakeDeviceToken =
 struct MainApp {
     static func main() async throws {
 
-        let client = MagicBellClient.Client(
+        let client = MagicBellUserClient.Client(
             serverURL: try Servers.Server1.url(),
             configuration: .init(dateTranscoder: .iso8601WithFractionalSeconds),
             transport: URLSessionTransport(),
