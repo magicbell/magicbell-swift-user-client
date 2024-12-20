@@ -1,6 +1,6 @@
-# MagicBellClient Swift SDK 0.2.0
+# MagicBellUserClient Swift SDK 0.2.0
 
-Welcome to the MagicBellClient SDK documentation. This guide will help you get started with integrating and using the MagicBellClient SDK in your project.
+Welcome to the MagicBellUserClient SDK documentation. This guide will help you get started with integrating and using the MagicBellUserClient SDK in your project.
 
 ## About the API
 
@@ -8,7 +8,7 @@ OpenAPI 3.0.3 Specification for MagicBell API.
 
 ## Table of Contents
 
-- [MagicBellClient Swift SDK 0.2.0](#magicbellclient-swift-sdk-010)
+- [MagicBellUserClient Swift SDK 0.2.0](#magicbelluserclient-swift-sdk-020)
   - [About the API](#about-the-api)
   - [Table of Contents](#table-of-contents)
 - [Setup \& Configuration](#setup--configuration)
@@ -41,7 +41,7 @@ To install MagicBell using [Swift Package Manager](https://www.swift.org/package
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/magicbell/magicbell-swift-client", .upToNextMajor(from: "0.1.0"))
+    .package(url: "https://github.com/magicbell/magicbell-swift-user-client", .upToNextMajor(from: "0.1.0"))
 ]
 ```
 
@@ -60,7 +60,7 @@ When you initialize the SDK, you can set the access token via the `Authenticatio
 ```swift
 let authMiddleware = AuthenticationMiddleware(jwtToken: token)
 
-let client = MagicBellClient.Client(
+let client = MagicBellUserClient.Client(
             serverURL: try Servers.Server1.url(),
             configuration: .init(dateTranscoder: .iso8601WithFractionalSeconds),
             transport: URLSessionTransport(),
@@ -75,7 +75,7 @@ Below is a comprehensive example demonstrating how to authenticate and call a si
 
 ```swift
 import Foundation
-import MagicBellClient
+import MagicBellUserClient
 import OpenAPIURLSession
 
 let token = "YOUR_ACCESS_TOKEN"
@@ -84,7 +84,7 @@ let token = "YOUR_ACCESS_TOKEN"
 struct MainApp {
     static func main() async throws {
 
-        let client = MagicBellClient.Client(
+        let client = MagicBellUserClient.Client(
             serverURL: try Servers.Server1.url(),
             configuration: .init(dateTranscoder: .iso8601WithFractionalSeconds),
             transport: URLSessionTransport(),

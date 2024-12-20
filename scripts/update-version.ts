@@ -8,12 +8,12 @@ const replacements = [
   {
     files: ["README.md"],
     from: [
-      /MagicBellClient Swift SDK \d.\d.\d/g,
-      /.upToNextMajor(from: "\d.\d.\d")/g,
+      /MagicBellUserClient Swift SDK \d.\d.\d/g,
+      /upToNextMajor\(from: "\d.\d.\d"\)/g,
     ],
     to: [
-      `MagicBellClient Swift SDK ${version}`,
-      `.upToNextMajor(from: "${version}")`,
+      `MagicBellUserClient Swift SDK ${version}`,
+      `upToNextMajor(from: "${version}")`,
     ],
   },
 ];

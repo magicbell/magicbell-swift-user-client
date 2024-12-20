@@ -1,4 +1,4 @@
-# magicbell-swift-client
+# magicbell-swift-user-client
 
 ## 0.2.0
 

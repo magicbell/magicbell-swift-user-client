@@ -1,4 +1,4 @@
-name: Regen magicbell-swift-client
+name: Regen
 
 on:
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
           cp .build/release/sourcedocs /usr/local/bin
           popd
 
-      - name: Regen `magicbell-swift-client`
+      - name: Regen
         run: yarn codegen
         env:
           LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
