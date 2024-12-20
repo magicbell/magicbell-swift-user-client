@@ -1,4 +1,4 @@
-# MagicBellUserClient Swift SDK 0.2.0
+# MagicBellUserClient Swift SDK 0.3.0
 
 Welcome to the MagicBellUserClient SDK documentation. This guide will help you get started with integrating and using the MagicBellUserClient SDK in your project.
 
@@ -8,7 +8,7 @@ OpenAPI 3.0.3 Specification for MagicBell API.
 
 ## Table of Contents
 
-- [MagicBellUserClient Swift SDK 0.2.0](#magicbelluserclient-swift-sdk-020)
+- [MagicBellUserClient Swift SDK 0.3.0](#magicbelluserclient-swift-sdk-020)
   - [About the API](#about-the-api)
   - [Table of Contents](#table-of-contents)
 - [Setup \& Configuration](#setup--configuration)
@@ -41,7 +41,7 @@ To install MagicBell using [Swift Package Manager](https://www.swift.org/package
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/magicbell/magicbell-swift-user-client", .upToNextMajor(from: "0.1.0"))
+    .package(url: "https://github.com/magicbell/magicbell-swift-user-client", .upToNextMajor(from: "0.3.0"))
 ]
 ```
 
