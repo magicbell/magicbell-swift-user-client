@@ -9,11 +9,11 @@ const replacements = [
     files: ["README.md"],
     from: [
       /MagicBellUserClient Swift SDK \d.\d.\d/g,
-      /.upToNextMajor(from: "\d.\d.\d")/g,
+      /upToNextMajor\(from: "\d.\d.\d"\)/g,
     ],
     to: [
       `MagicBellUserClient Swift SDK ${version}`,
-      `.upToNextMajor(from: "${version}")`,
+      `upToNextMajor(from: "${version}")`,
     ],
   },
 ];
