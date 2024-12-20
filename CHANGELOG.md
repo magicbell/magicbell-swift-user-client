@@ -1,5 +1,11 @@
 # magicbell-swift-user-client
 
+## 0.3.0
+
+### Minor Changes
+
+- [#14](https://github.com/magicbell/magicbell-swift-user-client/pull/14) [`6236c20`](https://github.com/magicbell/magicbell-swift-user-client/commit/6236c20f2d9015d25f508c44a97d87c484140af3) Thanks [@stigi](https://github.com/stigi)! - Renaming library to magicbell-swift-user-client
+
 ## 0.2.0
 
 ### Minor Changes
