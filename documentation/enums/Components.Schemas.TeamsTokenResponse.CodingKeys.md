@@ -1,6 +1,6 @@
 **ENUM**
 
-# `Components.Schemas.TokenMetadata.CodingKeys`
+# `Components.Schemas.TeamsTokenResponse.CodingKeys`
 
 **Contents**
 
@@ -9,6 +9,7 @@
   - `discarded_at`
   - `id`
   - `updated_at`
+  - `webhook`
 
 ```swift
 public enum CodingKeys: String, CodingKey
@@ -37,4 +38,10 @@ case id
 
 ```swift
 case updated_at
+```
+
+### `webhook`
+
+```swift
+case webhook
 ```

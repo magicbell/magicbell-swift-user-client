@@ -19,7 +19,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.ArrayOfMetadataExpoTokens)
+case json(Components.Schemas.ArrayOfExpoTokenResponses)
 ```
 
 - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content/application\/json`.
@@ -28,7 +28,7 @@ case json(Components.Schemas.ArrayOfMetadataExpoTokens)
 ### `json`
 
 ```swift
-public var json: Components.Schemas.ArrayOfMetadataExpoTokens
+public var json: Components.Schemas.ArrayOfExpoTokenResponses
 ```
 
 The associated value of the enum case if `self` is `.json`.

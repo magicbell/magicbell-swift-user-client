@@ -1,6 +1,6 @@
 **ENUM**
 
-# `Components.Schemas.ArrayOfMetadataTeamsTokens.CodingKeys`
+# `Components.Schemas.ArrayOfWebPushTokenResponses.CodingKeys`
 
 **Contents**
 
