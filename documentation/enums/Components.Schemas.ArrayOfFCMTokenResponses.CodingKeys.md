@@ -1,6 +1,6 @@
 **ENUM**
 
-# `Components.Schemas.ArrayOfMetadataSlackTokens.CodingKeys`
+# `Components.Schemas.ArrayOfFCMTokenResponses.CodingKeys`
 
 **Contents**
 

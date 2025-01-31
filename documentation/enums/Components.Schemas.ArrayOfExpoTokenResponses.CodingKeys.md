@@ -1,12 +1,12 @@
 **ENUM**
 
-# `Components.Schemas.MetadataAPNSToken.CodingKeys`
+# `Components.Schemas.ArrayOfExpoTokenResponses.CodingKeys`
 
 **Contents**
 
 - [Cases](#cases)
   - `data`
-  - `metadata`
+  - `links`
 
 ```swift
 public enum CodingKeys: String, CodingKey
@@ -19,8 +19,8 @@ public enum CodingKeys: String, CodingKey
 case data
 ```
 
-### `metadata`
+### `links`
 
 ```swift
-case metadata
+case links
 ```

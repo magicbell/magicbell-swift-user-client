@@ -1,26 +1,26 @@
 **ENUM**
 
-# `Components.Schemas.ArrayOfMetadataAPNSTokens.CodingKeys`
+# `Components.Schemas.WebPushTokenResponse.keysPayload.CodingKeys`
 
 **Contents**
 
 - [Cases](#cases)
-  - `data`
-  - `links`
+  - `auth`
+  - `p256dh`
 
 ```swift
 public enum CodingKeys: String, CodingKey
 ```
 
 ## Cases
-### `data`
+### `auth`
 
 ```swift
-case data
+case auth
 ```
 
-### `links`
+### `p256dh`
 
 ```swift
-case links
+case p256dh
 ```

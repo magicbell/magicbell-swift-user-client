@@ -647,19 +647,83 @@ public enum Components {
                 case installation_id
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataAPNSTokens`.
-        public struct ArrayOfMetadataAPNSTokens: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataAPNSTokens/data`.
-            public var data: [Components.Schemas.MetadataAPNSToken]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataAPNSTokens/links`.
+        /// - Remark: Generated from `#/components/schemas/APNSTokenResponse`.
+        public struct APNSTokenResponse: Codable, Hashable, Sendable {
+            /// (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/app_id`.
+            public var app_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/device_token`.
+            public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/id`.
+            public var id: Swift.String
+            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/installation_id`.
+            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case development = "development"
+                case production = "production"
+            }
+            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/installation_id`.
+            public var installation_id: Components.Schemas.APNSTokenResponse.installation_idPayload?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// Creates a new `APNSTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
+            ///   - created_at:
+            ///   - device_token:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - installation_id: (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///   - updated_at:
+            public init(
+                app_id: Swift.String? = nil,
+                created_at: Foundation.Date,
+                device_token: Swift.String,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                installation_id: Components.Schemas.APNSTokenResponse.installation_idPayload? = nil,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.app_id = app_id
+                self.created_at = created_at
+                self.device_token = device_token
+                self.discarded_at = discarded_at
+                self.id = id
+                self.installation_id = installation_id
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case app_id
+                case created_at
+                case device_token
+                case discarded_at
+                case id
+                case installation_id
+                case updated_at
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses`.
+        public struct ArrayOfAPNSTokenResponses: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses/data`.
+            public var data: [Components.Schemas.APNSTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfMetadataAPNSTokens`.
+            /// Creates a new `ArrayOfAPNSTokenResponses`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.MetadataAPNSToken]? = nil,
+                data: [Components.Schemas.APNSTokenResponse]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -670,19 +734,19 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataExpoTokens`.
-        public struct ArrayOfMetadataExpoTokens: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataExpoTokens/data`.
-            public var data: [Components.Schemas.MetadataExpoToken]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataExpoTokens/links`.
+        /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses`.
+        public struct ArrayOfExpoTokenResponses: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses/data`.
+            public var data: [Components.Schemas.ExpoTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfMetadataExpoTokens`.
+            /// Creates a new `ArrayOfExpoTokenResponses`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.MetadataExpoToken]? = nil,
+                data: [Components.Schemas.ExpoTokenResponse]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -693,19 +757,19 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataFCMTokens`.
-        public struct ArrayOfMetadataFCMTokens: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataFCMTokens/data`.
-            public var data: [Components.Schemas.MetadataFCMToken]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataFCMTokens/links`.
+        /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses`.
+        public struct ArrayOfFCMTokenResponses: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses/data`.
+            public var data: [Components.Schemas.FCMTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfMetadataFCMTokens`.
+            /// Creates a new `ArrayOfFCMTokenResponses`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.MetadataFCMToken]? = nil,
+                data: [Components.Schemas.FCMTokenResponse]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -716,19 +780,19 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataSlackTokens`.
-        public struct ArrayOfMetadataSlackTokens: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataSlackTokens/data`.
-            public var data: [Components.Schemas.MetadataSlackToken]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataSlackTokens/links`.
+        /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses`.
+        public struct ArrayOfSlackTokenResponses: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses/data`.
+            public var data: [Components.Schemas.SlackTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfMetadataSlackTokens`.
+            /// Creates a new `ArrayOfSlackTokenResponses`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.MetadataSlackToken]? = nil,
+                data: [Components.Schemas.SlackTokenResponse]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -739,19 +803,19 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataTeamsTokens`.
-        public struct ArrayOfMetadataTeamsTokens: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataTeamsTokens/data`.
-            public var data: [Components.Schemas.MetadataTeamsToken]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataTeamsTokens/links`.
+        /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses`.
+        public struct ArrayOfTeamsTokenResponses: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses/data`.
+            public var data: [Components.Schemas.TeamsTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfMetadataTeamsTokens`.
+            /// Creates a new `ArrayOfTeamsTokenResponses`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.MetadataTeamsToken]? = nil,
+                data: [Components.Schemas.TeamsTokenResponse]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -762,19 +826,19 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataWebPushTokens`.
-        public struct ArrayOfMetadataWebPushTokens: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataWebPushTokens/data`.
-            public var data: [Components.Schemas.MetadataWebPushToken]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfMetadataWebPushTokens/links`.
+        /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses`.
+        public struct ArrayOfWebPushTokenResponses: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses/data`.
+            public var data: [Components.Schemas.WebPushTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfMetadataWebPushTokens`.
+            /// Creates a new `ArrayOfWebPushTokenResponses`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.MetadataWebPushToken]? = nil,
+                data: [Components.Schemas.WebPushTokenResponse]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -823,6 +887,47 @@ public enum Components {
                 case device_token
             }
         }
+        /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse`.
+        public struct ExpoTokenResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/device_token`.
+            public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// Creates a new `ExpoTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - device_token:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - updated_at:
+            public init(
+                created_at: Foundation.Date,
+                device_token: Swift.String,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.created_at = created_at
+                self.device_token = device_token
+                self.discarded_at = discarded_at
+                self.id = id
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case device_token
+                case discarded_at
+                case id
+                case updated_at
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/FCMToken`.
         public struct FCMToken: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/FCMToken/device_token`.
@@ -849,6 +954,58 @@ public enum Components {
             public enum CodingKeys: String, CodingKey {
                 case device_token
                 case installation_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/FCMTokenResponse`.
+        public struct FCMTokenResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/device_token`.
+            public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/installation_id`.
+            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case development = "development"
+                case production = "production"
+            }
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/installation_id`.
+            public var installation_id: Components.Schemas.FCMTokenResponse.installation_idPayload?
+            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// Creates a new `FCMTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - device_token:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - installation_id:
+            ///   - updated_at:
+            public init(
+                created_at: Foundation.Date,
+                device_token: Swift.String,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                installation_id: Components.Schemas.FCMTokenResponse.installation_idPayload? = nil,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.created_at = created_at
+                self.device_token = device_token
+                self.discarded_at = discarded_at
+                self.id = id
+                self.installation_id = installation_id
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case device_token
+                case discarded_at
+                case id
+                case installation_id
+                case updated_at
             }
         }
         /// - Remark: Generated from `#/components/schemas/InboxConfig`.
@@ -1403,144 +1560,6 @@ public enum Components {
                 case prev
             }
         }
-        /// - Remark: Generated from `#/components/schemas/MetadataAPNSToken`.
-        public struct MetadataAPNSToken: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/MetadataAPNSToken/data`.
-            public var data: Components.Schemas.APNSToken
-            /// - Remark: Generated from `#/components/schemas/MetadataAPNSToken/metadata`.
-            public var metadata: Components.Schemas.TokenMetadata
-            /// Creates a new `MetadataAPNSToken`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - metadata:
-            public init(
-                data: Components.Schemas.APNSToken,
-                metadata: Components.Schemas.TokenMetadata
-            ) {
-                self.data = data
-                self.metadata = metadata
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case metadata
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/MetadataExpoToken`.
-        public struct MetadataExpoToken: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/MetadataExpoToken/data`.
-            public var data: Components.Schemas.ExpoToken
-            /// - Remark: Generated from `#/components/schemas/MetadataExpoToken/metadata`.
-            public var metadata: Components.Schemas.TokenMetadata
-            /// Creates a new `MetadataExpoToken`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - metadata:
-            public init(
-                data: Components.Schemas.ExpoToken,
-                metadata: Components.Schemas.TokenMetadata
-            ) {
-                self.data = data
-                self.metadata = metadata
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case metadata
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/MetadataFCMToken`.
-        public struct MetadataFCMToken: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/MetadataFCMToken/data`.
-            public var data: Components.Schemas.FCMToken
-            /// - Remark: Generated from `#/components/schemas/MetadataFCMToken/metadata`.
-            public var metadata: Components.Schemas.TokenMetadata
-            /// Creates a new `MetadataFCMToken`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - metadata:
-            public init(
-                data: Components.Schemas.FCMToken,
-                metadata: Components.Schemas.TokenMetadata
-            ) {
-                self.data = data
-                self.metadata = metadata
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case metadata
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/MetadataSlackToken`.
-        public struct MetadataSlackToken: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/MetadataSlackToken/data`.
-            public var data: Components.Schemas.SlackToken
-            /// - Remark: Generated from `#/components/schemas/MetadataSlackToken/metadata`.
-            public var metadata: Components.Schemas.TokenMetadata
-            /// Creates a new `MetadataSlackToken`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - metadata:
-            public init(
-                data: Components.Schemas.SlackToken,
-                metadata: Components.Schemas.TokenMetadata
-            ) {
-                self.data = data
-                self.metadata = metadata
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case metadata
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/MetadataTeamsToken`.
-        public struct MetadataTeamsToken: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/MetadataTeamsToken/data`.
-            public var data: Components.Schemas.TeamsToken
-            /// - Remark: Generated from `#/components/schemas/MetadataTeamsToken/metadata`.
-            public var metadata: Components.Schemas.TokenMetadata
-            /// Creates a new `MetadataTeamsToken`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - metadata:
-            public init(
-                data: Components.Schemas.TeamsToken,
-                metadata: Components.Schemas.TokenMetadata
-            ) {
-                self.data = data
-                self.metadata = metadata
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case metadata
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/MetadataWebPushToken`.
-        public struct MetadataWebPushToken: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/MetadataWebPushToken/data`.
-            public var data: Components.Schemas.WebPushToken
-            /// - Remark: Generated from `#/components/schemas/MetadataWebPushToken/metadata`.
-            public var metadata: Components.Schemas.TokenMetadata
-            /// Creates a new `MetadataWebPushToken`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - metadata:
-            public init(
-                data: Components.Schemas.WebPushToken,
-                metadata: Components.Schemas.TokenMetadata
-            ) {
-                self.data = data
-                self.metadata = metadata
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case metadata
-            }
-        }
         /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse`.
         public struct SlackFinishInstallResponse: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse/app_id`.
@@ -1952,6 +1971,97 @@ public enum Components {
                 ])
             }
         }
+        /// - Remark: Generated from `#/components/schemas/SlackTokenResponse`.
+        public struct SlackTokenResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth`.
+            public struct oauthPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/channel_id`.
+                public var channel_id: Swift.String
+                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/installation_id`.
+                public var installation_id: Swift.String
+                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/scope`.
+                public var scope: Swift.String?
+                /// Creates a new `oauthPayload`.
+                ///
+                /// - Parameters:
+                ///   - channel_id:
+                ///   - installation_id:
+                ///   - scope:
+                public init(
+                    channel_id: Swift.String,
+                    installation_id: Swift.String,
+                    scope: Swift.String? = nil
+                ) {
+                    self.channel_id = channel_id
+                    self.installation_id = installation_id
+                    self.scope = scope
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case channel_id
+                    case installation_id
+                    case scope
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth`.
+            public var oauth: Components.Schemas.SlackTokenResponse.oauthPayload?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
+            public struct webhookPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook/url`.
+                public var url: Swift.String
+                /// Creates a new `webhookPayload`.
+                ///
+                /// - Parameters:
+                ///   - url:
+                public init(url: Swift.String) {
+                    self.url = url
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case url
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
+            public var webhook: Components.Schemas.SlackTokenResponse.webhookPayload?
+            /// Creates a new `SlackTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - oauth:
+            ///   - updated_at:
+            ///   - webhook:
+            public init(
+                created_at: Foundation.Date,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                oauth: Components.Schemas.SlackTokenResponse.oauthPayload? = nil,
+                updated_at: Foundation.Date? = nil,
+                webhook: Components.Schemas.SlackTokenResponse.webhookPayload? = nil
+            ) {
+                self.created_at = created_at
+                self.discarded_at = discarded_at
+                self.id = id
+                self.oauth = oauth
+                self.updated_at = updated_at
+                self.webhook = webhook
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case discarded_at
+                case id
+                case oauth
+                case updated_at
+                case webhook
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/TeamsToken`.
         public struct TeamsToken: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/TeamsToken/webhook`.
@@ -1982,6 +2092,62 @@ public enum Components {
                 case webhook
             }
         }
+        /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse`.
+        public struct TeamsTokenResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook`.
+            public struct webhookPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook/url`.
+                public var url: Swift.String?
+                /// Creates a new `webhookPayload`.
+                ///
+                /// - Parameters:
+                ///   - url:
+                public init(url: Swift.String? = nil) {
+                    self.url = url
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case url
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook`.
+            public var webhook: Components.Schemas.TeamsTokenResponse.webhookPayload?
+            /// Creates a new `TeamsTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - updated_at:
+            ///   - webhook:
+            public init(
+                created_at: Foundation.Date,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                updated_at: Foundation.Date? = nil,
+                webhook: Components.Schemas.TeamsTokenResponse.webhookPayload? = nil
+            ) {
+                self.created_at = created_at
+                self.discarded_at = discarded_at
+                self.id = id
+                self.updated_at = updated_at
+                self.webhook = webhook
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case discarded_at
+                case id
+                case updated_at
+                case webhook
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/TemplatesInstallation`.
         public struct TemplatesInstallation: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/TemplatesInstallation/category`.
@@ -2009,41 +2175,6 @@ public enum Components {
                 case category
                 case channel
                 case text
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/TokenMetadata`.
-        public struct TokenMetadata: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/TokenMetadata/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/TokenMetadata/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/TokenMetadata/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/TokenMetadata/updated_at`.
-            public var updated_at: Foundation.Date?
-            /// Creates a new `TokenMetadata`.
-            ///
-            /// - Parameters:
-            ///   - created_at:
-            ///   - discarded_at:
-            ///   - id:
-            ///   - updated_at:
-            public init(
-                created_at: Foundation.Date,
-                discarded_at: Foundation.Date? = nil,
-                id: Swift.String,
-                updated_at: Foundation.Date? = nil
-            ) {
-                self.created_at = created_at
-                self.discarded_at = discarded_at
-                self.id = id
-                self.updated_at = updated_at
-            }
-            public enum CodingKeys: String, CodingKey {
-                case created_at
-                case discarded_at
-                case id
-                case updated_at
             }
         }
         /// - Remark: Generated from `#/components/schemas/WebPushStartInstallationResponse`.
@@ -2113,6 +2244,76 @@ public enum Components {
             public enum CodingKeys: String, CodingKey {
                 case endpoint
                 case keys
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse`.
+        public struct WebPushTokenResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/endpoint`.
+            public var endpoint: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
+            public struct keysPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/auth`.
+                public var auth: Swift.String
+                /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/p256dh`.
+                public var p256dh: Swift.String
+                /// Creates a new `keysPayload`.
+                ///
+                /// - Parameters:
+                ///   - auth:
+                ///   - p256dh:
+                public init(
+                    auth: Swift.String,
+                    p256dh: Swift.String
+                ) {
+                    self.auth = auth
+                    self.p256dh = p256dh
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case auth
+                    case p256dh
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
+            public var keys: Components.Schemas.WebPushTokenResponse.keysPayload
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// Creates a new `WebPushTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - discarded_at:
+            ///   - endpoint:
+            ///   - id:
+            ///   - keys:
+            ///   - updated_at:
+            public init(
+                created_at: Foundation.Date,
+                discarded_at: Foundation.Date? = nil,
+                endpoint: Swift.String,
+                id: Swift.String,
+                keys: Components.Schemas.WebPushTokenResponse.keysPayload,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.created_at = created_at
+                self.discarded_at = discarded_at
+                self.endpoint = endpoint
+                self.id = id
+                self.keys = keys
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case discarded_at
+                case endpoint
+                case id
+                case keys
+                case updated_at
             }
         }
     }
@@ -2190,12 +2391,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfMetadataAPNSTokens)
+                    case json(Components.Schemas.ArrayOfAPNSTokenResponses)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfMetadataAPNSTokens {
+                    public var json: Components.Schemas.ArrayOfAPNSTokenResponses {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2439,12 +2640,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.MetadataAPNSToken)
+                    case json(Components.Schemas.APNSTokenResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.MetadataAPNSToken {
+                    public var json: Components.Schemas.APNSTokenResponse {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2707,12 +2908,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfMetadataExpoTokens)
+                    case json(Components.Schemas.ArrayOfExpoTokenResponses)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfMetadataExpoTokens {
+                    public var json: Components.Schemas.ArrayOfExpoTokenResponses {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2956,12 +3157,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.MetadataExpoToken)
+                    case json(Components.Schemas.ExpoTokenResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.MetadataExpoToken {
+                    public var json: Components.Schemas.ExpoTokenResponse {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3224,12 +3425,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfMetadataFCMTokens)
+                    case json(Components.Schemas.ArrayOfFCMTokenResponses)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfMetadataFCMTokens {
+                    public var json: Components.Schemas.ArrayOfFCMTokenResponses {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3473,12 +3674,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.MetadataFCMToken)
+                    case json(Components.Schemas.FCMTokenResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.MetadataFCMToken {
+                    public var json: Components.Schemas.FCMTokenResponse {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3741,12 +3942,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfMetadataSlackTokens)
+                    case json(Components.Schemas.ArrayOfSlackTokenResponses)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfMetadataSlackTokens {
+                    public var json: Components.Schemas.ArrayOfSlackTokenResponses {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3990,12 +4191,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.MetadataSlackToken)
+                    case json(Components.Schemas.SlackTokenResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.MetadataSlackToken {
+                    public var json: Components.Schemas.SlackTokenResponse {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4258,12 +4459,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfMetadataTeamsTokens)
+                    case json(Components.Schemas.ArrayOfTeamsTokenResponses)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfMetadataTeamsTokens {
+                    public var json: Components.Schemas.ArrayOfTeamsTokenResponses {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4507,12 +4708,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.MetadataTeamsToken)
+                    case json(Components.Schemas.TeamsTokenResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.MetadataTeamsToken {
+                    public var json: Components.Schemas.TeamsTokenResponse {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4775,12 +4976,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfMetadataWebPushTokens)
+                    case json(Components.Schemas.ArrayOfWebPushTokenResponses)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfMetadataWebPushTokens {
+                    public var json: Components.Schemas.ArrayOfWebPushTokenResponses {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5024,12 +5225,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.MetadataWebPushToken)
+                    case json(Components.Schemas.WebPushTokenResponse)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.MetadataWebPushToken {
+                    public var json: Components.Schemas.WebPushTokenResponse {
                         get throws {
                             switch self {
                             case let .json(body):
