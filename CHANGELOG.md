@@ -1,5 +1,11 @@
 # magicbell-swift-user-client
 
+## 0.4.0
+
+### Minor Changes
+
+- [#16](https://github.com/magicbell/magicbell-swift-user-client/pull/16) [`c539e9e`](https://github.com/magicbell/magicbell-swift-user-client/commit/c539e9e091e9b4e98e7b632e2954fb193c4f838c) Thanks [@MagicBella](https://github.com/MagicBella)! - Automatic minor version bump for changes in `magicbell-swift-user-client`.
+
 ## 0.3.0
 
 ### Minor Changes
