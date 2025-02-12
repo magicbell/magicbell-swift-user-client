@@ -24,16 +24,16 @@ function rewriteHref(url: string) {
 
 // process readme
 const [readme] = glob.sync("README.md", { cwd: root });
-const rootIndexAst = await md.read(path.join(root, readme));
-md.removeAllBeforeHeading(rootIndexAst, "Setup & Configuration");
+const readmeAst = await md.read(path.join(root, readme));
+md.removeAllBeforeHeading(readmeAst, "Setup & Configuration");
 
 const [reference] = glob.sync("documentation/**/README.md", { cwd: root });
 const referenceAst = await md.read(path.join(root, reference));
 md.reIndentHeadings(referenceAst, 2);
 // append references to root index
-rootIndexAst.children = rootIndexAst.children.concat(referenceAst.children);
+readmeAst.children = readmeAst.children.concat(referenceAst.children);
 
-md.reIndentHeadings(rootIndexAst, 1);
-md.mapLinks(rootIndexAst, rewriteHref);
-md.insertFrontMatter(rootIndexAst, { title: pkg.name });
-await md.write(rootIndexAst, path.join(outdir, "index.mdx"));
+md.reIndentHeadings(readmeAst, 1);
+md.mapLinks(readmeAst, rewriteHref);
+md.insertFrontMatter(readmeAst, { title: pkg.docs?.name || pkg.name });
+await md.write(readmeAst, path.join(outdir, "index.mdx"));
