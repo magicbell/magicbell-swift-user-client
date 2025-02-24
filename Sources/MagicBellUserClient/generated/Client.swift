@@ -60,22 +60,22 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[size]",
-                    value: input.query.page_lbrack_size_rbrack_
+                    name: "limit",
+                    value: input.query.limit
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[after]",
-                    value: input.query.page_lbrack_after_rbrack_
+                    name: "starting_after",
+                    value: input.query.starting_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[before]",
-                    value: input.query.page_lbrack_before_rbrack_
+                    name: "ending_before",
+                    value: input.query.ending_before
                 )
                 converter.setAcceptHeader(
                     in: &request.headerFields,
@@ -336,22 +336,22 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[size]",
-                    value: input.query.page_lbrack_size_rbrack_
+                    name: "limit",
+                    value: input.query.limit
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[after]",
-                    value: input.query.page_lbrack_after_rbrack_
+                    name: "starting_after",
+                    value: input.query.starting_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[before]",
-                    value: input.query.page_lbrack_before_rbrack_
+                    name: "ending_before",
+                    value: input.query.ending_before
                 )
                 converter.setAcceptHeader(
                     in: &request.headerFields,
@@ -612,22 +612,22 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[size]",
-                    value: input.query.page_lbrack_size_rbrack_
+                    name: "limit",
+                    value: input.query.limit
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[after]",
-                    value: input.query.page_lbrack_after_rbrack_
+                    name: "starting_after",
+                    value: input.query.starting_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[before]",
-                    value: input.query.page_lbrack_before_rbrack_
+                    name: "ending_before",
+                    value: input.query.ending_before
                 )
                 converter.setAcceptHeader(
                     in: &request.headerFields,
@@ -888,22 +888,22 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[size]",
-                    value: input.query.page_lbrack_size_rbrack_
+                    name: "limit",
+                    value: input.query.limit
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[after]",
-                    value: input.query.page_lbrack_after_rbrack_
+                    name: "starting_after",
+                    value: input.query.starting_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[before]",
-                    value: input.query.page_lbrack_before_rbrack_
+                    name: "ending_before",
+                    value: input.query.ending_before
                 )
                 converter.setAcceptHeader(
                     in: &request.headerFields,
@@ -1164,22 +1164,22 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[size]",
-                    value: input.query.page_lbrack_size_rbrack_
+                    name: "limit",
+                    value: input.query.limit
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[after]",
-                    value: input.query.page_lbrack_after_rbrack_
+                    name: "starting_after",
+                    value: input.query.starting_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[before]",
-                    value: input.query.page_lbrack_before_rbrack_
+                    name: "ending_before",
+                    value: input.query.ending_before
                 )
                 converter.setAcceptHeader(
                     in: &request.headerFields,
@@ -1440,22 +1440,22 @@ public struct Client: APIProtocol {
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[size]",
-                    value: input.query.page_lbrack_size_rbrack_
+                    name: "limit",
+                    value: input.query.limit
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[after]",
-                    value: input.query.page_lbrack_after_rbrack_
+                    name: "starting_after",
+                    value: input.query.starting_after
                 )
                 try converter.setQueryItemAsURI(
                     in: &request,
                     style: .form,
                     explode: true,
-                    name: "page[before]",
-                    value: input.query.page_lbrack_before_rbrack_
+                    name: "ending_before",
+                    value: input.query.ending_before
                 )
                 converter.setAcceptHeader(
                     in: &request.headerFields,

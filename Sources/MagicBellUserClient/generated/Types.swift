@@ -2338,26 +2338,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_mobile_push_apns_tokens.Input.Query
@@ -2855,26 +2855,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_mobile_push_expo_tokens.Input.Query
@@ -3372,26 +3372,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_mobile_push_fcm_tokens.Input.Query
@@ -3889,26 +3889,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_slack_tokens.Input.Query
@@ -4406,26 +4406,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_teams_tokens.Input.Query
@@ -4923,26 +4923,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_web_push_tokens.Input.Query
