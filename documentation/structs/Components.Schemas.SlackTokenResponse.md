@@ -67,6 +67,8 @@ public var updated_at: Foundation.Date?
 public var webhook: Components.Schemas.SlackTokenResponse.webhookPayload?
 ```
 
+Obtained directly from the incoming_webhook object in the installation response from the Slack API.
+
 - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
 
 ## Methods
@@ -91,7 +93,7 @@ Creates a new `SlackTokenResponse`.
   - id:
   - oauth:
   - updated_at:
-  - webhook:
+  - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
 
 #### Parameters
 
@@ -102,4 +104,4 @@ Creates a new `SlackTokenResponse`.
 | id |  |
 | oauth |  |
 | updated_at |  |
-| webhook |  |
+| webhook | Obtained directly from the incoming_webhook object in the installation response from the Slack API. |
