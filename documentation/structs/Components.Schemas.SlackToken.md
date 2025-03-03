@@ -32,6 +32,8 @@ public var oauth: Components.Schemas.SlackToken.oauthPayload?
 public var webhook: Components.Schemas.SlackToken.webhookPayload?
 ```
 
+Obtained directly from the incoming_webhook object in the installation response from the Slack API.
+
 - Remark: Generated from `#/components/schemas/SlackToken/webhook`.
 
 ## Methods
@@ -48,14 +50,14 @@ Creates a new `SlackToken`.
 
 - Parameters:
   - oauth:
-  - webhook:
+  - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
 | oauth |  |
-| webhook |  |
+| webhook | Obtained directly from the incoming_webhook object in the installation response from the Slack API. |
 
 ### `init(from:)`
 

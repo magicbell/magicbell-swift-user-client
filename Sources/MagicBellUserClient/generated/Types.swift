@@ -1562,8 +1562,12 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse`.
         public struct SlackFinishInstallResponse: Codable, Hashable, Sendable {
+            /// The app ID of the Slack app that was originally configured at the project-level.
+            ///
             /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse/app_id`.
             public var app_id: Swift.String
+            /// The code that was returned from the OAuth flow, and found in the query string of the redirect URL.
+            ///
             /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse/code`.
             public var code: Swift.String
             /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse/redirect_url`.
@@ -1571,8 +1575,8 @@ public enum Components {
             /// Creates a new `SlackFinishInstallResponse`.
             ///
             /// - Parameters:
-            ///   - app_id:
-            ///   - code:
+            ///   - app_id: The app ID of the Slack app that was originally configured at the project-level.
+            ///   - code: The code that was returned from the OAuth flow, and found in the query string of the redirect URL.
             ///   - redirect_url:
             public init(
                 app_id: Swift.String,
@@ -1922,6 +1926,8 @@ public enum Components {
             }
             /// - Remark: Generated from `#/components/schemas/SlackToken/oauth`.
             public var oauth: Components.Schemas.SlackToken.oauthPayload?
+            /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
+            ///
             /// - Remark: Generated from `#/components/schemas/SlackToken/webhook`.
             public struct webhookPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/SlackToken/webhook/url`.
@@ -1937,13 +1943,15 @@ public enum Components {
                     case url
                 }
             }
+            /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
+            ///
             /// - Remark: Generated from `#/components/schemas/SlackToken/webhook`.
             public var webhook: Components.Schemas.SlackToken.webhookPayload?
             /// Creates a new `SlackToken`.
             ///
             /// - Parameters:
             ///   - oauth:
-            ///   - webhook:
+            ///   - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             public init(
                 oauth: Components.Schemas.SlackToken.oauthPayload? = nil,
                 webhook: Components.Schemas.SlackToken.webhookPayload? = nil
@@ -2012,6 +2020,8 @@ public enum Components {
             public var oauth: Components.Schemas.SlackTokenResponse.oauthPayload?
             /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/updated_at`.
             public var updated_at: Foundation.Date?
+            /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
+            ///
             /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
             public struct webhookPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook/url`.
@@ -2027,6 +2037,8 @@ public enum Components {
                     case url
                 }
             }
+            /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
+            ///
             /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
             public var webhook: Components.Schemas.SlackTokenResponse.webhookPayload?
             /// Creates a new `SlackTokenResponse`.
@@ -2037,7 +2049,7 @@ public enum Components {
             ///   - id:
             ///   - oauth:
             ///   - updated_at:
-            ///   - webhook:
+            ///   - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             public init(
                 created_at: Foundation.Date,
                 discarded_at: Foundation.Date? = nil,
@@ -2202,19 +2214,27 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/WebPushToken`.
         public struct WebPushToken: Codable, Hashable, Sendable {
+            /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/endpoint`.
             public var endpoint: Swift.String
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
             public struct keysPayload: Codable, Hashable, Sendable {
+                /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/auth`.
                 public var auth: Swift.String
+                /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
+                ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/p256dh`.
                 public var p256dh: Swift.String
                 /// Creates a new `keysPayload`.
                 ///
                 /// - Parameters:
-                ///   - auth:
-                ///   - p256dh:
+                ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 public init(
                     auth: Swift.String,
                     p256dh: Swift.String
@@ -2227,13 +2247,15 @@ public enum Components {
                     case p256dh
                 }
             }
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
             public var keys: Components.Schemas.WebPushToken.keysPayload
             /// Creates a new `WebPushToken`.
             ///
             /// - Parameters:
-            ///   - endpoint:
-            ///   - keys:
+            ///   - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///   - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
             public init(
                 endpoint: Swift.String,
                 keys: Components.Schemas.WebPushToken.keysPayload
@@ -2252,21 +2274,29 @@ public enum Components {
             public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/discarded_at`.
             public var discarded_at: Foundation.Date?
+            /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///
             /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/endpoint`.
             public var endpoint: Swift.String
             /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/id`.
             public var id: Swift.String
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
             /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
             public struct keysPayload: Codable, Hashable, Sendable {
+                /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///
                 /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/auth`.
                 public var auth: Swift.String
+                /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
+                ///
                 /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/p256dh`.
                 public var p256dh: Swift.String
                 /// Creates a new `keysPayload`.
                 ///
                 /// - Parameters:
-                ///   - auth:
-                ///   - p256dh:
+                ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 public init(
                     auth: Swift.String,
                     p256dh: Swift.String
@@ -2279,6 +2309,8 @@ public enum Components {
                     case p256dh
                 }
             }
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
             /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
             public var keys: Components.Schemas.WebPushTokenResponse.keysPayload
             /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/updated_at`.
@@ -2288,9 +2320,9 @@ public enum Components {
             /// - Parameters:
             ///   - created_at:
             ///   - discarded_at:
-            ///   - endpoint:
+            ///   - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
             ///   - id:
-            ///   - keys:
+            ///   - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
             ///   - updated_at:
             public init(
                 created_at: Foundation.Date,
@@ -2338,26 +2370,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_mobile_push_apns_tokens.Input.Query
@@ -2855,26 +2887,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_mobile_push_expo_tokens.Input.Query
@@ -3372,26 +3404,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_mobile_push_fcm_tokens.Input.Query
@@ -3889,26 +3921,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_slack_tokens.Input.Query
@@ -4406,26 +4438,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_teams_tokens.Input.Query
@@ -4923,26 +4955,26 @@ public enum Operations {
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/page[size]`.
-                public var page_lbrack_size_rbrack_: Swift.Int?
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/page[after]`.
-                public var page_lbrack_after_rbrack_: Swift.String?
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/page[before]`.
-                public var page_lbrack_before_rbrack_: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
-                ///   - page_lbrack_size_rbrack_:
-                ///   - page_lbrack_after_rbrack_:
-                ///   - page_lbrack_before_rbrack_:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
                 public init(
-                    page_lbrack_size_rbrack_: Swift.Int? = nil,
-                    page_lbrack_after_rbrack_: Swift.String? = nil,
-                    page_lbrack_before_rbrack_: Swift.String? = nil
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
                 ) {
-                    self.page_lbrack_size_rbrack_ = page_lbrack_size_rbrack_
-                    self.page_lbrack_after_rbrack_ = page_lbrack_after_rbrack_
-                    self.page_lbrack_before_rbrack_ = page_lbrack_before_rbrack_
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
                 }
             }
             public var query: Operations.get_web_push_tokens.Input.Query
