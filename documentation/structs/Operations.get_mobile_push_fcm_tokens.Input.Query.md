@@ -5,11 +5,11 @@
 **Contents**
 
 - [Properties](#properties)
-  - `page_lbrack_size_rbrack_`
-  - `page_lbrack_after_rbrack_`
-  - `page_lbrack_before_rbrack_`
+  - `limit`
+  - `starting_after`
+  - `ending_before`
 - [Methods](#methods)
-  - `init(page_lbrack_size_rbrack_:page_lbrack_after_rbrack_:page_lbrack_before_rbrack_:)`
+  - `init(limit:starting_after:ending_before:)`
 
 ```swift
 public struct Query: Sendable, Hashable
@@ -18,52 +18,52 @@ public struct Query: Sendable, Hashable
 - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query`.
 
 ## Properties
-### `page_lbrack_size_rbrack_`
+### `limit`
 
 ```swift
-public var page_lbrack_size_rbrack_: Swift.Int?
+public var limit: Swift.Int?
 ```
 
-- Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[size]`.
+- Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/limit`.
 
-### `page_lbrack_after_rbrack_`
+### `starting_after`
 
 ```swift
-public var page_lbrack_after_rbrack_: Swift.String?
+public var starting_after: Swift.String?
 ```
 
-- Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[after]`.
+- Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/starting_after`.
 
-### `page_lbrack_before_rbrack_`
+### `ending_before`
 
 ```swift
-public var page_lbrack_before_rbrack_: Swift.String?
+public var ending_before: Swift.String?
 ```
 
-- Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/page[before]`.
+- Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query/ending_before`.
 
 ## Methods
-### `init(page_lbrack_size_rbrack_:page_lbrack_after_rbrack_:page_lbrack_before_rbrack_:)`
+### `init(limit:starting_after:ending_before:)`
 
 ```swift
 public init(
-    page_lbrack_size_rbrack_: Swift.Int? = nil,
-    page_lbrack_after_rbrack_: Swift.String? = nil,
-    page_lbrack_before_rbrack_: Swift.String? = nil
+    limit: Swift.Int? = nil,
+    starting_after: Swift.String? = nil,
+    ending_before: Swift.String? = nil
 )
 ```
 
 Creates a new `Query`.
 
 - Parameters:
-  - page_lbrack_size_rbrack_:
-  - page_lbrack_after_rbrack_:
-  - page_lbrack_before_rbrack_:
+  - limit:
+  - starting_after:
+  - ending_before:
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| page_lbrack_size_rbrack_ |  |
-| page_lbrack_after_rbrack_ |  |
-| page_lbrack_before_rbrack_ |  |
+| limit |  |
+| starting_after |  |
+| ending_before |  |
