@@ -43,6 +43,8 @@ public var discarded_at: Foundation.Date?
 public var endpoint: Swift.String
 ```
 
+The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+
 - Remark: Generated from `#/components/schemas/WebPushTokenResponse/endpoint`.
 
 ### `id`
@@ -58,6 +60,8 @@ public var id: Swift.String
 ```swift
 public var keys: Components.Schemas.WebPushTokenResponse.keysPayload
 ```
+
+The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
 
 - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
 
@@ -88,9 +92,9 @@ Creates a new `WebPushTokenResponse`.
 - Parameters:
   - created_at:
   - discarded_at:
-  - endpoint:
+  - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
   - id:
-  - keys:
+  - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
   - updated_at:
 
 #### Parameters
@@ -99,7 +103,7 @@ Creates a new `WebPushTokenResponse`.
 | ---- | ----------- |
 | created_at |  |
 | discarded_at |  |
-| endpoint |  |
+| endpoint | The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to. |
 | id |  |
-| keys |  |
+| keys | The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription. |
 | updated_at |  |

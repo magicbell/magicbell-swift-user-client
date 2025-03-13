@@ -23,6 +23,8 @@ public struct WebPushToken: Codable, Hashable, Sendable
 public var endpoint: Swift.String
 ```
 
+The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+
 - Remark: Generated from `#/components/schemas/WebPushToken/endpoint`.
 
 ### `keys`
@@ -30,6 +32,8 @@ public var endpoint: Swift.String
 ```swift
 public var keys: Components.Schemas.WebPushToken.keysPayload
 ```
+
+The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
 
 - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
 
@@ -46,12 +50,12 @@ public init(
 Creates a new `WebPushToken`.
 
 - Parameters:
-  - endpoint:
-  - keys:
+  - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+  - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| endpoint |  |
-| keys |  |
+| endpoint | The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to. |
+| keys | The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription. |
