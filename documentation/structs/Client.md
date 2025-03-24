@@ -43,7 +43,7 @@
 public struct Client: APIProtocol
 ```
 
-OpenAPI 3.0.3 Specification for MagicBell API.
+OpenAPI 3.1.0 Specification for MagicBell API.
 
 ## Methods
 ### `init(serverURL:configuration:transport:middlewares:)`

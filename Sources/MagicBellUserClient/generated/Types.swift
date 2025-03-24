@@ -2225,19 +2225,19 @@ public enum Components {
                 /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/auth`.
-                public var auth: Swift.String
+                public var auth: OpenAPIRuntime.Base64EncodedData
                 /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/p256dh`.
-                public var p256dh: Swift.String
+                public var p256dh: OpenAPIRuntime.Base64EncodedData
                 /// Creates a new `keysPayload`.
                 ///
                 /// - Parameters:
                 ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 public init(
-                    auth: Swift.String,
-                    p256dh: Swift.String
+                    auth: OpenAPIRuntime.Base64EncodedData,
+                    p256dh: OpenAPIRuntime.Base64EncodedData
                 ) {
                     self.auth = auth
                     self.p256dh = p256dh
@@ -2287,19 +2287,19 @@ public enum Components {
                 /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/auth`.
-                public var auth: Swift.String
+                public var auth: OpenAPIRuntime.Base64EncodedData
                 /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/p256dh`.
-                public var p256dh: Swift.String
+                public var p256dh: OpenAPIRuntime.Base64EncodedData
                 /// Creates a new `keysPayload`.
                 ///
                 /// - Parameters:
                 ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 public init(
-                    auth: Swift.String,
-                    p256dh: Swift.String
+                    auth: OpenAPIRuntime.Base64EncodedData,
+                    p256dh: OpenAPIRuntime.Base64EncodedData
                 ) {
                     self.auth = auth
                     self.p256dh = p256dh
