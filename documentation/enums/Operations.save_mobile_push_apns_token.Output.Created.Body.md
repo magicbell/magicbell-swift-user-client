@@ -19,7 +19,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.APNSToken)
+case json(Components.Schemas.APNSTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/responses/201/content/application\/json`.
@@ -28,7 +28,7 @@ case json(Components.Schemas.APNSToken)
 ### `json`
 
 ```swift
-public var json: Components.Schemas.APNSToken
+public var json: Components.Schemas.APNSTokenPayload
 ```
 
 The associated value of the enum case if `self` is `.json`.

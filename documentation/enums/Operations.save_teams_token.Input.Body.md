@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.TeamsToken)
+case json(Components.Schemas.TeamsTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody/content/application\/json`.

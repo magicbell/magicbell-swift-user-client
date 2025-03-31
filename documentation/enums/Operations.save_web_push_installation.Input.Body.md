@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.WebPushToken)
+case json(Components.Schemas.WebPushTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/integrations/web_push/installations/POST/requestBody/content/application\/json`.
