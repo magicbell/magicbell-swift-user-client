@@ -613,8 +613,14 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/APNSToken/app_id`.
             public var app_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/APNSToken/created_at`.
+            public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/APNSToken/device_token`.
             public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/APNSToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/APNSToken/id`.
+            public var id: Swift.String
             /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
             ///
             /// - Remark: Generated from `#/components/schemas/APNSToken/installation_id`.
@@ -626,55 +632,9 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/APNSToken/installation_id`.
             public var installation_id: Components.Schemas.APNSToken.installation_idPayload?
-            /// Creates a new `APNSToken`.
-            ///
-            /// - Parameters:
-            ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
-            ///   - device_token:
-            ///   - installation_id: (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
-            public init(
-                app_id: Swift.String? = nil,
-                device_token: Swift.String,
-                installation_id: Components.Schemas.APNSToken.installation_idPayload? = nil
-            ) {
-                self.app_id = app_id
-                self.device_token = device_token
-                self.installation_id = installation_id
-            }
-            public enum CodingKeys: String, CodingKey {
-                case app_id
-                case device_token
-                case installation_id
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/APNSTokenResponse`.
-        public struct APNSTokenResponse: Codable, Hashable, Sendable {
-            /// (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
-            ///
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/app_id`.
-            public var app_id: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/device_token`.
-            public var device_token: Swift.String
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/id`.
-            public var id: Swift.String
-            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
-            ///
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/installation_id`.
-            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                case development = "development"
-                case production = "production"
-            }
-            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
-            ///
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/installation_id`.
-            public var installation_id: Components.Schemas.APNSTokenResponse.installation_idPayload?
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/updated_at`.
+            /// - Remark: Generated from `#/components/schemas/APNSToken/updated_at`.
             public var updated_at: Foundation.Date?
-            /// Creates a new `APNSTokenResponse`.
+            /// Creates a new `APNSToken`.
             ///
             /// - Parameters:
             ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
@@ -690,7 +650,7 @@ public enum Components {
                 device_token: Swift.String,
                 discarded_at: Foundation.Date? = nil,
                 id: Swift.String,
-                installation_id: Components.Schemas.APNSTokenResponse.installation_idPayload? = nil,
+                installation_id: Components.Schemas.APNSToken.installation_idPayload? = nil,
                 updated_at: Foundation.Date? = nil
             ) {
                 self.app_id = app_id
@@ -711,19 +671,19 @@ public enum Components {
                 case updated_at
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses`.
-        public struct ArrayOfAPNSTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses/data`.
-            public var data: [Components.Schemas.APNSTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses/links`.
+        /// - Remark: Generated from `#/components/schemas/APNSTokenCollection`.
+        public struct APNSTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/APNSTokenCollection/data`.
+            public var data: [Components.Schemas.APNSToken]?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenCollection/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfAPNSTokenResponses`.
+            /// Creates a new `APNSTokenCollection`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.APNSTokenResponse]? = nil,
+                data: [Components.Schemas.APNSToken]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -734,119 +694,44 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses`.
-        public struct ArrayOfExpoTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses/data`.
-            public var data: [Components.Schemas.ExpoTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfExpoTokenResponses`.
+        /// - Remark: Generated from `#/components/schemas/APNSTokenPayload`.
+        public struct APNSTokenPayload: Codable, Hashable, Sendable {
+            /// (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/app_id`.
+            public var app_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/device_token`.
+            public var device_token: Swift.String
+            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/installation_id`.
+            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case development = "development"
+                case production = "production"
+            }
+            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/installation_id`.
+            public var installation_id: Components.Schemas.APNSTokenPayload.installation_idPayload?
+            /// Creates a new `APNSTokenPayload`.
             ///
             /// - Parameters:
-            ///   - data:
-            ///   - links:
+            ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
+            ///   - device_token:
+            ///   - installation_id: (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
             public init(
-                data: [Components.Schemas.ExpoTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
+                app_id: Swift.String? = nil,
+                device_token: Swift.String,
+                installation_id: Components.Schemas.APNSTokenPayload.installation_idPayload? = nil
             ) {
-                self.data = data
-                self.links = links
+                self.app_id = app_id
+                self.device_token = device_token
+                self.installation_id = installation_id
             }
             public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses`.
-        public struct ArrayOfFCMTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses/data`.
-            public var data: [Components.Schemas.FCMTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfFCMTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.FCMTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses`.
-        public struct ArrayOfSlackTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses/data`.
-            public var data: [Components.Schemas.SlackTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfSlackTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.SlackTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses`.
-        public struct ArrayOfTeamsTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses/data`.
-            public var data: [Components.Schemas.TeamsTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfTeamsTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.TeamsTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses`.
-        public struct ArrayOfWebPushTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses/data`.
-            public var data: [Components.Schemas.WebPushTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfWebPushTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.WebPushTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                case app_id
+                case device_token
+                case installation_id
             }
         }
         /// - Remark: Generated from `#/components/schemas/DiscardResult`.
@@ -874,9 +759,73 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/ExpoToken`.
         public struct ExpoToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/created_at`.
+            public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/ExpoToken/device_token`.
             public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/updated_at`.
+            public var updated_at: Foundation.Date?
             /// Creates a new `ExpoToken`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - device_token:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - updated_at:
+            public init(
+                created_at: Foundation.Date,
+                device_token: Swift.String,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.created_at = created_at
+                self.device_token = device_token
+                self.discarded_at = discarded_at
+                self.id = id
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case device_token
+                case discarded_at
+                case id
+                case updated_at
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ExpoTokenCollection`.
+        public struct ExpoTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenCollection/data`.
+            public var data: [Components.Schemas.ExpoToken]?
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `ExpoTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.ExpoToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ExpoTokenPayload`.
+        public struct ExpoTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenPayload/device_token`.
+            public var device_token: Swift.String
+            /// Creates a new `ExpoTokenPayload`.
             ///
             /// - Parameters:
             ///   - device_token:
@@ -887,51 +836,16 @@ public enum Components {
                 case device_token
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse`.
-        public struct ExpoTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/device_token`.
-            public var device_token: Swift.String
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/updated_at`.
-            public var updated_at: Foundation.Date?
-            /// Creates a new `ExpoTokenResponse`.
-            ///
-            /// - Parameters:
-            ///   - created_at:
-            ///   - device_token:
-            ///   - discarded_at:
-            ///   - id:
-            ///   - updated_at:
-            public init(
-                created_at: Foundation.Date,
-                device_token: Swift.String,
-                discarded_at: Foundation.Date? = nil,
-                id: Swift.String,
-                updated_at: Foundation.Date? = nil
-            ) {
-                self.created_at = created_at
-                self.device_token = device_token
-                self.discarded_at = discarded_at
-                self.id = id
-                self.updated_at = updated_at
-            }
-            public enum CodingKeys: String, CodingKey {
-                case created_at
-                case device_token
-                case discarded_at
-                case id
-                case updated_at
-            }
-        }
         /// - Remark: Generated from `#/components/schemas/FCMToken`.
         public struct FCMToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMToken/created_at`.
+            public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/FCMToken/device_token`.
             public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/FCMToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/FCMToken/id`.
+            public var id: Swift.String
             /// - Remark: Generated from `#/components/schemas/FCMToken/installation_id`.
             @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
                 case development = "development"
@@ -939,43 +853,9 @@ public enum Components {
             }
             /// - Remark: Generated from `#/components/schemas/FCMToken/installation_id`.
             public var installation_id: Components.Schemas.FCMToken.installation_idPayload?
-            /// Creates a new `FCMToken`.
-            ///
-            /// - Parameters:
-            ///   - device_token:
-            ///   - installation_id:
-            public init(
-                device_token: Swift.String,
-                installation_id: Components.Schemas.FCMToken.installation_idPayload? = nil
-            ) {
-                self.device_token = device_token
-                self.installation_id = installation_id
-            }
-            public enum CodingKeys: String, CodingKey {
-                case device_token
-                case installation_id
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/FCMTokenResponse`.
-        public struct FCMTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/device_token`.
-            public var device_token: Swift.String
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/installation_id`.
-            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                case development = "development"
-                case production = "production"
-            }
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/installation_id`.
-            public var installation_id: Components.Schemas.FCMTokenResponse.installation_idPayload?
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/updated_at`.
+            /// - Remark: Generated from `#/components/schemas/FCMToken/updated_at`.
             public var updated_at: Foundation.Date?
-            /// Creates a new `FCMTokenResponse`.
+            /// Creates a new `FCMToken`.
             ///
             /// - Parameters:
             ///   - created_at:
@@ -989,7 +869,7 @@ public enum Components {
                 device_token: Swift.String,
                 discarded_at: Foundation.Date? = nil,
                 id: Swift.String,
-                installation_id: Components.Schemas.FCMTokenResponse.installation_idPayload? = nil,
+                installation_id: Components.Schemas.FCMToken.installation_idPayload? = nil,
                 updated_at: Foundation.Date? = nil
             ) {
                 self.created_at = created_at
@@ -1008,11 +888,62 @@ public enum Components {
                 case updated_at
             }
         }
-        /// - Remark: Generated from `#/components/schemas/InboxConfig`.
-        public struct InboxConfig: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/images`.
+        /// - Remark: Generated from `#/components/schemas/FCMTokenCollection`.
+        public struct FCMTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMTokenCollection/data`.
+            public var data: [Components.Schemas.FCMToken]?
+            /// - Remark: Generated from `#/components/schemas/FCMTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `FCMTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.FCMToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/FCMTokenPayload`.
+        public struct FCMTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMTokenPayload/device_token`.
+            public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/FCMTokenPayload/installation_id`.
+            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case development = "development"
+                case production = "production"
+            }
+            /// - Remark: Generated from `#/components/schemas/FCMTokenPayload/installation_id`.
+            public var installation_id: Components.Schemas.FCMTokenPayload.installation_idPayload?
+            /// Creates a new `FCMTokenPayload`.
+            ///
+            /// - Parameters:
+            ///   - device_token:
+            ///   - installation_id:
+            public init(
+                device_token: Swift.String,
+                installation_id: Components.Schemas.FCMTokenPayload.installation_idPayload? = nil
+            ) {
+                self.device_token = device_token
+                self.installation_id = installation_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case device_token
+                case installation_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload`.
+        public struct InboxConfigPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/images`.
             public struct imagesPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/images/emptyInboxUrl`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/images/emptyInboxUrl`.
                 public var emptyInboxUrl: Swift.String
                 /// Creates a new `imagesPayload`.
                 ///
@@ -1025,21 +956,21 @@ public enum Components {
                     case emptyInboxUrl
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/images`.
-            public var images: Components.Schemas.InboxConfig.imagesPayload?
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/locale`.
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/images`.
+            public var images: Components.Schemas.InboxConfigPayload.imagesPayload?
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/locale`.
             public var locale: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme`.
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme`.
             public struct themePayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner`.
                 public struct bannerPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/backgroundOpacity`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/backgroundOpacity`.
                     public var backgroundOpacity: Swift.Double?
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/fontSize`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/fontSize`.
                     public var fontSize: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `bannerPayload`.
                     ///
@@ -1066,15 +997,15 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner`.
-                public var banner: Components.Schemas.InboxConfig.themePayload.bannerPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner`.
+                public var banner: Components.Schemas.InboxConfigPayload.themePayload.bannerPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog`.
                 public struct dialogPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog/accentColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog/accentColor`.
                     public var accentColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `dialogPayload`.
                     ///
@@ -1097,17 +1028,17 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog`.
-                public var dialog: Components.Schemas.InboxConfig.themePayload.dialogPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog`.
+                public var dialog: Components.Schemas.InboxConfigPayload.themePayload.dialogPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer`.
                 public struct footerPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/borderRadius`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/borderRadius`.
                     public var borderRadius: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/fontSize`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/fontSize`.
                     public var fontSize: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `footerPayload`.
                     ///
@@ -1134,19 +1065,19 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer`.
-                public var footer: Components.Schemas.InboxConfig.themePayload.footerPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer`.
+                public var footer: Components.Schemas.InboxConfigPayload.themePayload.footerPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header`.
                 public struct headerPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/borderRadius`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/borderRadius`.
                     public var borderRadius: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/fontFamily`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/fontFamily`.
                     public var fontFamily: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/fontSize`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/fontSize`.
                     public var fontSize: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `headerPayload`.
                     ///
@@ -1177,13 +1108,13 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header`.
-                public var header: Components.Schemas.InboxConfig.themePayload.headerPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header`.
+                public var header: Components.Schemas.InboxConfigPayload.themePayload.headerPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon`.
                 public struct iconPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon/borderColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon/borderColor`.
                     public var borderColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon/width`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon/width`.
                     public var width: Swift.String
                     /// Creates a new `iconPayload`.
                     ///
@@ -1202,23 +1133,23 @@ public enum Components {
                         case width
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon`.
-                public var icon: Components.Schemas.InboxConfig.themePayload.iconPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon`.
+                public var icon: Components.Schemas.InboxConfigPayload.themePayload.iconPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification`.
                 public struct notificationPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default`.
                     public struct _defaultPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/backgroundColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/backgroundColor`.
                         public var backgroundColor: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/borderRadius`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/borderRadius`.
                         public var borderRadius: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/fontFamily`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/fontFamily`.
                         public var fontFamily: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/fontSize`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/fontSize`.
                         public var fontSize: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/hover`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/hover`.
                         public struct hoverPayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/hover/backgroundColor`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/hover/backgroundColor`.
                             public var backgroundColor: Swift.String
                             /// Creates a new `hoverPayload`.
                             ///
@@ -1231,13 +1162,13 @@ public enum Components {
                                 case backgroundColor
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/hover`.
-                        public var hover: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.hoverPayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/margin`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/hover`.
+                        public var hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.hoverPayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/margin`.
                         public var margin: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/state`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/state`.
                         public struct statePayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/state/color`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/state/color`.
                             public var color: Swift.String
                             /// Creates a new `statePayload`.
                             ///
@@ -1250,9 +1181,9 @@ public enum Components {
                                 case color
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/state`.
-                        public var state: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.statePayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/textColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/state`.
+                        public var state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.statePayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/textColor`.
                         public var textColor: Swift.String
                         /// Creates a new `_defaultPayload`.
                         ///
@@ -1270,9 +1201,9 @@ public enum Components {
                             borderRadius: Swift.String,
                             fontFamily: Swift.String,
                             fontSize: Swift.String,
-                            hover: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.hoverPayload? = nil,
+                            hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.hoverPayload? = nil,
                             margin: Swift.String,
-                            state: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.statePayload? = nil,
+                            state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.statePayload? = nil,
                             textColor: Swift.String
                         ) {
                             self.backgroundColor = backgroundColor
@@ -1295,15 +1226,15 @@ public enum Components {
                             case textColor
                         }
                     }
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default`.
-                    public var _default: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default`.
+                    public var _default: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread`.
                     public struct unreadPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/backgroundColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/backgroundColor`.
                         public var backgroundColor: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/hover`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/hover`.
                         public struct hoverPayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/hover/backgroundColor`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/hover/backgroundColor`.
                             public var backgroundColor: Swift.String
                             /// Creates a new `hoverPayload`.
                             ///
@@ -1316,11 +1247,11 @@ public enum Components {
                                 case backgroundColor
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/hover`.
-                        public var hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.hoverPayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/state`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/hover`.
+                        public var hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.hoverPayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/state`.
                         public struct statePayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/state/color`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/state/color`.
                             public var color: Swift.String
                             /// Creates a new `statePayload`.
                             ///
@@ -1333,9 +1264,9 @@ public enum Components {
                                 case color
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/state`.
-                        public var state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.statePayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/textColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/state`.
+                        public var state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.statePayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/textColor`.
                         public var textColor: Swift.String
                         /// Creates a new `unreadPayload`.
                         ///
@@ -1346,8 +1277,8 @@ public enum Components {
                         ///   - textColor:
                         public init(
                             backgroundColor: Swift.String,
-                            hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.hoverPayload? = nil,
-                            state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.statePayload? = nil,
+                            hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.hoverPayload? = nil,
+                            state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.statePayload? = nil,
                             textColor: Swift.String
                         ) {
                             self.backgroundColor = backgroundColor
@@ -1362,15 +1293,15 @@ public enum Components {
                             case textColor
                         }
                     }
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread`.
-                    public var unread: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread`.
+                    public var unread: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen`.
                     public struct unseenPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/backgroundColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/backgroundColor`.
                         public var backgroundColor: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/hover`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/hover`.
                         public struct hoverPayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/hover/backgroundColor`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/hover/backgroundColor`.
                             public var backgroundColor: Swift.String
                             /// Creates a new `hoverPayload`.
                             ///
@@ -1383,11 +1314,11 @@ public enum Components {
                                 case backgroundColor
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/hover`.
-                        public var hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.hoverPayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/state`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/hover`.
+                        public var hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.hoverPayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/state`.
                         public struct statePayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/state/color`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/state/color`.
                             public var color: Swift.String
                             /// Creates a new `statePayload`.
                             ///
@@ -1400,9 +1331,9 @@ public enum Components {
                                 case color
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/state`.
-                        public var state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.statePayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/textColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/state`.
+                        public var state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.statePayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/textColor`.
                         public var textColor: Swift.String
                         /// Creates a new `unseenPayload`.
                         ///
@@ -1413,8 +1344,8 @@ public enum Components {
                         ///   - textColor:
                         public init(
                             backgroundColor: Swift.String,
-                            hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.hoverPayload? = nil,
-                            state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.statePayload? = nil,
+                            hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.hoverPayload? = nil,
+                            state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.statePayload? = nil,
                             textColor: Swift.String
                         ) {
                             self.backgroundColor = backgroundColor
@@ -1429,8 +1360,8 @@ public enum Components {
                             case textColor
                         }
                     }
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen`.
-                    public var unseen: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen`.
+                    public var unseen: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload
                     /// Creates a new `notificationPayload`.
                     ///
                     /// - Parameters:
@@ -1438,9 +1369,9 @@ public enum Components {
                     ///   - unread:
                     ///   - unseen:
                     public init(
-                        _default: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload,
-                        unread: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload,
-                        unseen: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload
+                        _default: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload,
+                        unread: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload,
+                        unseen: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload
                     ) {
                         self._default = _default
                         self.unread = unread
@@ -1452,11 +1383,11 @@ public enum Components {
                         case unseen
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification`.
-                public var notification: Components.Schemas.InboxConfig.themePayload.notificationPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/unseenBadge`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification`.
+                public var notification: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/unseenBadge`.
                 public struct unseenBadgePayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/unseenBadge/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/unseenBadge/backgroundColor`.
                     public var backgroundColor: Swift.String
                     /// Creates a new `unseenBadgePayload`.
                     ///
@@ -1469,8 +1400,8 @@ public enum Components {
                         case backgroundColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/unseenBadge`.
-                public var unseenBadge: Components.Schemas.InboxConfig.themePayload.unseenBadgePayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/unseenBadge`.
+                public var unseenBadge: Components.Schemas.InboxConfigPayload.themePayload.unseenBadgePayload?
                 /// Creates a new `themePayload`.
                 ///
                 /// - Parameters:
@@ -1482,13 +1413,13 @@ public enum Components {
                 ///   - notification:
                 ///   - unseenBadge:
                 public init(
-                    banner: Components.Schemas.InboxConfig.themePayload.bannerPayload? = nil,
-                    dialog: Components.Schemas.InboxConfig.themePayload.dialogPayload? = nil,
-                    footer: Components.Schemas.InboxConfig.themePayload.footerPayload? = nil,
-                    header: Components.Schemas.InboxConfig.themePayload.headerPayload? = nil,
-                    icon: Components.Schemas.InboxConfig.themePayload.iconPayload? = nil,
-                    notification: Components.Schemas.InboxConfig.themePayload.notificationPayload? = nil,
-                    unseenBadge: Components.Schemas.InboxConfig.themePayload.unseenBadgePayload? = nil
+                    banner: Components.Schemas.InboxConfigPayload.themePayload.bannerPayload? = nil,
+                    dialog: Components.Schemas.InboxConfigPayload.themePayload.dialogPayload? = nil,
+                    footer: Components.Schemas.InboxConfigPayload.themePayload.footerPayload? = nil,
+                    header: Components.Schemas.InboxConfigPayload.themePayload.headerPayload? = nil,
+                    icon: Components.Schemas.InboxConfigPayload.themePayload.iconPayload? = nil,
+                    notification: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload? = nil,
+                    unseenBadge: Components.Schemas.InboxConfigPayload.themePayload.unseenBadgePayload? = nil
                 ) {
                     self.banner = banner
                     self.dialog = dialog
@@ -1508,18 +1439,18 @@ public enum Components {
                     case unseenBadge
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme`.
-            public var theme: Components.Schemas.InboxConfig.themePayload?
-            /// Creates a new `InboxConfig`.
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme`.
+            public var theme: Components.Schemas.InboxConfigPayload.themePayload?
+            /// Creates a new `InboxConfigPayload`.
             ///
             /// - Parameters:
             ///   - images:
             ///   - locale:
             ///   - theme:
             public init(
-                images: Components.Schemas.InboxConfig.imagesPayload? = nil,
+                images: Components.Schemas.InboxConfigPayload.imagesPayload? = nil,
                 locale: Swift.String? = nil,
-                theme: Components.Schemas.InboxConfig.themePayload? = nil
+                theme: Components.Schemas.InboxConfigPayload.themePayload? = nil
             ) {
                 self.images = images
                 self.locale = locale
@@ -1895,6 +1826,12 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/SlackToken`.
         public struct SlackToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackToken/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SlackToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SlackToken/id`.
+            public var id: Swift.String
             /// - Remark: Generated from `#/components/schemas/SlackToken/oauth`.
             public struct oauthPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/SlackToken/oauth/channel_id`.
@@ -1926,6 +1863,8 @@ public enum Components {
             }
             /// - Remark: Generated from `#/components/schemas/SlackToken/oauth`.
             public var oauth: Components.Schemas.SlackToken.oauthPayload?
+            /// - Remark: Generated from `#/components/schemas/SlackToken/updated_at`.
+            public var updated_at: Foundation.Date?
             /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             ///
             /// - Remark: Generated from `#/components/schemas/SlackToken/webhook`.
@@ -1950,50 +1889,68 @@ public enum Components {
             /// Creates a new `SlackToken`.
             ///
             /// - Parameters:
+            ///   - created_at:
+            ///   - discarded_at:
+            ///   - id:
             ///   - oauth:
+            ///   - updated_at:
             ///   - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             public init(
+                created_at: Foundation.Date,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
                 oauth: Components.Schemas.SlackToken.oauthPayload? = nil,
+                updated_at: Foundation.Date? = nil,
                 webhook: Components.Schemas.SlackToken.webhookPayload? = nil
             ) {
+                self.created_at = created_at
+                self.discarded_at = discarded_at
+                self.id = id
                 self.oauth = oauth
+                self.updated_at = updated_at
                 self.webhook = webhook
             }
             public enum CodingKeys: String, CodingKey {
+                case created_at
+                case discarded_at
+                case id
                 case oauth
+                case updated_at
                 case webhook
             }
-            public init(from decoder: any Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                self.oauth = try container.decodeIfPresent(
-                    Components.Schemas.SlackToken.oauthPayload.self,
-                    forKey: .oauth
-                )
-                self.webhook = try container.decodeIfPresent(
-                    Components.Schemas.SlackToken.webhookPayload.self,
-                    forKey: .webhook
-                )
-                try decoder.ensureNoAdditionalProperties(knownKeys: [
-                    "oauth",
-                    "webhook"
-                ])
+        }
+        /// - Remark: Generated from `#/components/schemas/SlackTokenCollection`.
+        public struct SlackTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackTokenCollection/data`.
+            public var data: [Components.Schemas.SlackToken]?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `SlackTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.SlackToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/SlackTokenResponse`.
-        public struct SlackTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth`.
+        /// - Remark: Generated from `#/components/schemas/SlackTokenPayload`.
+        public struct SlackTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth`.
             public struct oauthPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/channel_id`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth/channel_id`.
                 public var channel_id: Swift.String
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/installation_id`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth/installation_id`.
                 public var installation_id: Swift.String
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/scope`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth/scope`.
                 public var scope: Swift.String?
                 /// Creates a new `oauthPayload`.
                 ///
@@ -2016,15 +1973,13 @@ public enum Components {
                     case scope
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth`.
-            public var oauth: Components.Schemas.SlackTokenResponse.oauthPayload?
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/updated_at`.
-            public var updated_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth`.
+            public var oauth: Components.Schemas.SlackTokenPayload.oauthPayload?
             /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             ///
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/webhook`.
             public struct webhookPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook/url`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/webhook/url`.
                 public var url: Swift.String
                 /// Creates a new `webhookPayload`.
                 ///
@@ -2039,43 +1994,50 @@ public enum Components {
             }
             /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             ///
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
-            public var webhook: Components.Schemas.SlackTokenResponse.webhookPayload?
-            /// Creates a new `SlackTokenResponse`.
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/webhook`.
+            public var webhook: Components.Schemas.SlackTokenPayload.webhookPayload?
+            /// Creates a new `SlackTokenPayload`.
             ///
             /// - Parameters:
-            ///   - created_at:
-            ///   - discarded_at:
-            ///   - id:
             ///   - oauth:
-            ///   - updated_at:
             ///   - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             public init(
-                created_at: Foundation.Date,
-                discarded_at: Foundation.Date? = nil,
-                id: Swift.String,
-                oauth: Components.Schemas.SlackTokenResponse.oauthPayload? = nil,
-                updated_at: Foundation.Date? = nil,
-                webhook: Components.Schemas.SlackTokenResponse.webhookPayload? = nil
+                oauth: Components.Schemas.SlackTokenPayload.oauthPayload? = nil,
+                webhook: Components.Schemas.SlackTokenPayload.webhookPayload? = nil
             ) {
-                self.created_at = created_at
-                self.discarded_at = discarded_at
-                self.id = id
                 self.oauth = oauth
-                self.updated_at = updated_at
                 self.webhook = webhook
             }
             public enum CodingKeys: String, CodingKey {
-                case created_at
-                case discarded_at
-                case id
                 case oauth
-                case updated_at
                 case webhook
+            }
+            public init(from decoder: any Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                self.oauth = try container.decodeIfPresent(
+                    Components.Schemas.SlackTokenPayload.oauthPayload.self,
+                    forKey: .oauth
+                )
+                self.webhook = try container.decodeIfPresent(
+                    Components.Schemas.SlackTokenPayload.webhookPayload.self,
+                    forKey: .webhook
+                )
+                try decoder.ensureNoAdditionalProperties(knownKeys: [
+                    "oauth",
+                    "webhook"
+                ])
             }
         }
         /// - Remark: Generated from `#/components/schemas/TeamsToken`.
         public struct TeamsToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/updated_at`.
+            public var updated_at: Foundation.Date?
             /// - Remark: Generated from `#/components/schemas/TeamsToken/webhook`.
             public struct webhookPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/TeamsToken/webhook/url`.
@@ -2096,44 +2058,6 @@ public enum Components {
             /// Creates a new `TeamsToken`.
             ///
             /// - Parameters:
-            ///   - webhook:
-            public init(webhook: Components.Schemas.TeamsToken.webhookPayload? = nil) {
-                self.webhook = webhook
-            }
-            public enum CodingKeys: String, CodingKey {
-                case webhook
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse`.
-        public struct TeamsTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/updated_at`.
-            public var updated_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook`.
-            public struct webhookPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook/url`.
-                public var url: Swift.String?
-                /// Creates a new `webhookPayload`.
-                ///
-                /// - Parameters:
-                ///   - url:
-                public init(url: Swift.String? = nil) {
-                    self.url = url
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case url
-                }
-            }
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook`.
-            public var webhook: Components.Schemas.TeamsTokenResponse.webhookPayload?
-            /// Creates a new `TeamsTokenResponse`.
-            ///
-            /// - Parameters:
             ///   - created_at:
             ///   - discarded_at:
             ///   - id:
@@ -2144,7 +2068,7 @@ public enum Components {
                 discarded_at: Foundation.Date? = nil,
                 id: Swift.String,
                 updated_at: Foundation.Date? = nil,
-                webhook: Components.Schemas.TeamsTokenResponse.webhookPayload? = nil
+                webhook: Components.Schemas.TeamsToken.webhookPayload? = nil
             ) {
                 self.created_at = created_at
                 self.discarded_at = discarded_at
@@ -2157,6 +2081,59 @@ public enum Components {
                 case discarded_at
                 case id
                 case updated_at
+                case webhook
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/TeamsTokenCollection`.
+        public struct TeamsTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenCollection/data`.
+            public var data: [Components.Schemas.TeamsToken]?
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `TeamsTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.TeamsToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload`.
+        public struct TeamsTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload/webhook`.
+            public struct webhookPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload/webhook/url`.
+                public var url: Swift.String?
+                /// Creates a new `webhookPayload`.
+                ///
+                /// - Parameters:
+                ///   - url:
+                public init(url: Swift.String? = nil) {
+                    self.url = url
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case url
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload/webhook`.
+            public var webhook: Components.Schemas.TeamsTokenPayload.webhookPayload?
+            /// Creates a new `TeamsTokenPayload`.
+            ///
+            /// - Parameters:
+            ///   - webhook:
+            public init(webhook: Components.Schemas.TeamsTokenPayload.webhookPayload? = nil) {
+                self.webhook = webhook
+            }
+            public enum CodingKeys: String, CodingKey {
                 case webhook
             }
         }
@@ -2214,10 +2191,16 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/WebPushToken`.
         public struct WebPushToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
             /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
             ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/endpoint`.
             public var endpoint: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/id`.
+            public var id: Swift.String
             /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
             ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
@@ -2225,19 +2208,19 @@ public enum Components {
                 /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/auth`.
-                public var auth: Swift.String
+                public var auth: OpenAPIRuntime.Base64EncodedData
                 /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/p256dh`.
-                public var p256dh: Swift.String
+                public var p256dh: OpenAPIRuntime.Base64EncodedData
                 /// Creates a new `keysPayload`.
                 ///
                 /// - Parameters:
                 ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 public init(
-                    auth: Swift.String,
-                    p256dh: Swift.String
+                    auth: OpenAPIRuntime.Base64EncodedData,
+                    p256dh: OpenAPIRuntime.Base64EncodedData
                 ) {
                     self.auth = auth
                     self.p256dh = p256dh
@@ -2251,71 +2234,9 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
             public var keys: Components.Schemas.WebPushToken.keysPayload
-            /// Creates a new `WebPushToken`.
-            ///
-            /// - Parameters:
-            ///   - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
-            ///   - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
-            public init(
-                endpoint: Swift.String,
-                keys: Components.Schemas.WebPushToken.keysPayload
-            ) {
-                self.endpoint = endpoint
-                self.keys = keys
-            }
-            public enum CodingKeys: String, CodingKey {
-                case endpoint
-                case keys
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse`.
-        public struct WebPushTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/endpoint`.
-            public var endpoint: Swift.String
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/id`.
-            public var id: Swift.String
-            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
-            public struct keysPayload: Codable, Hashable, Sendable {
-                /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
-                ///
-                /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/auth`.
-                public var auth: Swift.String
-                /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
-                ///
-                /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/p256dh`.
-                public var p256dh: Swift.String
-                /// Creates a new `keysPayload`.
-                ///
-                /// - Parameters:
-                ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
-                ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
-                public init(
-                    auth: Swift.String,
-                    p256dh: Swift.String
-                ) {
-                    self.auth = auth
-                    self.p256dh = p256dh
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case auth
-                    case p256dh
-                }
-            }
-            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
-            public var keys: Components.Schemas.WebPushTokenResponse.keysPayload
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/updated_at`.
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/updated_at`.
             public var updated_at: Foundation.Date?
-            /// Creates a new `WebPushTokenResponse`.
+            /// Creates a new `WebPushToken`.
             ///
             /// - Parameters:
             ///   - created_at:
@@ -2329,7 +2250,7 @@ public enum Components {
                 discarded_at: Foundation.Date? = nil,
                 endpoint: Swift.String,
                 id: Swift.String,
-                keys: Components.Schemas.WebPushTokenResponse.keysPayload,
+                keys: Components.Schemas.WebPushToken.keysPayload,
                 updated_at: Foundation.Date? = nil
             ) {
                 self.created_at = created_at
@@ -2346,6 +2267,85 @@ public enum Components {
                 case id
                 case keys
                 case updated_at
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebPushTokenCollection`.
+        public struct WebPushTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenCollection/data`.
+            public var data: [Components.Schemas.WebPushToken]?
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `WebPushTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.WebPushToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload`.
+        public struct WebPushTokenPayload: Codable, Hashable, Sendable {
+            /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/endpoint`.
+            public var endpoint: Swift.String
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys`.
+            public struct keysPayload: Codable, Hashable, Sendable {
+                /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///
+                /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys/auth`.
+                public var auth: OpenAPIRuntime.Base64EncodedData
+                /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
+                ///
+                /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys/p256dh`.
+                public var p256dh: OpenAPIRuntime.Base64EncodedData
+                /// Creates a new `keysPayload`.
+                ///
+                /// - Parameters:
+                ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
+                public init(
+                    auth: OpenAPIRuntime.Base64EncodedData,
+                    p256dh: OpenAPIRuntime.Base64EncodedData
+                ) {
+                    self.auth = auth
+                    self.p256dh = p256dh
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case auth
+                    case p256dh
+                }
+            }
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys`.
+            public var keys: Components.Schemas.WebPushTokenPayload.keysPayload
+            /// Creates a new `WebPushTokenPayload`.
+            ///
+            /// - Parameters:
+            ///   - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///   - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            public init(
+                endpoint: Swift.String,
+                keys: Components.Schemas.WebPushTokenPayload.keysPayload
+            ) {
+                self.endpoint = endpoint
+                self.keys = keys
+            }
+            public enum CodingKeys: String, CodingKey {
+                case endpoint
+                case keys
             }
         }
     }
@@ -2423,12 +2423,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfAPNSTokenResponses)
+                    case json(Components.Schemas.APNSTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfAPNSTokenResponses {
+                    public var json: Components.Schemas.APNSTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2523,7 +2523,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.APNSToken)
+                case json(Components.Schemas.APNSTokenPayload)
             }
             public var body: Operations.save_mobile_push_apns_token.Input.Body?
             /// Creates a new `Input`.
@@ -2544,12 +2544,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.APNSToken)
+                    case json(Components.Schemas.APNSTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.APNSToken {
+                    public var json: Components.Schemas.APNSTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2672,12 +2672,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.APNSTokenResponse)
+                    case json(Components.Schemas.APNSToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.APNSTokenResponse {
+                    public var json: Components.Schemas.APNSToken {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2940,12 +2940,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfExpoTokenResponses)
+                    case json(Components.Schemas.ExpoTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfExpoTokenResponses {
+                    public var json: Components.Schemas.ExpoTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3040,7 +3040,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.ExpoToken)
+                case json(Components.Schemas.ExpoTokenPayload)
             }
             public var body: Operations.save_mobile_push_expo_token.Input.Body?
             /// Creates a new `Input`.
@@ -3061,12 +3061,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.ExpoToken)
+                    case json(Components.Schemas.ExpoTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ExpoToken {
+                    public var json: Components.Schemas.ExpoTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3189,12 +3189,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ExpoTokenResponse)
+                    case json(Components.Schemas.ExpoToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ExpoTokenResponse {
+                    public var json: Components.Schemas.ExpoToken {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3457,12 +3457,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfFCMTokenResponses)
+                    case json(Components.Schemas.FCMTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfFCMTokenResponses {
+                    public var json: Components.Schemas.FCMTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3557,7 +3557,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.FCMToken)
+                case json(Components.Schemas.FCMTokenPayload)
             }
             public var body: Operations.save_mobile_push_fcm_token.Input.Body?
             /// Creates a new `Input`.
@@ -3578,12 +3578,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.FCMToken)
+                    case json(Components.Schemas.FCMTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.FCMToken {
+                    public var json: Components.Schemas.FCMTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3706,12 +3706,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.FCMTokenResponse)
+                    case json(Components.Schemas.FCMToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.FCMTokenResponse {
+                    public var json: Components.Schemas.FCMToken {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3974,12 +3974,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfSlackTokenResponses)
+                    case json(Components.Schemas.SlackTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfSlackTokenResponses {
+                    public var json: Components.Schemas.SlackTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4074,7 +4074,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.SlackToken)
+                case json(Components.Schemas.SlackTokenPayload)
             }
             public var body: Operations.save_slack_token.Input.Body?
             /// Creates a new `Input`.
@@ -4095,12 +4095,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.SlackToken)
+                    case json(Components.Schemas.SlackTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.SlackToken {
+                    public var json: Components.Schemas.SlackTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4223,12 +4223,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.SlackTokenResponse)
+                    case json(Components.Schemas.SlackToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.SlackTokenResponse {
+                    public var json: Components.Schemas.SlackToken {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4491,12 +4491,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfTeamsTokenResponses)
+                    case json(Components.Schemas.TeamsTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfTeamsTokenResponses {
+                    public var json: Components.Schemas.TeamsTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4591,7 +4591,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.TeamsToken)
+                case json(Components.Schemas.TeamsTokenPayload)
             }
             public var body: Operations.save_teams_token.Input.Body?
             /// Creates a new `Input`.
@@ -4612,12 +4612,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.TeamsToken)
+                    case json(Components.Schemas.TeamsTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.TeamsToken {
+                    public var json: Components.Schemas.TeamsTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4740,12 +4740,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.TeamsTokenResponse)
+                    case json(Components.Schemas.TeamsToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.TeamsTokenResponse {
+                    public var json: Components.Schemas.TeamsToken {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5008,12 +5008,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfWebPushTokenResponses)
+                    case json(Components.Schemas.WebPushTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfWebPushTokenResponses {
+                    public var json: Components.Schemas.WebPushTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5108,7 +5108,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.WebPushToken)
+                case json(Components.Schemas.WebPushTokenPayload)
             }
             public var body: Operations.save_web_push_token.Input.Body?
             /// Creates a new `Input`.
@@ -5129,12 +5129,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.WebPushToken)
+                    case json(Components.Schemas.WebPushTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.WebPushToken {
+                    public var json: Components.Schemas.WebPushTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5257,12 +5257,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.WebPushTokenResponse)
+                    case json(Components.Schemas.WebPushToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.WebPushTokenResponse {
+                    public var json: Components.Schemas.WebPushToken {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5485,7 +5485,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.InboxConfig)
+                case json(Components.Schemas.InboxConfigPayload)
             }
             public var body: Operations.save_inbox_installation.Input.Body?
             /// Creates a new `Input`.
@@ -5506,12 +5506,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.InboxConfig)
+                    case json(Components.Schemas.InboxConfigPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.InboxConfig {
+                    public var json: Components.Schemas.InboxConfigPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5616,12 +5616,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/integrations/inbox/installations/start/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/integrations/inbox/installations/start/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.InboxConfig)
+                    case json(Components.Schemas.InboxConfigPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.InboxConfig {
+                    public var json: Components.Schemas.InboxConfigPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -6200,7 +6200,7 @@ public enum Operations {
             /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.WebPushToken)
+                case json(Components.Schemas.WebPushTokenPayload)
             }
             public var body: Operations.save_web_push_installation.Input.Body?
             /// Creates a new `Input`.
@@ -6221,12 +6221,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.WebPushToken)
+                    case json(Components.Schemas.WebPushTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.WebPushToken {
+                    public var json: Components.Schemas.WebPushTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
