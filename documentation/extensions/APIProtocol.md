@@ -6,6 +6,62 @@ extension APIProtocol
 ```
 
 ## Methods
+### `get_in_app_inbox_tokens(query:headers:)`
+
+```swift
+public func get_in_app_inbox_tokens(
+    query: Operations.get_in_app_inbox_tokens.Input.Query = .init(),
+    headers: Operations.get_in_app_inbox_tokens.Input.Headers = .init()
+) async throws -> Operations.get_in_app_inbox_tokens.Output
+```
+
+Lists all in_app tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
+- Remark: HTTP `GET /channels/in_app/inbox/tokens`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(get_in_app_inbox_tokens)`.
+
+### `save_in_app_inbox_token(headers:body:)`
+
+```swift
+public func save_in_app_inbox_token(
+    headers: Operations.save_in_app_inbox_token.Input.Headers = .init(),
+    body: Operations.save_in_app_inbox_token.Input.Body? = nil
+) async throws -> Operations.save_in_app_inbox_token.Output
+```
+
+Saves a in_app token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
+- Remark: HTTP `POST /channels/in_app/inbox/tokens`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/post(save_in_app_inbox_token)`.
+
+### `get_in_app_inbox_token(path:headers:)`
+
+```swift
+public func get_in_app_inbox_token(
+    path: Operations.get_in_app_inbox_token.Input.Path,
+    headers: Operations.get_in_app_inbox_token.Input.Headers = .init()
+) async throws -> Operations.get_in_app_inbox_token.Output
+```
+
+Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
+- Remark: HTTP `GET /channels/in_app/inbox/tokens/{token_id}`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(get_in_app_inbox_token)`.
+
+### `discard_in_app_inbox_token(path:headers:)`
+
+```swift
+public func discard_in_app_inbox_token(
+    path: Operations.discard_in_app_inbox_token.Input.Path,
+    headers: Operations.discard_in_app_inbox_token.Input.Headers = .init()
+) async throws -> Operations.discard_in_app_inbox_token.Output
+```
+
+Revokes one of the authenticated user's in_app tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
+- Remark: HTTP `DELETE /channels/in_app/inbox/tokens/{token_id}`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(discard_in_app_inbox_token)`.
+
 ### `get_mobile_push_apns_tokens(query:headers:)`
 
 ```swift
@@ -447,3 +503,17 @@ Initiates the installation flow for a web_push integration. This is the first st
 
 - Remark: HTTP `POST /integrations/web_push/installations/start`.
 - Remark: Generated from `#/paths//integrations/web_push/installations/start/post(start_web_push_installation)`.
+
+### `list_notifications(query:headers:)`
+
+```swift
+public func list_notifications(
+    query: Operations.list_notifications.Input.Query = .init(),
+    headers: Operations.list_notifications.Input.Headers = .init()
+) async throws -> Operations.list_notifications.Output
+```
+
+Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project.
+
+- Remark: HTTP `GET /notifications`.
+- Remark: Generated from `#/paths//notifications/get(list_notifications)`.
