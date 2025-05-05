@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.APNSToken)
+case json(Components.Schemas.APNSTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/requestBody/content/application\/json`.

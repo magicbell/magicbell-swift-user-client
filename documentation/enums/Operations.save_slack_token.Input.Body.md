@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.SlackToken)
+case json(Components.Schemas.SlackTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody/content/application\/json`.
