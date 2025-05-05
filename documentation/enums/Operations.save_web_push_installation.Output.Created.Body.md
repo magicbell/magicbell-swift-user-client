@@ -19,7 +19,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.WebPushToken)
+case json(Components.Schemas.WebPushTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/integrations/web_push/installations/POST/responses/201/content/application\/json`.
@@ -28,7 +28,7 @@ case json(Components.Schemas.WebPushToken)
 ### `json`
 
 ```swift
-public var json: Components.Schemas.WebPushToken
+public var json: Components.Schemas.WebPushTokenPayload
 ```
 
 The associated value of the enum case if `self` is `.json`.
