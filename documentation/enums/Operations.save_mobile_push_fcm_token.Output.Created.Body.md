@@ -19,7 +19,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.FCMToken)
+case json(Components.Schemas.FCMTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/responses/201/content/application\/json`.
@@ -28,7 +28,7 @@ case json(Components.Schemas.FCMToken)
 ### `json`
 
 ```swift
-public var json: Components.Schemas.FCMToken
+public var json: Components.Schemas.FCMTokenPayload
 ```
 
 The associated value of the enum case if `self` is `.json`.
