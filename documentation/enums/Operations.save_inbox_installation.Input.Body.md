@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.InboxConfig)
+case json(Components.Schemas.InboxConfigPayload)
 ```
 
 - Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody/content/application\/json`.
