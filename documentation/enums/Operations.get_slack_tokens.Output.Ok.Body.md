@@ -19,7 +19,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.ArrayOfSlackTokenResponses)
+case json(Components.Schemas.SlackTokenCollection)
 ```
 
 - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content/application\/json`.
@@ -28,7 +28,7 @@ case json(Components.Schemas.ArrayOfSlackTokenResponses)
 ### `json`
 
 ```swift
-public var json: Components.Schemas.ArrayOfSlackTokenResponses
+public var json: Components.Schemas.SlackTokenCollection
 ```
 
 The associated value of the enum case if `self` is `.json`.
