@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.ExpoToken)
+case json(Components.Schemas.ExpoTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/requestBody/content/application\/json`.
