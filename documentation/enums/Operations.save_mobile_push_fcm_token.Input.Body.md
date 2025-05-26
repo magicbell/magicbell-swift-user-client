@@ -17,7 +17,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.FCMToken)
+case json(Components.Schemas.FCMTokenPayload)
 ```
 
 - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/requestBody/content/application\/json`.
