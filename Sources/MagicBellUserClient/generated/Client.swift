@@ -10,7 +10,7 @@ import struct Foundation.Data
 import struct Foundation.Date
 #endif
 import HTTPTypes
-/// OpenAPI 3.0.3 Specification for MagicBell API.
+/// OpenAPI 3.1.0 Specification for MagicBell API.
 public struct Client: APIProtocol {
     /// The underlying HTTP client.
     private let client: UniversalClient
@@ -37,6 +37,282 @@ public struct Client: APIProtocol {
     }
     private var converter: Converter {
         client.converter
+    }
+    /// Lists all in_app tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(get_in_app_inbox_tokens)`.
+    public func get_in_app_inbox_tokens(_ input: Operations.get_in_app_inbox_tokens.Input) async throws -> Operations.get_in_app_inbox_tokens.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.get_in_app_inbox_tokens.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/channels/in_app/inbox/tokens",
+                    parameters: []
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .get
+                )
+                suppressMutabilityWarning(&request)
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "limit",
+                    value: input.query.limit
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "starting_after",
+                    value: input.query.starting_after
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "ending_before",
+                    value: input.query.ending_before
+                )
+                converter.setAcceptHeader(
+                    in: &request.headerFields,
+                    contentTypes: input.headers.accept
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 200:
+                    let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
+                    let body: Operations.get_in_app_inbox_tokens.Output.Ok.Body
+                    let chosenContentType = try converter.bestContentType(
+                        received: contentType,
+                        options: [
+                            "application/json"
+                        ]
+                    )
+                    switch chosenContentType {
+                    case "application/json":
+                        body = try await converter.getResponseBodyAsJSON(
+                            Components.Schemas.InboxTokenResponseCollection.self,
+                            from: responseBody,
+                            transforming: { value in
+                                .json(value)
+                            }
+                        )
+                    default:
+                        preconditionFailure("bestContentType chose an invalid content type.")
+                    }
+                    return .ok(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Saves a in_app token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `POST /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/post(save_in_app_inbox_token)`.
+    public func save_in_app_inbox_token(_ input: Operations.save_in_app_inbox_token.Input) async throws -> Operations.save_in_app_inbox_token.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.save_in_app_inbox_token.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/channels/in_app/inbox/tokens",
+                    parameters: []
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                converter.setAcceptHeader(
+                    in: &request.headerFields,
+                    contentTypes: input.headers.accept
+                )
+                let body: OpenAPIRuntime.HTTPBody?
+                switch input.body {
+                case .none:
+                    body = nil
+                case let .json(value):
+                    body = try converter.setOptionalRequestBodyAsJSON(
+                        value,
+                        headerFields: &request.headerFields,
+                        contentType: "application/json; charset=utf-8"
+                    )
+                }
+                return (request, body)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 201:
+                    let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
+                    let body: Operations.save_in_app_inbox_token.Output.Created.Body
+                    let chosenContentType = try converter.bestContentType(
+                        received: contentType,
+                        options: [
+                            "application/json"
+                        ]
+                    )
+                    switch chosenContentType {
+                    case "application/json":
+                        body = try await converter.getResponseBodyAsJSON(
+                            Components.Schemas.InboxToken.self,
+                            from: responseBody,
+                            transforming: { value in
+                                .json(value)
+                            }
+                        )
+                    default:
+                        preconditionFailure("bestContentType chose an invalid content type.")
+                    }
+                    return .created(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(get_in_app_inbox_token)`.
+    public func get_in_app_inbox_token(_ input: Operations.get_in_app_inbox_token.Input) async throws -> Operations.get_in_app_inbox_token.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.get_in_app_inbox_token.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/channels/in_app/inbox/tokens/{}",
+                    parameters: [
+                        input.path.token_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .get
+                )
+                suppressMutabilityWarning(&request)
+                converter.setAcceptHeader(
+                    in: &request.headerFields,
+                    contentTypes: input.headers.accept
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 200:
+                    let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
+                    let body: Operations.get_in_app_inbox_token.Output.Ok.Body
+                    let chosenContentType = try converter.bestContentType(
+                        received: contentType,
+                        options: [
+                            "application/json"
+                        ]
+                    )
+                    switch chosenContentType {
+                    case "application/json":
+                        body = try await converter.getResponseBodyAsJSON(
+                            Components.Schemas.InboxTokenResponse.self,
+                            from: responseBody,
+                            transforming: { value in
+                                .json(value)
+                            }
+                        )
+                    default:
+                        preconditionFailure("bestContentType chose an invalid content type.")
+                    }
+                    return .ok(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Revokes one of the authenticated user's in_app tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    ///
+    /// - Remark: HTTP `DELETE /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(discard_in_app_inbox_token)`.
+    public func discard_in_app_inbox_token(_ input: Operations.discard_in_app_inbox_token.Input) async throws -> Operations.discard_in_app_inbox_token.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.discard_in_app_inbox_token.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/channels/in_app/inbox/tokens/{}",
+                    parameters: [
+                        input.path.token_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .delete
+                )
+                suppressMutabilityWarning(&request)
+                converter.setAcceptHeader(
+                    in: &request.headerFields,
+                    contentTypes: input.headers.accept
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 200:
+                    let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
+                    let body: Operations.discard_in_app_inbox_token.Output.Ok.Body
+                    let chosenContentType = try converter.bestContentType(
+                        received: contentType,
+                        options: [
+                            "application/json"
+                        ]
+                    )
+                    switch chosenContentType {
+                    case "application/json":
+                        body = try await converter.getResponseBodyAsJSON(
+                            Components.Schemas.DiscardResult.self,
+                            from: responseBody,
+                            transforming: { value in
+                                .json(value)
+                            }
+                        )
+                    default:
+                        preconditionFailure("bestContentType chose an invalid content type.")
+                    }
+                    return .ok(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
     }
     /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
@@ -97,7 +373,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ArrayOfAPNSTokenResponses.self,
+                            Components.Schemas.APNSTokenCollection.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -168,7 +444,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.APNSToken.self,
+                            Components.Schemas.APNSTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -230,7 +506,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.APNSTokenResponse.self,
+                            Components.Schemas.APNSToken.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -373,7 +649,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ArrayOfExpoTokenResponses.self,
+                            Components.Schemas.ExpoTokenCollection.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -444,7 +720,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ExpoToken.self,
+                            Components.Schemas.ExpoTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -506,7 +782,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ExpoTokenResponse.self,
+                            Components.Schemas.ExpoToken.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -649,7 +925,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ArrayOfFCMTokenResponses.self,
+                            Components.Schemas.FCMTokenCollection.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -720,7 +996,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.FCMToken.self,
+                            Components.Schemas.FCMTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -782,7 +1058,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.FCMTokenResponse.self,
+                            Components.Schemas.FCMToken.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -925,7 +1201,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ArrayOfSlackTokenResponses.self,
+                            Components.Schemas.SlackTokenCollection.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -996,7 +1272,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.SlackToken.self,
+                            Components.Schemas.SlackTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1058,7 +1334,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.SlackTokenResponse.self,
+                            Components.Schemas.SlackToken.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1201,7 +1477,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ArrayOfTeamsTokenResponses.self,
+                            Components.Schemas.TeamsTokenCollection.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1272,7 +1548,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.TeamsToken.self,
+                            Components.Schemas.TeamsTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1334,7 +1610,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.TeamsTokenResponse.self,
+                            Components.Schemas.TeamsToken.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1477,7 +1753,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.ArrayOfWebPushTokenResponses.self,
+                            Components.Schemas.WebPushTokenCollection.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1548,7 +1824,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.WebPushToken.self,
+                            Components.Schemas.WebPushTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1610,7 +1886,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.WebPushTokenResponse.self,
+                            Components.Schemas.WebPushToken.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1743,7 +2019,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.InboxConfig.self,
+                            Components.Schemas.InboxConfigPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1803,7 +2079,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.InboxConfig.self,
+                            Components.Schemas.InboxConfigPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -2158,7 +2434,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Components.Schemas.WebPushToken.self,
+                            Components.Schemas.WebPushTokenPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -2228,6 +2504,422 @@ public struct Client: APIProtocol {
                         preconditionFailure("bestContentType chose an invalid content type.")
                     }
                     return .created(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Lists all notifications for a user.
+    ///
+    /// - Remark: HTTP `GET /notifications`.
+    /// - Remark: Generated from `#/paths//notifications/get(list_notifications)`.
+    public func list_notifications(_ input: Operations.list_notifications.Input) async throws -> Operations.list_notifications.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.list_notifications.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications",
+                    parameters: []
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .get
+                )
+                suppressMutabilityWarning(&request)
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "limit",
+                    value: input.query.limit
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "starting_after",
+                    value: input.query.starting_after
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "ending_before",
+                    value: input.query.ending_before
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "status",
+                    value: input.query.status
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "category",
+                    value: input.query.category
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "topic",
+                    value: input.query.topic
+                )
+                converter.setAcceptHeader(
+                    in: &request.headerFields,
+                    contentTypes: input.headers.accept
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 200:
+                    let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
+                    let body: Operations.list_notifications.Output.Ok.Body
+                    let chosenContentType = try converter.bestContentType(
+                        received: contentType,
+                        options: [
+                            "application/json"
+                        ]
+                    )
+                    switch chosenContentType {
+                    case "application/json":
+                        body = try await converter.getResponseBodyAsJSON(
+                            Components.Schemas.NotificationCollection.self,
+                            from: responseBody,
+                            transforming: { value in
+                                .json(value)
+                            }
+                        )
+                    default:
+                        preconditionFailure("bestContentType chose an invalid content type.")
+                    }
+                    return .ok(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Archives all notifications.
+    ///
+    /// - Remark: HTTP `POST /notifications/archive`.
+    /// - Remark: Generated from `#/paths//notifications/archive/post(archive_notifications)`.
+    public func archive_notifications(_ input: Operations.archive_notifications.Input) async throws -> Operations.archive_notifications.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.archive_notifications.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/archive",
+                    parameters: []
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "category",
+                    value: input.query.category
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "topic",
+                    value: input.query.topic
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 204:
+                    return .noContent(.init())
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Marks all notifications as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/read`.
+    /// - Remark: Generated from `#/paths//notifications/read/post(mark_notifications_read)`.
+    public func mark_notifications_read(_ input: Operations.mark_notifications_read.Input) async throws -> Operations.mark_notifications_read.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.mark_notifications_read.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/read",
+                    parameters: []
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "category",
+                    value: input.query.category
+                )
+                try converter.setQueryItemAsURI(
+                    in: &request,
+                    style: .form,
+                    explode: true,
+                    name: "topic",
+                    value: input.query.topic
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 204:
+                    return .noContent(.init())
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Gets a notification by ID.
+    ///
+    /// - Remark: HTTP `GET /notifications/{notification_id}`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/get(get_notification)`.
+    public func get_notification(_ input: Operations.get_notification.Input) async throws -> Operations.get_notification.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.get_notification.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/{}",
+                    parameters: [
+                        input.path.notification_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .get
+                )
+                suppressMutabilityWarning(&request)
+                converter.setAcceptHeader(
+                    in: &request.headerFields,
+                    contentTypes: input.headers.accept
+                )
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 200:
+                    let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
+                    let body: Operations.get_notification.Output.Ok.Body
+                    let chosenContentType = try converter.bestContentType(
+                        received: contentType,
+                        options: [
+                            "application/json"
+                        ]
+                    )
+                    switch chosenContentType {
+                    case "application/json":
+                        body = try await converter.getResponseBodyAsJSON(
+                            Components.Schemas.Notification.self,
+                            from: responseBody,
+                            transforming: { value in
+                                .json(value)
+                            }
+                        )
+                    default:
+                        preconditionFailure("bestContentType chose an invalid content type.")
+                    }
+                    return .ok(.init(body: body))
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Archives a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/archive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)`.
+    public func archive_notification(_ input: Operations.archive_notification.Input) async throws -> Operations.archive_notification.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.archive_notification.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/{}/archive",
+                    parameters: [
+                        input.path.notification_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 204:
+                    return .noContent(.init())
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Marks a notification as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/read`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)`.
+    public func mark_notification_read(_ input: Operations.mark_notification_read.Input) async throws -> Operations.mark_notification_read.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.mark_notification_read.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/{}/read",
+                    parameters: [
+                        input.path.notification_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 204:
+                    return .noContent(.init())
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Unarchives a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unarchive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)`.
+    public func unarchive_notification(_ input: Operations.unarchive_notification.Input) async throws -> Operations.unarchive_notification.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.unarchive_notification.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/{}/unarchive",
+                    parameters: [
+                        input.path.notification_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 204:
+                    return .noContent(.init())
+                default:
+                    return .undocumented(
+                        statusCode: response.status.code,
+                        .init(
+                            headerFields: response.headerFields,
+                            body: responseBody
+                        )
+                    )
+                }
+            }
+        )
+    }
+    /// Marks a notification as unread.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unread`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)`.
+    public func mark_notification_unread(_ input: Operations.mark_notification_unread.Input) async throws -> Operations.mark_notification_unread.Output {
+        try await client.send(
+            input: input,
+            forOperation: Operations.mark_notification_unread.id,
+            serializer: { input in
+                let path = try converter.renderedPath(
+                    template: "/notifications/{}/unread",
+                    parameters: [
+                        input.path.notification_id
+                    ]
+                )
+                var request: HTTPTypes.HTTPRequest = .init(
+                    soar_path: path,
+                    method: .post
+                )
+                suppressMutabilityWarning(&request)
+                return (request, nil)
+            },
+            deserializer: { response, responseBody in
+                switch response.status.code {
+                case 204:
+                    return .noContent(.init())
                 default:
                     return .undocumented(
                         statusCode: response.status.code,
