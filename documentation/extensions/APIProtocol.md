@@ -6,6 +6,62 @@ extension APIProtocol
 ```
 
 ## Methods
+### `get_in_app_inbox_tokens(query:headers:)`
+
+```swift
+public func get_in_app_inbox_tokens(
+    query: Operations.get_in_app_inbox_tokens.Input.Query = .init(),
+    headers: Operations.get_in_app_inbox_tokens.Input.Headers = .init()
+) async throws -> Operations.get_in_app_inbox_tokens.Output
+```
+
+Lists all in_app tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
+- Remark: HTTP `GET /channels/in_app/inbox/tokens`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(get_in_app_inbox_tokens)`.
+
+### `save_in_app_inbox_token(headers:body:)`
+
+```swift
+public func save_in_app_inbox_token(
+    headers: Operations.save_in_app_inbox_token.Input.Headers = .init(),
+    body: Operations.save_in_app_inbox_token.Input.Body? = nil
+) async throws -> Operations.save_in_app_inbox_token.Output
+```
+
+Saves a in_app token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
+- Remark: HTTP `POST /channels/in_app/inbox/tokens`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/post(save_in_app_inbox_token)`.
+
+### `get_in_app_inbox_token(path:headers:)`
+
+```swift
+public func get_in_app_inbox_token(
+    path: Operations.get_in_app_inbox_token.Input.Path,
+    headers: Operations.get_in_app_inbox_token.Input.Headers = .init()
+) async throws -> Operations.get_in_app_inbox_token.Output
+```
+
+Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
+- Remark: HTTP `GET /channels/in_app/inbox/tokens/{token_id}`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(get_in_app_inbox_token)`.
+
+### `discard_in_app_inbox_token(path:headers:)`
+
+```swift
+public func discard_in_app_inbox_token(
+    path: Operations.discard_in_app_inbox_token.Input.Path,
+    headers: Operations.discard_in_app_inbox_token.Input.Headers = .init()
+) async throws -> Operations.discard_in_app_inbox_token.Output
+```
+
+Revokes one of the authenticated user's in_app tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
+- Remark: HTTP `DELETE /channels/in_app/inbox/tokens/{token_id}`.
+- Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(discard_in_app_inbox_token)`.
+
 ### `get_mobile_push_apns_tokens(query:headers:)`
 
 ```swift
@@ -447,3 +503,97 @@ Initiates the installation flow for a web_push integration. This is the first st
 
 - Remark: HTTP `POST /integrations/web_push/installations/start`.
 - Remark: Generated from `#/paths//integrations/web_push/installations/start/post(start_web_push_installation)`.
+
+### `list_notifications(query:headers:)`
+
+```swift
+public func list_notifications(
+    query: Operations.list_notifications.Input.Query = .init(),
+    headers: Operations.list_notifications.Input.Headers = .init()
+) async throws -> Operations.list_notifications.Output
+```
+
+Lists all notifications for a user.
+
+- Remark: HTTP `GET /notifications`.
+- Remark: Generated from `#/paths//notifications/get(list_notifications)`.
+
+### `archive_notifications(query:)`
+
+```swift
+public func archive_notifications(query: Operations.archive_notifications.Input.Query = .init()) async throws -> Operations.archive_notifications.Output
+```
+
+Archives all notifications.
+
+- Remark: HTTP `POST /notifications/archive`.
+- Remark: Generated from `#/paths//notifications/archive/post(archive_notifications)`.
+
+### `mark_notifications_read(query:)`
+
+```swift
+public func mark_notifications_read(query: Operations.mark_notifications_read.Input.Query = .init()) async throws -> Operations.mark_notifications_read.Output
+```
+
+Marks all notifications as read.
+
+- Remark: HTTP `POST /notifications/read`.
+- Remark: Generated from `#/paths//notifications/read/post(mark_notifications_read)`.
+
+### `get_notification(path:headers:)`
+
+```swift
+public func get_notification(
+    path: Operations.get_notification.Input.Path,
+    headers: Operations.get_notification.Input.Headers = .init()
+) async throws -> Operations.get_notification.Output
+```
+
+Gets a notification by ID.
+
+- Remark: HTTP `GET /notifications/{notification_id}`.
+- Remark: Generated from `#/paths//notifications/{notification_id}/get(get_notification)`.
+
+### `archive_notification(path:)`
+
+```swift
+public func archive_notification(path: Operations.archive_notification.Input.Path) async throws -> Operations.archive_notification.Output
+```
+
+Archives a notification.
+
+- Remark: HTTP `POST /notifications/{notification_id}/archive`.
+- Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)`.
+
+### `mark_notification_read(path:)`
+
+```swift
+public func mark_notification_read(path: Operations.mark_notification_read.Input.Path) async throws -> Operations.mark_notification_read.Output
+```
+
+Marks a notification as read.
+
+- Remark: HTTP `POST /notifications/{notification_id}/read`.
+- Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)`.
+
+### `unarchive_notification(path:)`
+
+```swift
+public func unarchive_notification(path: Operations.unarchive_notification.Input.Path) async throws -> Operations.unarchive_notification.Output
+```
+
+Unarchives a notification.
+
+- Remark: HTTP `POST /notifications/{notification_id}/unarchive`.
+- Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)`.
+
+### `mark_notification_unread(path:)`
+
+```swift
+public func mark_notification_unread(path: Operations.mark_notification_unread.Input.Path) async throws -> Operations.mark_notification_unread.Output
+```
+
+Marks a notification as unread.
+
+- Remark: HTTP `POST /notifications/{notification_id}/unread`.
+- Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)`.
