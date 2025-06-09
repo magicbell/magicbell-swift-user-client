@@ -13,7 +13,7 @@
 public struct Headers: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/integrations/web_push/installations/POST/header`.
+- Remark: Generated from `#/paths/integrations/web_push/installations/PUT/header`.
 
 ## Properties
 ### `accept`

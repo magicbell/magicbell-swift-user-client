@@ -5,27 +5,27 @@
 **Contents**
 
 - [Cases](#cases)
-  - `created(_:)`
+  - `ok(_:)`
   - `undocumented(statusCode:_:)`
 - [Properties](#properties)
-  - `created`
+  - `ok`
 
 ```swift
 @frozen public enum Output: Sendable, Hashable
 ```
 
 ## Cases
-### `created(_:)`
+### `ok(_:)`
 
 ```swift
-case created(Operations.save_templates_installation.Output.Created)
+case ok(Operations.save_templates_installation.Output.Ok)
 ```
 
-Created
+OK
 
-- Remark: Generated from `#/paths//integrations/templates/installations/post(save_templates_installation)/responses/201`.
+- Remark: Generated from `#/paths//integrations/templates/installations/put(save_templates_installation)/responses/200`.
 
-HTTP response code: `201 created`.
+HTTP response code: `200 ok`.
 
 ### `undocumented(statusCode:_:)`
 
@@ -38,13 +38,13 @@ Undocumented response.
 A response with a code that is not documented in the OpenAPI document.
 
 ## Properties
-### `created`
+### `ok`
 
 ```swift
-public var created: Operations.save_templates_installation.Output.Created
+public var ok: Operations.save_templates_installation.Output.Ok
 ```
 
-The associated value of the enum case if `self` is `.created`.
+The associated value of the enum case if `self` is `.ok`.
 
-- Throws: An error if `self` is not `.created`.
-- SeeAlso: `.created`.
+- Throws: An error if `self` is not `.ok`.
+- SeeAlso: `.ok`.

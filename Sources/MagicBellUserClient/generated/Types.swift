@@ -11,343 +11,579 @@ import struct Foundation.Date
 #endif
 /// A type that performs HTTP operations defined by the OpenAPI document.
 public protocol APIProtocol: Sendable {
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Inbox tokens
+    ///
+    /// Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(list_inbox_tokens)`.
+    func list_inbox_tokens(_ input: Operations.list_inbox_tokens.Input) async throws -> Operations.list_inbox_tokens.Output
+    /// Save an Inbox token
+    ///
+    /// Saves the Inbox token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/put(save_inbox_token)`.
+    func save_inbox_token(_ input: Operations.save_inbox_token.Input) async throws -> Operations.save_inbox_token.Output
+    /// Fetch an Inbox token
+    ///
+    /// Fetches details of a specific Inbox token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(fetch_inbox_token)`.
+    func fetch_inbox_token(_ input: Operations.fetch_inbox_token.Input) async throws -> Operations.fetch_inbox_token.Output
+    /// Delete an Inbox token
+    ///
+    /// Deletes one of the authenticated user's Inbox tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    ///
+    /// - Remark: HTTP `DELETE /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(delete_inbox_token)`.
+    func delete_inbox_token(_ input: Operations.delete_inbox_token.Input) async throws -> Operations.delete_inbox_token.Output
+    /// List all APNs tokens
+    ///
+    /// Lists all APNs tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(get_mobile_push_apns_tokens)`.
-    func get_mobile_push_apns_tokens(_ input: Operations.get_mobile_push_apns_tokens.Input) async throws -> Operations.get_mobile_push_apns_tokens.Output
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(list_apns_tokens)`.
+    func list_apns_tokens(_ input: Operations.list_apns_tokens.Input) async throws -> Operations.list_apns_tokens.Output
+    /// Save an APNs token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/apns/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/post(save_mobile_push_apns_token)`.
-    func save_mobile_push_apns_token(_ input: Operations.save_mobile_push_apns_token.Input) async throws -> Operations.save_mobile_push_apns_token.Output
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Saves the APNs token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/apns/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/put(save_apns_token)`.
+    func save_apns_token(_ input: Operations.save_apns_token.Input) async throws -> Operations.save_apns_token.Output
+    /// Fetch an APNs token
+    ///
+    /// Fetches details of a specific APNs token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(get_mobile_push_apns_token)`.
-    func get_mobile_push_apns_token(_ input: Operations.get_mobile_push_apns_token.Input) async throws -> Operations.get_mobile_push_apns_token.Output
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(fetch_apns_token)`.
+    func fetch_apns_token(_ input: Operations.fetch_apns_token.Input) async throws -> Operations.fetch_apns_token.Output
+    /// Delete an APNs token
+    ///
+    /// Deletes one of the authenticated user's APNs tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/apns/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(discard_mobile_push_apns_token)`.
-    func discard_mobile_push_apns_token(_ input: Operations.discard_mobile_push_apns_token.Input) async throws -> Operations.discard_mobile_push_apns_token.Output
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(delete_apns_token)`.
+    func delete_apns_token(_ input: Operations.delete_apns_token.Input) async throws -> Operations.delete_apns_token.Output
+    /// List all Expo tokens
+    ///
+    /// Lists all Expo tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(get_mobile_push_expo_tokens)`.
-    func get_mobile_push_expo_tokens(_ input: Operations.get_mobile_push_expo_tokens.Input) async throws -> Operations.get_mobile_push_expo_tokens.Output
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(list_expo_tokens)`.
+    func list_expo_tokens(_ input: Operations.list_expo_tokens.Input) async throws -> Operations.list_expo_tokens.Output
+    /// Save an Expo token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/expo/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/post(save_mobile_push_expo_token)`.
-    func save_mobile_push_expo_token(_ input: Operations.save_mobile_push_expo_token.Input) async throws -> Operations.save_mobile_push_expo_token.Output
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Saves the Expo token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/expo/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/put(save_expo_token)`.
+    func save_expo_token(_ input: Operations.save_expo_token.Input) async throws -> Operations.save_expo_token.Output
+    /// Fetch an Expo token
+    ///
+    /// Fetches details of a specific Expo token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(get_mobile_push_expo_token)`.
-    func get_mobile_push_expo_token(_ input: Operations.get_mobile_push_expo_token.Input) async throws -> Operations.get_mobile_push_expo_token.Output
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(fetch_expo_token)`.
+    func fetch_expo_token(_ input: Operations.fetch_expo_token.Input) async throws -> Operations.fetch_expo_token.Output
+    /// Delete an Expo token
+    ///
+    /// Deletes one of the authenticated user's Expo tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/expo/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(discard_mobile_push_expo_token)`.
-    func discard_mobile_push_expo_token(_ input: Operations.discard_mobile_push_expo_token.Input) async throws -> Operations.discard_mobile_push_expo_token.Output
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(delete_expo_token)`.
+    func delete_expo_token(_ input: Operations.delete_expo_token.Input) async throws -> Operations.delete_expo_token.Output
+    /// List all FCM tokens
+    ///
+    /// Lists all FCM tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(get_mobile_push_fcm_tokens)`.
-    func get_mobile_push_fcm_tokens(_ input: Operations.get_mobile_push_fcm_tokens.Input) async throws -> Operations.get_mobile_push_fcm_tokens.Output
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(list_fcm_tokens)`.
+    func list_fcm_tokens(_ input: Operations.list_fcm_tokens.Input) async throws -> Operations.list_fcm_tokens.Output
+    /// Save a FCM token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/fcm/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/post(save_mobile_push_fcm_token)`.
-    func save_mobile_push_fcm_token(_ input: Operations.save_mobile_push_fcm_token.Input) async throws -> Operations.save_mobile_push_fcm_token.Output
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Saves the FCM token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/fcm/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/put(save_fcm_token)`.
+    func save_fcm_token(_ input: Operations.save_fcm_token.Input) async throws -> Operations.save_fcm_token.Output
+    /// Fetch a FCM token
+    ///
+    /// Fetches details of a specific FCM token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(get_mobile_push_fcm_token)`.
-    func get_mobile_push_fcm_token(_ input: Operations.get_mobile_push_fcm_token.Input) async throws -> Operations.get_mobile_push_fcm_token.Output
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(fetch_fcm_token)`.
+    func fetch_fcm_token(_ input: Operations.fetch_fcm_token.Input) async throws -> Operations.fetch_fcm_token.Output
+    /// Delete a FCM token
+    ///
+    /// Deletes one of the authenticated user's FCM tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/fcm/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(discard_mobile_push_fcm_token)`.
-    func discard_mobile_push_fcm_token(_ input: Operations.discard_mobile_push_fcm_token.Input) async throws -> Operations.discard_mobile_push_fcm_token.Output
-    /// Lists all slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(delete_fcm_token)`.
+    func delete_fcm_token(_ input: Operations.delete_fcm_token.Input) async throws -> Operations.delete_fcm_token.Output
+    /// List all Slack tokens
+    ///
+    /// Lists all Slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/slack/tokens`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/get(get_slack_tokens)`.
-    func get_slack_tokens(_ input: Operations.get_slack_tokens.Input) async throws -> Operations.get_slack_tokens.Output
-    /// Saves a slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/get(list_slack_tokens)`.
+    func list_slack_tokens(_ input: Operations.list_slack_tokens.Input) async throws -> Operations.list_slack_tokens.Output
+    /// Save a Slack token
     ///
-    /// - Remark: HTTP `POST /channels/slack/tokens`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/post(save_slack_token)`.
+    /// Saves the Slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/slack/tokens`.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/put(save_slack_token)`.
     func save_slack_token(_ input: Operations.save_slack_token.Input) async throws -> Operations.save_slack_token.Output
-    /// Retrieves details of a specific slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a Slack token
+    ///
+    /// Fetches details of a specific Slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/slack/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(get_slack_token)`.
-    func get_slack_token(_ input: Operations.get_slack_token.Input) async throws -> Operations.get_slack_token.Output
-    /// Revokes one of the authenticated user's slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(fetch_slack_token)`.
+    func fetch_slack_token(_ input: Operations.fetch_slack_token.Input) async throws -> Operations.fetch_slack_token.Output
+    /// Delete a Slack token
+    ///
+    /// Deletes one of the authenticated user's Slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/slack/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(discard_slack_token)`.
-    func discard_slack_token(_ input: Operations.discard_slack_token.Input) async throws -> Operations.discard_slack_token.Output
-    /// Lists all teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(delete_slack_token)`.
+    func delete_slack_token(_ input: Operations.delete_slack_token.Input) async throws -> Operations.delete_slack_token.Output
+    /// List all Teams tokens
+    ///
+    /// Lists all Teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/teams/tokens`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/get(get_teams_tokens)`.
-    func get_teams_tokens(_ input: Operations.get_teams_tokens.Input) async throws -> Operations.get_teams_tokens.Output
-    /// Saves a teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/get(list_teams_tokens)`.
+    func list_teams_tokens(_ input: Operations.list_teams_tokens.Input) async throws -> Operations.list_teams_tokens.Output
+    /// Save a Teams token
     ///
-    /// - Remark: HTTP `POST /channels/teams/tokens`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/post(save_teams_token)`.
+    /// Saves the Teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/teams/tokens`.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/put(save_teams_token)`.
     func save_teams_token(_ input: Operations.save_teams_token.Input) async throws -> Operations.save_teams_token.Output
-    /// Retrieves details of a specific teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a Teams token
+    ///
+    /// Fetches details of a specific Teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/teams/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(get_teams_token)`.
-    func get_teams_token(_ input: Operations.get_teams_token.Input) async throws -> Operations.get_teams_token.Output
-    /// Revokes one of the authenticated user's teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(fetch_teams_token)`.
+    func fetch_teams_token(_ input: Operations.fetch_teams_token.Input) async throws -> Operations.fetch_teams_token.Output
+    /// Delete a Teams token
+    ///
+    /// Deletes one of the authenticated user's Teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/teams/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(discard_teams_token)`.
-    func discard_teams_token(_ input: Operations.discard_teams_token.Input) async throws -> Operations.discard_teams_token.Output
-    /// Lists all web_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(delete_teams_token)`.
+    func delete_teams_token(_ input: Operations.delete_teams_token.Input) async throws -> Operations.delete_teams_token.Output
+    /// List all Web Push tokens
+    ///
+    /// Lists all Web Push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/web_push/tokens`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(get_web_push_tokens)`.
-    func get_web_push_tokens(_ input: Operations.get_web_push_tokens.Input) async throws -> Operations.get_web_push_tokens.Output
-    /// Saves a web_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(list_web_push_tokens)`.
+    func list_web_push_tokens(_ input: Operations.list_web_push_tokens.Input) async throws -> Operations.list_web_push_tokens.Output
+    /// Save a Web Push token
     ///
-    /// - Remark: HTTP `POST /channels/web_push/tokens`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/post(save_web_push_token)`.
+    /// Saves the Web Push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/web_push/tokens`.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/put(save_web_push_token)`.
     func save_web_push_token(_ input: Operations.save_web_push_token.Input) async throws -> Operations.save_web_push_token.Output
-    /// Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a Web Push token
+    ///
+    /// Fetches details of a specific Web Push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/web_push/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(get_web_push_token)`.
-    func get_web_push_token(_ input: Operations.get_web_push_token.Input) async throws -> Operations.get_web_push_token.Output
-    /// Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(fetch_web_push_token)`.
+    func fetch_web_push_token(_ input: Operations.fetch_web_push_token.Input) async throws -> Operations.fetch_web_push_token.Output
+    /// Delete a Web Push token
+    ///
+    /// Deletes one of the authenticated user's Web Push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/web_push/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(discard_web_push_token)`.
-    func discard_web_push_token(_ input: Operations.discard_web_push_token.Input) async throws -> Operations.discard_web_push_token.Output
-    /// Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(delete_web_push_token)`.
+    func delete_web_push_token(_ input: Operations.delete_web_push_token.Input) async throws -> Operations.delete_web_push_token.Output
+    /// Save an Inbox installation
     ///
-    /// - Remark: HTTP `POST /integrations/inbox/installations`.
-    /// - Remark: Generated from `#/paths//integrations/inbox/installations/post(save_inbox_installation)`.
+    /// Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/inbox/installations`.
+    /// - Remark: Generated from `#/paths//integrations/inbox/installations/put(save_inbox_installation)`.
     func save_inbox_installation(_ input: Operations.save_inbox_installation.Input) async throws -> Operations.save_inbox_installation.Output
-    /// Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start an Inbox installation
+    ///
+    /// Initiates the installation flow for an Inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/inbox/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/inbox/installations/start/post(start_inbox_installation)`.
     func start_inbox_installation(_ input: Operations.start_inbox_installation.Input) async throws -> Operations.start_inbox_installation.Output
-    /// Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Slack installation
     ///
-    /// - Remark: HTTP `POST /integrations/slack/installations`.
-    /// - Remark: Generated from `#/paths//integrations/slack/installations/post(save_slack_installation)`.
+    /// Creates a new installation of a Slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/slack/installations`.
+    /// - Remark: Generated from `#/paths//integrations/slack/installations/put(save_slack_installation)`.
     func save_slack_installation(_ input: Operations.save_slack_installation.Input) async throws -> Operations.save_slack_installation.Output
-    /// Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.
+    /// Finish a Slack installation
+    ///
+    /// Completes the installation flow for the Slack integration. This endpoint is typically called after the user has completed any required authorization steps with Slack.
     ///
     /// - Remark: HTTP `POST /integrations/slack/installations/finish`.
     /// - Remark: Generated from `#/paths//integrations/slack/installations/finish/post(finish_slack_installation)`.
     func finish_slack_installation(_ input: Operations.finish_slack_installation.Input) async throws -> Operations.finish_slack_installation.Output
-    /// Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start a Slack installation
+    ///
+    /// Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/slack/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/slack/installations/start/post(start_slack_installation)`.
     func start_slack_installation(_ input: Operations.start_slack_installation.Input) async throws -> Operations.start_slack_installation.Output
-    /// Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Templates installation
     ///
-    /// - Remark: HTTP `POST /integrations/templates/installations`.
-    /// - Remark: Generated from `#/paths//integrations/templates/installations/post(save_templates_installation)`.
+    /// Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/templates/installations`.
+    /// - Remark: Generated from `#/paths//integrations/templates/installations/put(save_templates_installation)`.
     func save_templates_installation(_ input: Operations.save_templates_installation.Input) async throws -> Operations.save_templates_installation.Output
-    /// Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Web Push installation
     ///
-    /// - Remark: HTTP `POST /integrations/web_push/installations`.
-    /// - Remark: Generated from `#/paths//integrations/web_push/installations/post(save_web_push_installation)`.
+    /// Creates a new installation of a Web Push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/web_push/installations`.
+    /// - Remark: Generated from `#/paths//integrations/web_push/installations/put(save_web_push_installation)`.
     func save_web_push_installation(_ input: Operations.save_web_push_installation.Input) async throws -> Operations.save_web_push_installation.Output
-    /// Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start a Web Push installation
+    ///
+    /// Initiates the installation flow for a Web Push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/web_push/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/web_push/installations/start/post(start_web_push_installation)`.
     func start_web_push_installation(_ input: Operations.start_web_push_installation.Input) async throws -> Operations.start_web_push_installation.Output
+    /// List all notifications
+    ///
+    /// Lists all notifications for a user.
+    ///
+    /// - Remark: HTTP `GET /notifications`.
+    /// - Remark: Generated from `#/paths//notifications/get(list_notifications)`.
+    func list_notifications(_ input: Operations.list_notifications.Input) async throws -> Operations.list_notifications.Output
+    /// Archive all notifications
+    ///
+    /// Archive all notifications.
+    ///
+    /// - Remark: HTTP `POST /notifications/archive`.
+    /// - Remark: Generated from `#/paths//notifications/archive/post(archive_all_notifications)`.
+    func archive_all_notifications(_ input: Operations.archive_all_notifications.Input) async throws -> Operations.archive_all_notifications.Output
+    /// Mark all notifications read
+    ///
+    /// Marks all notifications as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/read`.
+    /// - Remark: Generated from `#/paths//notifications/read/post(mark_all_notifications_read)`.
+    func mark_all_notifications_read(_ input: Operations.mark_all_notifications_read.Input) async throws -> Operations.mark_all_notifications_read.Output
+    /// Fetch a notification
+    ///
+    /// Gets a notification by ID.
+    ///
+    /// - Remark: HTTP `GET /notifications/{notification_id}`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/get(fetch_notification)`.
+    func fetch_notification(_ input: Operations.fetch_notification.Input) async throws -> Operations.fetch_notification.Output
+    /// Archive a notification
+    ///
+    /// Archive a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/archive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)`.
+    func archive_notification(_ input: Operations.archive_notification.Input) async throws -> Operations.archive_notification.Output
+    /// Mark a notification read
+    ///
+    /// Marks a notification as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/read`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)`.
+    func mark_notification_read(_ input: Operations.mark_notification_read.Input) async throws -> Operations.mark_notification_read.Output
+    /// Unarchive a notification
+    ///
+    /// Unarchives a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unarchive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)`.
+    func unarchive_notification(_ input: Operations.unarchive_notification.Input) async throws -> Operations.unarchive_notification.Output
+    /// Mark a notification unread
+    ///
+    /// Marks a notification as unread.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unread`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)`.
+    func mark_notification_unread(_ input: Operations.mark_notification_unread.Input) async throws -> Operations.mark_notification_unread.Output
 }
 
 /// Convenience overloads for operation inputs.
 extension APIProtocol {
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Inbox tokens
+    ///
+    /// Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(list_inbox_tokens)`.
+    public func list_inbox_tokens(
+        query: Operations.list_inbox_tokens.Input.Query = .init(),
+        headers: Operations.list_inbox_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_inbox_tokens.Output {
+        try await list_inbox_tokens(Operations.list_inbox_tokens.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// Save an Inbox token
+    ///
+    /// Saves the Inbox token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/put(save_inbox_token)`.
+    public func save_inbox_token(
+        headers: Operations.save_inbox_token.Input.Headers = .init(),
+        body: Operations.save_inbox_token.Input.Body? = nil
+    ) async throws -> Operations.save_inbox_token.Output {
+        try await save_inbox_token(Operations.save_inbox_token.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Fetch an Inbox token
+    ///
+    /// Fetches details of a specific Inbox token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(fetch_inbox_token)`.
+    public func fetch_inbox_token(
+        path: Operations.fetch_inbox_token.Input.Path,
+        headers: Operations.fetch_inbox_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_inbox_token.Output {
+        try await fetch_inbox_token(Operations.fetch_inbox_token.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Delete an Inbox token
+    ///
+    /// Deletes one of the authenticated user's Inbox tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    ///
+    /// - Remark: HTTP `DELETE /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(delete_inbox_token)`.
+    public func delete_inbox_token(
+        path: Operations.delete_inbox_token.Input.Path,
+        headers: Operations.delete_inbox_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_inbox_token.Output {
+        try await delete_inbox_token(Operations.delete_inbox_token.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// List all APNs tokens
+    ///
+    /// Lists all APNs tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(get_mobile_push_apns_tokens)`.
-    public func get_mobile_push_apns_tokens(
-        query: Operations.get_mobile_push_apns_tokens.Input.Query = .init(),
-        headers: Operations.get_mobile_push_apns_tokens.Input.Headers = .init()
-    ) async throws -> Operations.get_mobile_push_apns_tokens.Output {
-        try await get_mobile_push_apns_tokens(Operations.get_mobile_push_apns_tokens.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(list_apns_tokens)`.
+    public func list_apns_tokens(
+        query: Operations.list_apns_tokens.Input.Query = .init(),
+        headers: Operations.list_apns_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_apns_tokens.Output {
+        try await list_apns_tokens(Operations.list_apns_tokens.Input(
             query: query,
             headers: headers
         ))
     }
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save an APNs token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/apns/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/post(save_mobile_push_apns_token)`.
-    public func save_mobile_push_apns_token(
-        headers: Operations.save_mobile_push_apns_token.Input.Headers = .init(),
-        body: Operations.save_mobile_push_apns_token.Input.Body? = nil
-    ) async throws -> Operations.save_mobile_push_apns_token.Output {
-        try await save_mobile_push_apns_token(Operations.save_mobile_push_apns_token.Input(
+    /// Saves the APNs token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/apns/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/put(save_apns_token)`.
+    public func save_apns_token(
+        headers: Operations.save_apns_token.Input.Headers = .init(),
+        body: Operations.save_apns_token.Input.Body? = nil
+    ) async throws -> Operations.save_apns_token.Output {
+        try await save_apns_token(Operations.save_apns_token.Input(
             headers: headers,
             body: body
         ))
     }
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch an APNs token
+    ///
+    /// Fetches details of a specific APNs token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(get_mobile_push_apns_token)`.
-    public func get_mobile_push_apns_token(
-        path: Operations.get_mobile_push_apns_token.Input.Path,
-        headers: Operations.get_mobile_push_apns_token.Input.Headers = .init()
-    ) async throws -> Operations.get_mobile_push_apns_token.Output {
-        try await get_mobile_push_apns_token(Operations.get_mobile_push_apns_token.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(fetch_apns_token)`.
+    public func fetch_apns_token(
+        path: Operations.fetch_apns_token.Input.Path,
+        headers: Operations.fetch_apns_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_apns_token.Output {
+        try await fetch_apns_token(Operations.fetch_apns_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete an APNs token
+    ///
+    /// Deletes one of the authenticated user's APNs tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/apns/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(discard_mobile_push_apns_token)`.
-    public func discard_mobile_push_apns_token(
-        path: Operations.discard_mobile_push_apns_token.Input.Path,
-        headers: Operations.discard_mobile_push_apns_token.Input.Headers = .init()
-    ) async throws -> Operations.discard_mobile_push_apns_token.Output {
-        try await discard_mobile_push_apns_token(Operations.discard_mobile_push_apns_token.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(delete_apns_token)`.
+    public func delete_apns_token(
+        path: Operations.delete_apns_token.Input.Path,
+        headers: Operations.delete_apns_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_apns_token.Output {
+        try await delete_apns_token(Operations.delete_apns_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Expo tokens
+    ///
+    /// Lists all Expo tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(get_mobile_push_expo_tokens)`.
-    public func get_mobile_push_expo_tokens(
-        query: Operations.get_mobile_push_expo_tokens.Input.Query = .init(),
-        headers: Operations.get_mobile_push_expo_tokens.Input.Headers = .init()
-    ) async throws -> Operations.get_mobile_push_expo_tokens.Output {
-        try await get_mobile_push_expo_tokens(Operations.get_mobile_push_expo_tokens.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(list_expo_tokens)`.
+    public func list_expo_tokens(
+        query: Operations.list_expo_tokens.Input.Query = .init(),
+        headers: Operations.list_expo_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_expo_tokens.Output {
+        try await list_expo_tokens(Operations.list_expo_tokens.Input(
             query: query,
             headers: headers
         ))
     }
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save an Expo token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/expo/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/post(save_mobile_push_expo_token)`.
-    public func save_mobile_push_expo_token(
-        headers: Operations.save_mobile_push_expo_token.Input.Headers = .init(),
-        body: Operations.save_mobile_push_expo_token.Input.Body? = nil
-    ) async throws -> Operations.save_mobile_push_expo_token.Output {
-        try await save_mobile_push_expo_token(Operations.save_mobile_push_expo_token.Input(
+    /// Saves the Expo token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/expo/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/put(save_expo_token)`.
+    public func save_expo_token(
+        headers: Operations.save_expo_token.Input.Headers = .init(),
+        body: Operations.save_expo_token.Input.Body? = nil
+    ) async throws -> Operations.save_expo_token.Output {
+        try await save_expo_token(Operations.save_expo_token.Input(
             headers: headers,
             body: body
         ))
     }
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch an Expo token
+    ///
+    /// Fetches details of a specific Expo token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(get_mobile_push_expo_token)`.
-    public func get_mobile_push_expo_token(
-        path: Operations.get_mobile_push_expo_token.Input.Path,
-        headers: Operations.get_mobile_push_expo_token.Input.Headers = .init()
-    ) async throws -> Operations.get_mobile_push_expo_token.Output {
-        try await get_mobile_push_expo_token(Operations.get_mobile_push_expo_token.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(fetch_expo_token)`.
+    public func fetch_expo_token(
+        path: Operations.fetch_expo_token.Input.Path,
+        headers: Operations.fetch_expo_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_expo_token.Output {
+        try await fetch_expo_token(Operations.fetch_expo_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete an Expo token
+    ///
+    /// Deletes one of the authenticated user's Expo tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/expo/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(discard_mobile_push_expo_token)`.
-    public func discard_mobile_push_expo_token(
-        path: Operations.discard_mobile_push_expo_token.Input.Path,
-        headers: Operations.discard_mobile_push_expo_token.Input.Headers = .init()
-    ) async throws -> Operations.discard_mobile_push_expo_token.Output {
-        try await discard_mobile_push_expo_token(Operations.discard_mobile_push_expo_token.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(delete_expo_token)`.
+    public func delete_expo_token(
+        path: Operations.delete_expo_token.Input.Path,
+        headers: Operations.delete_expo_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_expo_token.Output {
+        try await delete_expo_token(Operations.delete_expo_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all FCM tokens
+    ///
+    /// Lists all FCM tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(get_mobile_push_fcm_tokens)`.
-    public func get_mobile_push_fcm_tokens(
-        query: Operations.get_mobile_push_fcm_tokens.Input.Query = .init(),
-        headers: Operations.get_mobile_push_fcm_tokens.Input.Headers = .init()
-    ) async throws -> Operations.get_mobile_push_fcm_tokens.Output {
-        try await get_mobile_push_fcm_tokens(Operations.get_mobile_push_fcm_tokens.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(list_fcm_tokens)`.
+    public func list_fcm_tokens(
+        query: Operations.list_fcm_tokens.Input.Query = .init(),
+        headers: Operations.list_fcm_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_fcm_tokens.Output {
+        try await list_fcm_tokens(Operations.list_fcm_tokens.Input(
             query: query,
             headers: headers
         ))
     }
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a FCM token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/fcm/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/post(save_mobile_push_fcm_token)`.
-    public func save_mobile_push_fcm_token(
-        headers: Operations.save_mobile_push_fcm_token.Input.Headers = .init(),
-        body: Operations.save_mobile_push_fcm_token.Input.Body? = nil
-    ) async throws -> Operations.save_mobile_push_fcm_token.Output {
-        try await save_mobile_push_fcm_token(Operations.save_mobile_push_fcm_token.Input(
+    /// Saves the FCM token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/fcm/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/put(save_fcm_token)`.
+    public func save_fcm_token(
+        headers: Operations.save_fcm_token.Input.Headers = .init(),
+        body: Operations.save_fcm_token.Input.Body? = nil
+    ) async throws -> Operations.save_fcm_token.Output {
+        try await save_fcm_token(Operations.save_fcm_token.Input(
             headers: headers,
             body: body
         ))
     }
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a FCM token
+    ///
+    /// Fetches details of a specific FCM token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(get_mobile_push_fcm_token)`.
-    public func get_mobile_push_fcm_token(
-        path: Operations.get_mobile_push_fcm_token.Input.Path,
-        headers: Operations.get_mobile_push_fcm_token.Input.Headers = .init()
-    ) async throws -> Operations.get_mobile_push_fcm_token.Output {
-        try await get_mobile_push_fcm_token(Operations.get_mobile_push_fcm_token.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(fetch_fcm_token)`.
+    public func fetch_fcm_token(
+        path: Operations.fetch_fcm_token.Input.Path,
+        headers: Operations.fetch_fcm_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_fcm_token.Output {
+        try await fetch_fcm_token(Operations.fetch_fcm_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete a FCM token
+    ///
+    /// Deletes one of the authenticated user's FCM tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/fcm/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(discard_mobile_push_fcm_token)`.
-    public func discard_mobile_push_fcm_token(
-        path: Operations.discard_mobile_push_fcm_token.Input.Path,
-        headers: Operations.discard_mobile_push_fcm_token.Input.Headers = .init()
-    ) async throws -> Operations.discard_mobile_push_fcm_token.Output {
-        try await discard_mobile_push_fcm_token(Operations.discard_mobile_push_fcm_token.Input(
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(delete_fcm_token)`.
+    public func delete_fcm_token(
+        path: Operations.delete_fcm_token.Input.Path,
+        headers: Operations.delete_fcm_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_fcm_token.Output {
+        try await delete_fcm_token(Operations.delete_fcm_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Lists all slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Slack tokens
+    ///
+    /// Lists all Slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/slack/tokens`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/get(get_slack_tokens)`.
-    public func get_slack_tokens(
-        query: Operations.get_slack_tokens.Input.Query = .init(),
-        headers: Operations.get_slack_tokens.Input.Headers = .init()
-    ) async throws -> Operations.get_slack_tokens.Output {
-        try await get_slack_tokens(Operations.get_slack_tokens.Input(
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/get(list_slack_tokens)`.
+    public func list_slack_tokens(
+        query: Operations.list_slack_tokens.Input.Query = .init(),
+        headers: Operations.list_slack_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_slack_tokens.Output {
+        try await list_slack_tokens(Operations.list_slack_tokens.Input(
             query: query,
             headers: headers
         ))
     }
-    /// Saves a slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a Slack token
     ///
-    /// - Remark: HTTP `POST /channels/slack/tokens`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/post(save_slack_token)`.
+    /// Saves the Slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/slack/tokens`.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/put(save_slack_token)`.
     public func save_slack_token(
         headers: Operations.save_slack_token.Input.Headers = .init(),
         body: Operations.save_slack_token.Input.Body? = nil
@@ -357,49 +593,57 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Retrieves details of a specific slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a Slack token
+    ///
+    /// Fetches details of a specific Slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/slack/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(get_slack_token)`.
-    public func get_slack_token(
-        path: Operations.get_slack_token.Input.Path,
-        headers: Operations.get_slack_token.Input.Headers = .init()
-    ) async throws -> Operations.get_slack_token.Output {
-        try await get_slack_token(Operations.get_slack_token.Input(
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(fetch_slack_token)`.
+    public func fetch_slack_token(
+        path: Operations.fetch_slack_token.Input.Path,
+        headers: Operations.fetch_slack_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_slack_token.Output {
+        try await fetch_slack_token(Operations.fetch_slack_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Revokes one of the authenticated user's slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete a Slack token
+    ///
+    /// Deletes one of the authenticated user's Slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/slack/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(discard_slack_token)`.
-    public func discard_slack_token(
-        path: Operations.discard_slack_token.Input.Path,
-        headers: Operations.discard_slack_token.Input.Headers = .init()
-    ) async throws -> Operations.discard_slack_token.Output {
-        try await discard_slack_token(Operations.discard_slack_token.Input(
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(delete_slack_token)`.
+    public func delete_slack_token(
+        path: Operations.delete_slack_token.Input.Path,
+        headers: Operations.delete_slack_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_slack_token.Output {
+        try await delete_slack_token(Operations.delete_slack_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Lists all teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Teams tokens
+    ///
+    /// Lists all Teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/teams/tokens`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/get(get_teams_tokens)`.
-    public func get_teams_tokens(
-        query: Operations.get_teams_tokens.Input.Query = .init(),
-        headers: Operations.get_teams_tokens.Input.Headers = .init()
-    ) async throws -> Operations.get_teams_tokens.Output {
-        try await get_teams_tokens(Operations.get_teams_tokens.Input(
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/get(list_teams_tokens)`.
+    public func list_teams_tokens(
+        query: Operations.list_teams_tokens.Input.Query = .init(),
+        headers: Operations.list_teams_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_teams_tokens.Output {
+        try await list_teams_tokens(Operations.list_teams_tokens.Input(
             query: query,
             headers: headers
         ))
     }
-    /// Saves a teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a Teams token
     ///
-    /// - Remark: HTTP `POST /channels/teams/tokens`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/post(save_teams_token)`.
+    /// Saves the Teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/teams/tokens`.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/put(save_teams_token)`.
     public func save_teams_token(
         headers: Operations.save_teams_token.Input.Headers = .init(),
         body: Operations.save_teams_token.Input.Body? = nil
@@ -409,49 +653,57 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Retrieves details of a specific teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a Teams token
+    ///
+    /// Fetches details of a specific Teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/teams/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(get_teams_token)`.
-    public func get_teams_token(
-        path: Operations.get_teams_token.Input.Path,
-        headers: Operations.get_teams_token.Input.Headers = .init()
-    ) async throws -> Operations.get_teams_token.Output {
-        try await get_teams_token(Operations.get_teams_token.Input(
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(fetch_teams_token)`.
+    public func fetch_teams_token(
+        path: Operations.fetch_teams_token.Input.Path,
+        headers: Operations.fetch_teams_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_teams_token.Output {
+        try await fetch_teams_token(Operations.fetch_teams_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Revokes one of the authenticated user's teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete a Teams token
+    ///
+    /// Deletes one of the authenticated user's Teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/teams/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(discard_teams_token)`.
-    public func discard_teams_token(
-        path: Operations.discard_teams_token.Input.Path,
-        headers: Operations.discard_teams_token.Input.Headers = .init()
-    ) async throws -> Operations.discard_teams_token.Output {
-        try await discard_teams_token(Operations.discard_teams_token.Input(
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(delete_teams_token)`.
+    public func delete_teams_token(
+        path: Operations.delete_teams_token.Input.Path,
+        headers: Operations.delete_teams_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_teams_token.Output {
+        try await delete_teams_token(Operations.delete_teams_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Lists all web_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Web Push tokens
+    ///
+    /// Lists all Web Push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/web_push/tokens`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(get_web_push_tokens)`.
-    public func get_web_push_tokens(
-        query: Operations.get_web_push_tokens.Input.Query = .init(),
-        headers: Operations.get_web_push_tokens.Input.Headers = .init()
-    ) async throws -> Operations.get_web_push_tokens.Output {
-        try await get_web_push_tokens(Operations.get_web_push_tokens.Input(
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(list_web_push_tokens)`.
+    public func list_web_push_tokens(
+        query: Operations.list_web_push_tokens.Input.Query = .init(),
+        headers: Operations.list_web_push_tokens.Input.Headers = .init()
+    ) async throws -> Operations.list_web_push_tokens.Output {
+        try await list_web_push_tokens(Operations.list_web_push_tokens.Input(
             query: query,
             headers: headers
         ))
     }
-    /// Saves a web_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a Web Push token
     ///
-    /// - Remark: HTTP `POST /channels/web_push/tokens`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/post(save_web_push_token)`.
+    /// Saves the Web Push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/web_push/tokens`.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/put(save_web_push_token)`.
     public func save_web_push_token(
         headers: Operations.save_web_push_token.Input.Headers = .init(),
         body: Operations.save_web_push_token.Input.Body? = nil
@@ -461,36 +713,42 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    /// Fetch a Web Push token
+    ///
+    /// Fetches details of a specific Web Push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
     ///
     /// - Remark: HTTP `GET /channels/web_push/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(get_web_push_token)`.
-    public func get_web_push_token(
-        path: Operations.get_web_push_token.Input.Path,
-        headers: Operations.get_web_push_token.Input.Headers = .init()
-    ) async throws -> Operations.get_web_push_token.Output {
-        try await get_web_push_token(Operations.get_web_push_token.Input(
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(fetch_web_push_token)`.
+    public func fetch_web_push_token(
+        path: Operations.fetch_web_push_token.Input.Path,
+        headers: Operations.fetch_web_push_token.Input.Headers = .init()
+    ) async throws -> Operations.fetch_web_push_token.Output {
+        try await fetch_web_push_token(Operations.fetch_web_push_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete a Web Push token
+    ///
+    /// Deletes one of the authenticated user's Web Push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/web_push/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(discard_web_push_token)`.
-    public func discard_web_push_token(
-        path: Operations.discard_web_push_token.Input.Path,
-        headers: Operations.discard_web_push_token.Input.Headers = .init()
-    ) async throws -> Operations.discard_web_push_token.Output {
-        try await discard_web_push_token(Operations.discard_web_push_token.Input(
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(delete_web_push_token)`.
+    public func delete_web_push_token(
+        path: Operations.delete_web_push_token.Input.Path,
+        headers: Operations.delete_web_push_token.Input.Headers = .init()
+    ) async throws -> Operations.delete_web_push_token.Output {
+        try await delete_web_push_token(Operations.delete_web_push_token.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save an Inbox installation
     ///
-    /// - Remark: HTTP `POST /integrations/inbox/installations`.
-    /// - Remark: Generated from `#/paths//integrations/inbox/installations/post(save_inbox_installation)`.
+    /// Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/inbox/installations`.
+    /// - Remark: Generated from `#/paths//integrations/inbox/installations/put(save_inbox_installation)`.
     public func save_inbox_installation(
         headers: Operations.save_inbox_installation.Input.Headers = .init(),
         body: Operations.save_inbox_installation.Input.Body? = nil
@@ -500,17 +758,21 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start an Inbox installation
+    ///
+    /// Initiates the installation flow for an Inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/inbox/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/inbox/installations/start/post(start_inbox_installation)`.
     public func start_inbox_installation(headers: Operations.start_inbox_installation.Input.Headers = .init()) async throws -> Operations.start_inbox_installation.Output {
         try await start_inbox_installation(Operations.start_inbox_installation.Input(headers: headers))
     }
-    /// Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Slack installation
     ///
-    /// - Remark: HTTP `POST /integrations/slack/installations`.
-    /// - Remark: Generated from `#/paths//integrations/slack/installations/post(save_slack_installation)`.
+    /// Creates a new installation of a Slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/slack/installations`.
+    /// - Remark: Generated from `#/paths//integrations/slack/installations/put(save_slack_installation)`.
     public func save_slack_installation(
         headers: Operations.save_slack_installation.Input.Headers = .init(),
         body: Operations.save_slack_installation.Input.Body? = nil
@@ -520,7 +782,9 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.
+    /// Finish a Slack installation
+    ///
+    /// Completes the installation flow for the Slack integration. This endpoint is typically called after the user has completed any required authorization steps with Slack.
     ///
     /// - Remark: HTTP `POST /integrations/slack/installations/finish`.
     /// - Remark: Generated from `#/paths//integrations/slack/installations/finish/post(finish_slack_installation)`.
@@ -533,7 +797,9 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start a Slack installation
+    ///
+    /// Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/slack/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/slack/installations/start/post(start_slack_installation)`.
@@ -546,10 +812,12 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Templates installation
     ///
-    /// - Remark: HTTP `POST /integrations/templates/installations`.
-    /// - Remark: Generated from `#/paths//integrations/templates/installations/post(save_templates_installation)`.
+    /// Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/templates/installations`.
+    /// - Remark: Generated from `#/paths//integrations/templates/installations/put(save_templates_installation)`.
     public func save_templates_installation(
         headers: Operations.save_templates_installation.Input.Headers = .init(),
         body: Operations.save_templates_installation.Input.Body? = nil
@@ -559,10 +827,12 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Web Push installation
     ///
-    /// - Remark: HTTP `POST /integrations/web_push/installations`.
-    /// - Remark: Generated from `#/paths//integrations/web_push/installations/post(save_web_push_installation)`.
+    /// Creates a new installation of a Web Push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/web_push/installations`.
+    /// - Remark: Generated from `#/paths//integrations/web_push/installations/put(save_web_push_installation)`.
     public func save_web_push_installation(
         headers: Operations.save_web_push_installation.Input.Headers = .init(),
         body: Operations.save_web_push_installation.Input.Body? = nil
@@ -572,12 +842,98 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start a Web Push installation
+    ///
+    /// Initiates the installation flow for a Web Push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/web_push/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/web_push/installations/start/post(start_web_push_installation)`.
     public func start_web_push_installation(headers: Operations.start_web_push_installation.Input.Headers = .init()) async throws -> Operations.start_web_push_installation.Output {
         try await start_web_push_installation(Operations.start_web_push_installation.Input(headers: headers))
+    }
+    /// List all notifications
+    ///
+    /// Lists all notifications for a user.
+    ///
+    /// - Remark: HTTP `GET /notifications`.
+    /// - Remark: Generated from `#/paths//notifications/get(list_notifications)`.
+    public func list_notifications(
+        query: Operations.list_notifications.Input.Query = .init(),
+        headers: Operations.list_notifications.Input.Headers = .init()
+    ) async throws -> Operations.list_notifications.Output {
+        try await list_notifications(Operations.list_notifications.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// Archive all notifications
+    ///
+    /// Archive all notifications.
+    ///
+    /// - Remark: HTTP `POST /notifications/archive`.
+    /// - Remark: Generated from `#/paths//notifications/archive/post(archive_all_notifications)`.
+    public func archive_all_notifications(query: Operations.archive_all_notifications.Input.Query = .init()) async throws -> Operations.archive_all_notifications.Output {
+        try await archive_all_notifications(Operations.archive_all_notifications.Input(query: query))
+    }
+    /// Mark all notifications read
+    ///
+    /// Marks all notifications as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/read`.
+    /// - Remark: Generated from `#/paths//notifications/read/post(mark_all_notifications_read)`.
+    public func mark_all_notifications_read(query: Operations.mark_all_notifications_read.Input.Query = .init()) async throws -> Operations.mark_all_notifications_read.Output {
+        try await mark_all_notifications_read(Operations.mark_all_notifications_read.Input(query: query))
+    }
+    /// Fetch a notification
+    ///
+    /// Gets a notification by ID.
+    ///
+    /// - Remark: HTTP `GET /notifications/{notification_id}`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/get(fetch_notification)`.
+    public func fetch_notification(
+        path: Operations.fetch_notification.Input.Path,
+        headers: Operations.fetch_notification.Input.Headers = .init()
+    ) async throws -> Operations.fetch_notification.Output {
+        try await fetch_notification(Operations.fetch_notification.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Archive a notification
+    ///
+    /// Archive a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/archive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)`.
+    public func archive_notification(path: Operations.archive_notification.Input.Path) async throws -> Operations.archive_notification.Output {
+        try await archive_notification(Operations.archive_notification.Input(path: path))
+    }
+    /// Mark a notification read
+    ///
+    /// Marks a notification as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/read`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)`.
+    public func mark_notification_read(path: Operations.mark_notification_read.Input.Path) async throws -> Operations.mark_notification_read.Output {
+        try await mark_notification_read(Operations.mark_notification_read.Input(path: path))
+    }
+    /// Unarchive a notification
+    ///
+    /// Unarchives a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unarchive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)`.
+    public func unarchive_notification(path: Operations.unarchive_notification.Input.Path) async throws -> Operations.unarchive_notification.Output {
+        try await unarchive_notification(Operations.unarchive_notification.Input(path: path))
+    }
+    /// Mark a notification unread
+    ///
+    /// Marks a notification as unread.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unread`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)`.
+    public func mark_notification_unread(path: Operations.mark_notification_unread.Input.Path) async throws -> Operations.mark_notification_unread.Output {
+        try await mark_notification_unread(Operations.mark_notification_unread.Input(path: path))
     }
 }
 
@@ -613,8 +969,14 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/APNSToken/app_id`.
             public var app_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/APNSToken/created_at`.
+            public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/APNSToken/device_token`.
             public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/APNSToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/APNSToken/id`.
+            public var id: Swift.String
             /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
             ///
             /// - Remark: Generated from `#/components/schemas/APNSToken/installation_id`.
@@ -626,55 +988,9 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/APNSToken/installation_id`.
             public var installation_id: Components.Schemas.APNSToken.installation_idPayload?
-            /// Creates a new `APNSToken`.
-            ///
-            /// - Parameters:
-            ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
-            ///   - device_token:
-            ///   - installation_id: (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
-            public init(
-                app_id: Swift.String? = nil,
-                device_token: Swift.String,
-                installation_id: Components.Schemas.APNSToken.installation_idPayload? = nil
-            ) {
-                self.app_id = app_id
-                self.device_token = device_token
-                self.installation_id = installation_id
-            }
-            public enum CodingKeys: String, CodingKey {
-                case app_id
-                case device_token
-                case installation_id
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/APNSTokenResponse`.
-        public struct APNSTokenResponse: Codable, Hashable, Sendable {
-            /// (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
-            ///
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/app_id`.
-            public var app_id: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/device_token`.
-            public var device_token: Swift.String
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/id`.
-            public var id: Swift.String
-            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
-            ///
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/installation_id`.
-            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                case development = "development"
-                case production = "production"
-            }
-            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
-            ///
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/installation_id`.
-            public var installation_id: Components.Schemas.APNSTokenResponse.installation_idPayload?
-            /// - Remark: Generated from `#/components/schemas/APNSTokenResponse/updated_at`.
+            /// - Remark: Generated from `#/components/schemas/APNSToken/updated_at`.
             public var updated_at: Foundation.Date?
-            /// Creates a new `APNSTokenResponse`.
+            /// Creates a new `APNSToken`.
             ///
             /// - Parameters:
             ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
@@ -690,7 +1006,7 @@ public enum Components {
                 device_token: Swift.String,
                 discarded_at: Foundation.Date? = nil,
                 id: Swift.String,
-                installation_id: Components.Schemas.APNSTokenResponse.installation_idPayload? = nil,
+                installation_id: Components.Schemas.APNSToken.installation_idPayload? = nil,
                 updated_at: Foundation.Date? = nil
             ) {
                 self.app_id = app_id
@@ -711,19 +1027,19 @@ public enum Components {
                 case updated_at
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses`.
-        public struct ArrayOfAPNSTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses/data`.
-            public var data: [Components.Schemas.APNSTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfAPNSTokenResponses/links`.
+        /// - Remark: Generated from `#/components/schemas/APNSTokenCollection`.
+        public struct APNSTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/APNSTokenCollection/data`.
+            public var data: [Components.Schemas.APNSToken]?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenCollection/links`.
             public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfAPNSTokenResponses`.
+            /// Creates a new `APNSTokenCollection`.
             ///
             /// - Parameters:
             ///   - data:
             ///   - links:
             public init(
-                data: [Components.Schemas.APNSTokenResponse]? = nil,
+                data: [Components.Schemas.APNSToken]? = nil,
                 links: Components.Schemas.Links? = nil
             ) {
                 self.data = data
@@ -734,119 +1050,44 @@ public enum Components {
                 case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses`.
-        public struct ArrayOfExpoTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses/data`.
-            public var data: [Components.Schemas.ExpoTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfExpoTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfExpoTokenResponses`.
+        /// - Remark: Generated from `#/components/schemas/APNSTokenPayload`.
+        public struct APNSTokenPayload: Codable, Hashable, Sendable {
+            /// (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/app_id`.
+            public var app_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/device_token`.
+            public var device_token: Swift.String
+            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/installation_id`.
+            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case development = "development"
+                case production = "production"
+            }
+            /// (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/APNSTokenPayload/installation_id`.
+            public var installation_id: Components.Schemas.APNSTokenPayload.installation_idPayload?
+            /// Creates a new `APNSTokenPayload`.
             ///
             /// - Parameters:
-            ///   - data:
-            ///   - links:
+            ///   - app_id: (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
+            ///   - device_token:
+            ///   - installation_id: (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
             public init(
-                data: [Components.Schemas.ExpoTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
+                app_id: Swift.String? = nil,
+                device_token: Swift.String,
+                installation_id: Components.Schemas.APNSTokenPayload.installation_idPayload? = nil
             ) {
-                self.data = data
-                self.links = links
+                self.app_id = app_id
+                self.device_token = device_token
+                self.installation_id = installation_id
             }
             public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses`.
-        public struct ArrayOfFCMTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses/data`.
-            public var data: [Components.Schemas.FCMTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfFCMTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfFCMTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.FCMTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses`.
-        public struct ArrayOfSlackTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses/data`.
-            public var data: [Components.Schemas.SlackTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfSlackTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfSlackTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.SlackTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses`.
-        public struct ArrayOfTeamsTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses/data`.
-            public var data: [Components.Schemas.TeamsTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfTeamsTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfTeamsTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.TeamsTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses`.
-        public struct ArrayOfWebPushTokenResponses: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses/data`.
-            public var data: [Components.Schemas.WebPushTokenResponse]?
-            /// - Remark: Generated from `#/components/schemas/ArrayOfWebPushTokenResponses/links`.
-            public var links: Components.Schemas.Links?
-            /// Creates a new `ArrayOfWebPushTokenResponses`.
-            ///
-            /// - Parameters:
-            ///   - data:
-            ///   - links:
-            public init(
-                data: [Components.Schemas.WebPushTokenResponse]? = nil,
-                links: Components.Schemas.Links? = nil
-            ) {
-                self.data = data
-                self.links = links
-            }
-            public enum CodingKeys: String, CodingKey {
-                case data
-                case links
+                case app_id
+                case device_token
+                case installation_id
             }
         }
         /// - Remark: Generated from `#/components/schemas/DiscardResult`.
@@ -874,9 +1115,73 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/ExpoToken`.
         public struct ExpoToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/created_at`.
+            public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/ExpoToken/device_token`.
             public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ExpoToken/updated_at`.
+            public var updated_at: Foundation.Date?
             /// Creates a new `ExpoToken`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - device_token:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - updated_at:
+            public init(
+                created_at: Foundation.Date,
+                device_token: Swift.String,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.created_at = created_at
+                self.device_token = device_token
+                self.discarded_at = discarded_at
+                self.id = id
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case device_token
+                case discarded_at
+                case id
+                case updated_at
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ExpoTokenCollection`.
+        public struct ExpoTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenCollection/data`.
+            public var data: [Components.Schemas.ExpoToken]?
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `ExpoTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.ExpoToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ExpoTokenPayload`.
+        public struct ExpoTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ExpoTokenPayload/device_token`.
+            public var device_token: Swift.String
+            /// Creates a new `ExpoTokenPayload`.
             ///
             /// - Parameters:
             ///   - device_token:
@@ -887,51 +1192,16 @@ public enum Components {
                 case device_token
             }
         }
-        /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse`.
-        public struct ExpoTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/device_token`.
-            public var device_token: Swift.String
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/ExpoTokenResponse/updated_at`.
-            public var updated_at: Foundation.Date?
-            /// Creates a new `ExpoTokenResponse`.
-            ///
-            /// - Parameters:
-            ///   - created_at:
-            ///   - device_token:
-            ///   - discarded_at:
-            ///   - id:
-            ///   - updated_at:
-            public init(
-                created_at: Foundation.Date,
-                device_token: Swift.String,
-                discarded_at: Foundation.Date? = nil,
-                id: Swift.String,
-                updated_at: Foundation.Date? = nil
-            ) {
-                self.created_at = created_at
-                self.device_token = device_token
-                self.discarded_at = discarded_at
-                self.id = id
-                self.updated_at = updated_at
-            }
-            public enum CodingKeys: String, CodingKey {
-                case created_at
-                case device_token
-                case discarded_at
-                case id
-                case updated_at
-            }
-        }
         /// - Remark: Generated from `#/components/schemas/FCMToken`.
         public struct FCMToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMToken/created_at`.
+            public var created_at: Foundation.Date
             /// - Remark: Generated from `#/components/schemas/FCMToken/device_token`.
             public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/FCMToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/FCMToken/id`.
+            public var id: Swift.String
             /// - Remark: Generated from `#/components/schemas/FCMToken/installation_id`.
             @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
                 case development = "development"
@@ -939,43 +1209,9 @@ public enum Components {
             }
             /// - Remark: Generated from `#/components/schemas/FCMToken/installation_id`.
             public var installation_id: Components.Schemas.FCMToken.installation_idPayload?
-            /// Creates a new `FCMToken`.
-            ///
-            /// - Parameters:
-            ///   - device_token:
-            ///   - installation_id:
-            public init(
-                device_token: Swift.String,
-                installation_id: Components.Schemas.FCMToken.installation_idPayload? = nil
-            ) {
-                self.device_token = device_token
-                self.installation_id = installation_id
-            }
-            public enum CodingKeys: String, CodingKey {
-                case device_token
-                case installation_id
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/FCMTokenResponse`.
-        public struct FCMTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/device_token`.
-            public var device_token: Swift.String
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/installation_id`.
-            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                case development = "development"
-                case production = "production"
-            }
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/installation_id`.
-            public var installation_id: Components.Schemas.FCMTokenResponse.installation_idPayload?
-            /// - Remark: Generated from `#/components/schemas/FCMTokenResponse/updated_at`.
+            /// - Remark: Generated from `#/components/schemas/FCMToken/updated_at`.
             public var updated_at: Foundation.Date?
-            /// Creates a new `FCMTokenResponse`.
+            /// Creates a new `FCMToken`.
             ///
             /// - Parameters:
             ///   - created_at:
@@ -989,7 +1225,7 @@ public enum Components {
                 device_token: Swift.String,
                 discarded_at: Foundation.Date? = nil,
                 id: Swift.String,
-                installation_id: Components.Schemas.FCMTokenResponse.installation_idPayload? = nil,
+                installation_id: Components.Schemas.FCMToken.installation_idPayload? = nil,
                 updated_at: Foundation.Date? = nil
             ) {
                 self.created_at = created_at
@@ -1008,11 +1244,62 @@ public enum Components {
                 case updated_at
             }
         }
-        /// - Remark: Generated from `#/components/schemas/InboxConfig`.
-        public struct InboxConfig: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/images`.
+        /// - Remark: Generated from `#/components/schemas/FCMTokenCollection`.
+        public struct FCMTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMTokenCollection/data`.
+            public var data: [Components.Schemas.FCMToken]?
+            /// - Remark: Generated from `#/components/schemas/FCMTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `FCMTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.FCMToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/FCMTokenPayload`.
+        public struct FCMTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/FCMTokenPayload/device_token`.
+            public var device_token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/FCMTokenPayload/installation_id`.
+            @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case development = "development"
+                case production = "production"
+            }
+            /// - Remark: Generated from `#/components/schemas/FCMTokenPayload/installation_id`.
+            public var installation_id: Components.Schemas.FCMTokenPayload.installation_idPayload?
+            /// Creates a new `FCMTokenPayload`.
+            ///
+            /// - Parameters:
+            ///   - device_token:
+            ///   - installation_id:
+            public init(
+                device_token: Swift.String,
+                installation_id: Components.Schemas.FCMTokenPayload.installation_idPayload? = nil
+            ) {
+                self.device_token = device_token
+                self.installation_id = installation_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case device_token
+                case installation_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload`.
+        public struct InboxConfigPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/images`.
             public struct imagesPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/images/emptyInboxUrl`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/images/emptyInboxUrl`.
                 public var emptyInboxUrl: Swift.String
                 /// Creates a new `imagesPayload`.
                 ///
@@ -1025,21 +1312,21 @@ public enum Components {
                     case emptyInboxUrl
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/images`.
-            public var images: Components.Schemas.InboxConfig.imagesPayload?
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/locale`.
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/images`.
+            public var images: Components.Schemas.InboxConfigPayload.imagesPayload?
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/locale`.
             public var locale: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme`.
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme`.
             public struct themePayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner`.
                 public struct bannerPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/backgroundOpacity`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/backgroundOpacity`.
                     public var backgroundOpacity: Swift.Double?
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/fontSize`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/fontSize`.
                     public var fontSize: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `bannerPayload`.
                     ///
@@ -1066,15 +1353,15 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/banner`.
-                public var banner: Components.Schemas.InboxConfig.themePayload.bannerPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/banner`.
+                public var banner: Components.Schemas.InboxConfigPayload.themePayload.bannerPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog`.
                 public struct dialogPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog/accentColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog/accentColor`.
                     public var accentColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `dialogPayload`.
                     ///
@@ -1097,17 +1384,17 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/dialog`.
-                public var dialog: Components.Schemas.InboxConfig.themePayload.dialogPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/dialog`.
+                public var dialog: Components.Schemas.InboxConfigPayload.themePayload.dialogPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer`.
                 public struct footerPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/borderRadius`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/borderRadius`.
                     public var borderRadius: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/fontSize`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/fontSize`.
                     public var fontSize: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `footerPayload`.
                     ///
@@ -1134,19 +1421,19 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/footer`.
-                public var footer: Components.Schemas.InboxConfig.themePayload.footerPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/footer`.
+                public var footer: Components.Schemas.InboxConfigPayload.themePayload.footerPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header`.
                 public struct headerPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/backgroundColor`.
                     public var backgroundColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/borderRadius`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/borderRadius`.
                     public var borderRadius: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/fontFamily`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/fontFamily`.
                     public var fontFamily: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/fontSize`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/fontSize`.
                     public var fontSize: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header/textColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header/textColor`.
                     public var textColor: Swift.String
                     /// Creates a new `headerPayload`.
                     ///
@@ -1177,13 +1464,13 @@ public enum Components {
                         case textColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/header`.
-                public var header: Components.Schemas.InboxConfig.themePayload.headerPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/header`.
+                public var header: Components.Schemas.InboxConfigPayload.themePayload.headerPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon`.
                 public struct iconPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon/borderColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon/borderColor`.
                     public var borderColor: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon/width`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon/width`.
                     public var width: Swift.String
                     /// Creates a new `iconPayload`.
                     ///
@@ -1202,23 +1489,23 @@ public enum Components {
                         case width
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/icon`.
-                public var icon: Components.Schemas.InboxConfig.themePayload.iconPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/icon`.
+                public var icon: Components.Schemas.InboxConfigPayload.themePayload.iconPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification`.
                 public struct notificationPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default`.
                     public struct _defaultPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/backgroundColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/backgroundColor`.
                         public var backgroundColor: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/borderRadius`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/borderRadius`.
                         public var borderRadius: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/fontFamily`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/fontFamily`.
                         public var fontFamily: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/fontSize`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/fontSize`.
                         public var fontSize: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/hover`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/hover`.
                         public struct hoverPayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/hover/backgroundColor`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/hover/backgroundColor`.
                             public var backgroundColor: Swift.String
                             /// Creates a new `hoverPayload`.
                             ///
@@ -1231,13 +1518,13 @@ public enum Components {
                                 case backgroundColor
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/hover`.
-                        public var hover: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.hoverPayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/margin`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/hover`.
+                        public var hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.hoverPayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/margin`.
                         public var margin: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/state`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/state`.
                         public struct statePayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/state/color`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/state/color`.
                             public var color: Swift.String
                             /// Creates a new `statePayload`.
                             ///
@@ -1250,9 +1537,9 @@ public enum Components {
                                 case color
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/state`.
-                        public var state: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.statePayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default/textColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/state`.
+                        public var state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.statePayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default/textColor`.
                         public var textColor: Swift.String
                         /// Creates a new `_defaultPayload`.
                         ///
@@ -1270,9 +1557,9 @@ public enum Components {
                             borderRadius: Swift.String,
                             fontFamily: Swift.String,
                             fontSize: Swift.String,
-                            hover: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.hoverPayload? = nil,
+                            hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.hoverPayload? = nil,
                             margin: Swift.String,
-                            state: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload.statePayload? = nil,
+                            state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload.statePayload? = nil,
                             textColor: Swift.String
                         ) {
                             self.backgroundColor = backgroundColor
@@ -1295,15 +1582,15 @@ public enum Components {
                             case textColor
                         }
                     }
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/default`.
-                    public var _default: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/default`.
+                    public var _default: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread`.
                     public struct unreadPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/backgroundColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/backgroundColor`.
                         public var backgroundColor: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/hover`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/hover`.
                         public struct hoverPayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/hover/backgroundColor`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/hover/backgroundColor`.
                             public var backgroundColor: Swift.String
                             /// Creates a new `hoverPayload`.
                             ///
@@ -1316,11 +1603,11 @@ public enum Components {
                                 case backgroundColor
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/hover`.
-                        public var hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.hoverPayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/state`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/hover`.
+                        public var hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.hoverPayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/state`.
                         public struct statePayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/state/color`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/state/color`.
                             public var color: Swift.String
                             /// Creates a new `statePayload`.
                             ///
@@ -1333,9 +1620,9 @@ public enum Components {
                                 case color
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/state`.
-                        public var state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.statePayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread/textColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/state`.
+                        public var state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.statePayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread/textColor`.
                         public var textColor: Swift.String
                         /// Creates a new `unreadPayload`.
                         ///
@@ -1346,8 +1633,8 @@ public enum Components {
                         ///   - textColor:
                         public init(
                             backgroundColor: Swift.String,
-                            hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.hoverPayload? = nil,
-                            state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload.statePayload? = nil,
+                            hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.hoverPayload? = nil,
+                            state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload.statePayload? = nil,
                             textColor: Swift.String
                         ) {
                             self.backgroundColor = backgroundColor
@@ -1362,15 +1649,15 @@ public enum Components {
                             case textColor
                         }
                     }
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unread`.
-                    public var unread: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unread`.
+                    public var unread: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen`.
                     public struct unseenPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/backgroundColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/backgroundColor`.
                         public var backgroundColor: Swift.String
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/hover`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/hover`.
                         public struct hoverPayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/hover/backgroundColor`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/hover/backgroundColor`.
                             public var backgroundColor: Swift.String
                             /// Creates a new `hoverPayload`.
                             ///
@@ -1383,11 +1670,11 @@ public enum Components {
                                 case backgroundColor
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/hover`.
-                        public var hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.hoverPayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/state`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/hover`.
+                        public var hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.hoverPayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/state`.
                         public struct statePayload: Codable, Hashable, Sendable {
-                            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/state/color`.
+                            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/state/color`.
                             public var color: Swift.String
                             /// Creates a new `statePayload`.
                             ///
@@ -1400,9 +1687,9 @@ public enum Components {
                                 case color
                             }
                         }
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/state`.
-                        public var state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.statePayload?
-                        /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen/textColor`.
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/state`.
+                        public var state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.statePayload?
+                        /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen/textColor`.
                         public var textColor: Swift.String
                         /// Creates a new `unseenPayload`.
                         ///
@@ -1413,8 +1700,8 @@ public enum Components {
                         ///   - textColor:
                         public init(
                             backgroundColor: Swift.String,
-                            hover: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.hoverPayload? = nil,
-                            state: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload.statePayload? = nil,
+                            hover: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.hoverPayload? = nil,
+                            state: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload.statePayload? = nil,
                             textColor: Swift.String
                         ) {
                             self.backgroundColor = backgroundColor
@@ -1429,8 +1716,8 @@ public enum Components {
                             case textColor
                         }
                     }
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification/unseen`.
-                    public var unseen: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification/unseen`.
+                    public var unseen: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload
                     /// Creates a new `notificationPayload`.
                     ///
                     /// - Parameters:
@@ -1438,9 +1725,9 @@ public enum Components {
                     ///   - unread:
                     ///   - unseen:
                     public init(
-                        _default: Components.Schemas.InboxConfig.themePayload.notificationPayload._defaultPayload,
-                        unread: Components.Schemas.InboxConfig.themePayload.notificationPayload.unreadPayload,
-                        unseen: Components.Schemas.InboxConfig.themePayload.notificationPayload.unseenPayload
+                        _default: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload._defaultPayload,
+                        unread: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unreadPayload,
+                        unseen: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload.unseenPayload
                     ) {
                         self._default = _default
                         self.unread = unread
@@ -1452,11 +1739,11 @@ public enum Components {
                         case unseen
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/notification`.
-                public var notification: Components.Schemas.InboxConfig.themePayload.notificationPayload?
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/unseenBadge`.
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/notification`.
+                public var notification: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/unseenBadge`.
                 public struct unseenBadgePayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/unseenBadge/backgroundColor`.
+                    /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/unseenBadge/backgroundColor`.
                     public var backgroundColor: Swift.String
                     /// Creates a new `unseenBadgePayload`.
                     ///
@@ -1469,8 +1756,8 @@ public enum Components {
                         case backgroundColor
                     }
                 }
-                /// - Remark: Generated from `#/components/schemas/InboxConfig/theme/unseenBadge`.
-                public var unseenBadge: Components.Schemas.InboxConfig.themePayload.unseenBadgePayload?
+                /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme/unseenBadge`.
+                public var unseenBadge: Components.Schemas.InboxConfigPayload.themePayload.unseenBadgePayload?
                 /// Creates a new `themePayload`.
                 ///
                 /// - Parameters:
@@ -1482,13 +1769,13 @@ public enum Components {
                 ///   - notification:
                 ///   - unseenBadge:
                 public init(
-                    banner: Components.Schemas.InboxConfig.themePayload.bannerPayload? = nil,
-                    dialog: Components.Schemas.InboxConfig.themePayload.dialogPayload? = nil,
-                    footer: Components.Schemas.InboxConfig.themePayload.footerPayload? = nil,
-                    header: Components.Schemas.InboxConfig.themePayload.headerPayload? = nil,
-                    icon: Components.Schemas.InboxConfig.themePayload.iconPayload? = nil,
-                    notification: Components.Schemas.InboxConfig.themePayload.notificationPayload? = nil,
-                    unseenBadge: Components.Schemas.InboxConfig.themePayload.unseenBadgePayload? = nil
+                    banner: Components.Schemas.InboxConfigPayload.themePayload.bannerPayload? = nil,
+                    dialog: Components.Schemas.InboxConfigPayload.themePayload.dialogPayload? = nil,
+                    footer: Components.Schemas.InboxConfigPayload.themePayload.footerPayload? = nil,
+                    header: Components.Schemas.InboxConfigPayload.themePayload.headerPayload? = nil,
+                    icon: Components.Schemas.InboxConfigPayload.themePayload.iconPayload? = nil,
+                    notification: Components.Schemas.InboxConfigPayload.themePayload.notificationPayload? = nil,
+                    unseenBadge: Components.Schemas.InboxConfigPayload.themePayload.unseenBadgePayload? = nil
                 ) {
                     self.banner = banner
                     self.dialog = dialog
@@ -1508,18 +1795,18 @@ public enum Components {
                     case unseenBadge
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/InboxConfig/theme`.
-            public var theme: Components.Schemas.InboxConfig.themePayload?
-            /// Creates a new `InboxConfig`.
+            /// - Remark: Generated from `#/components/schemas/InboxConfigPayload/theme`.
+            public var theme: Components.Schemas.InboxConfigPayload.themePayload?
+            /// Creates a new `InboxConfigPayload`.
             ///
             /// - Parameters:
             ///   - images:
             ///   - locale:
             ///   - theme:
             public init(
-                images: Components.Schemas.InboxConfig.imagesPayload? = nil,
+                images: Components.Schemas.InboxConfigPayload.imagesPayload? = nil,
                 locale: Swift.String? = nil,
-                theme: Components.Schemas.InboxConfig.themePayload? = nil
+                theme: Components.Schemas.InboxConfigPayload.themePayload? = nil
             ) {
                 self.images = images
                 self.locale = locale
@@ -1529,6 +1816,99 @@ public enum Components {
                 case images
                 case locale
                 case theme
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/InboxToken`.
+        public struct InboxToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/InboxToken/connection_id`.
+            public var connection_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/InboxToken/token`.
+            public var token: Swift.String
+            /// Creates a new `InboxToken`.
+            ///
+            /// - Parameters:
+            ///   - connection_id:
+            ///   - token:
+            public init(
+                connection_id: Swift.String? = nil,
+                token: Swift.String
+            ) {
+                self.connection_id = connection_id
+                self.token = token
+            }
+            public enum CodingKeys: String, CodingKey {
+                case connection_id
+                case token
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/InboxTokenResponse`.
+        public struct InboxTokenResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponse/connection_id`.
+            public var connection_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponse/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponse/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponse/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponse/token`.
+            public var token: Swift.String
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponse/updated_at`.
+            public var updated_at: Foundation.Date?
+            /// Creates a new `InboxTokenResponse`.
+            ///
+            /// - Parameters:
+            ///   - connection_id:
+            ///   - created_at:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - token:
+            ///   - updated_at:
+            public init(
+                connection_id: Swift.String? = nil,
+                created_at: Foundation.Date,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                token: Swift.String,
+                updated_at: Foundation.Date? = nil
+            ) {
+                self.connection_id = connection_id
+                self.created_at = created_at
+                self.discarded_at = discarded_at
+                self.id = id
+                self.token = token
+                self.updated_at = updated_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case connection_id
+                case created_at
+                case discarded_at
+                case id
+                case token
+                case updated_at
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/InboxTokenResponseCollection`.
+        public struct InboxTokenResponseCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponseCollection/data`.
+            public var data: [Components.Schemas.InboxTokenResponse]?
+            /// - Remark: Generated from `#/components/schemas/InboxTokenResponseCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `InboxTokenResponseCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.InboxTokenResponse]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
             }
         }
         /// - Remark: Generated from `#/components/schemas/Links`.
@@ -1558,6 +1938,130 @@ public enum Components {
                 case first
                 case next
                 case prev
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Notification`.
+        public struct Notification: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Notification/action_url`.
+            public var action_url: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Notification/archived_at`.
+            public var archived_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/Notification/category`.
+            public var category: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Notification/content`.
+            public var content: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Notification/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Notification/custom_attributes`.
+            public var custom_attributes: OpenAPIRuntime.OpenAPIObjectContainer?
+            /// - Remark: Generated from `#/components/schemas/Notification/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/Notification/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Notification/read_at`.
+            public var read_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/Notification/seen_at`.
+            public var seen_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/Notification/sent_at`.
+            public var sent_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/Notification/title`.
+            public var title: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Notification/topic`.
+            public var topic: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Notification/updated_at`.
+            public var updated_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Notification/user_id`.
+            public var user_id: Swift.String
+            /// Creates a new `Notification`.
+            ///
+            /// - Parameters:
+            ///   - action_url:
+            ///   - archived_at:
+            ///   - category:
+            ///   - content:
+            ///   - created_at:
+            ///   - custom_attributes:
+            ///   - discarded_at:
+            ///   - id:
+            ///   - read_at:
+            ///   - seen_at:
+            ///   - sent_at:
+            ///   - title:
+            ///   - topic:
+            ///   - updated_at:
+            ///   - user_id:
+            public init(
+                action_url: Swift.String? = nil,
+                archived_at: Foundation.Date? = nil,
+                category: Swift.String? = nil,
+                content: Swift.String? = nil,
+                created_at: Foundation.Date,
+                custom_attributes: OpenAPIRuntime.OpenAPIObjectContainer? = nil,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
+                read_at: Foundation.Date? = nil,
+                seen_at: Foundation.Date? = nil,
+                sent_at: Foundation.Date? = nil,
+                title: Swift.String,
+                topic: Swift.String? = nil,
+                updated_at: Foundation.Date,
+                user_id: Swift.String
+            ) {
+                self.action_url = action_url
+                self.archived_at = archived_at
+                self.category = category
+                self.content = content
+                self.created_at = created_at
+                self.custom_attributes = custom_attributes
+                self.discarded_at = discarded_at
+                self.id = id
+                self.read_at = read_at
+                self.seen_at = seen_at
+                self.sent_at = sent_at
+                self.title = title
+                self.topic = topic
+                self.updated_at = updated_at
+                self.user_id = user_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case action_url
+                case archived_at
+                case category
+                case content
+                case created_at
+                case custom_attributes
+                case discarded_at
+                case id
+                case read_at
+                case seen_at
+                case sent_at
+                case title
+                case topic
+                case updated_at
+                case user_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/NotificationCollection`.
+        public struct NotificationCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/NotificationCollection/data`.
+            public var data: [Components.Schemas.Notification]?
+            /// - Remark: Generated from `#/components/schemas/NotificationCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `NotificationCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.Notification]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
             }
         }
         /// - Remark: Generated from `#/components/schemas/SlackFinishInstallResponse`.
@@ -1895,6 +2399,12 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/SlackToken`.
         public struct SlackToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackToken/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SlackToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SlackToken/id`.
+            public var id: Swift.String
             /// - Remark: Generated from `#/components/schemas/SlackToken/oauth`.
             public struct oauthPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/SlackToken/oauth/channel_id`.
@@ -1926,6 +2436,8 @@ public enum Components {
             }
             /// - Remark: Generated from `#/components/schemas/SlackToken/oauth`.
             public var oauth: Components.Schemas.SlackToken.oauthPayload?
+            /// - Remark: Generated from `#/components/schemas/SlackToken/updated_at`.
+            public var updated_at: Foundation.Date?
             /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             ///
             /// - Remark: Generated from `#/components/schemas/SlackToken/webhook`.
@@ -1950,50 +2462,68 @@ public enum Components {
             /// Creates a new `SlackToken`.
             ///
             /// - Parameters:
+            ///   - created_at:
+            ///   - discarded_at:
+            ///   - id:
             ///   - oauth:
+            ///   - updated_at:
             ///   - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             public init(
+                created_at: Foundation.Date,
+                discarded_at: Foundation.Date? = nil,
+                id: Swift.String,
                 oauth: Components.Schemas.SlackToken.oauthPayload? = nil,
+                updated_at: Foundation.Date? = nil,
                 webhook: Components.Schemas.SlackToken.webhookPayload? = nil
             ) {
+                self.created_at = created_at
+                self.discarded_at = discarded_at
+                self.id = id
                 self.oauth = oauth
+                self.updated_at = updated_at
                 self.webhook = webhook
             }
             public enum CodingKeys: String, CodingKey {
+                case created_at
+                case discarded_at
+                case id
                 case oauth
+                case updated_at
                 case webhook
             }
-            public init(from decoder: any Decoder) throws {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-                self.oauth = try container.decodeIfPresent(
-                    Components.Schemas.SlackToken.oauthPayload.self,
-                    forKey: .oauth
-                )
-                self.webhook = try container.decodeIfPresent(
-                    Components.Schemas.SlackToken.webhookPayload.self,
-                    forKey: .webhook
-                )
-                try decoder.ensureNoAdditionalProperties(knownKeys: [
-                    "oauth",
-                    "webhook"
-                ])
+        }
+        /// - Remark: Generated from `#/components/schemas/SlackTokenCollection`.
+        public struct SlackTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackTokenCollection/data`.
+            public var data: [Components.Schemas.SlackToken]?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `SlackTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.SlackToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
             }
         }
-        /// - Remark: Generated from `#/components/schemas/SlackTokenResponse`.
-        public struct SlackTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth`.
+        /// - Remark: Generated from `#/components/schemas/SlackTokenPayload`.
+        public struct SlackTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth`.
             public struct oauthPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/channel_id`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth/channel_id`.
                 public var channel_id: Swift.String
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/installation_id`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth/installation_id`.
                 public var installation_id: Swift.String
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth/scope`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth/scope`.
                 public var scope: Swift.String?
                 /// Creates a new `oauthPayload`.
                 ///
@@ -2016,15 +2546,13 @@ public enum Components {
                     case scope
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/oauth`.
-            public var oauth: Components.Schemas.SlackTokenResponse.oauthPayload?
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/updated_at`.
-            public var updated_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/oauth`.
+            public var oauth: Components.Schemas.SlackTokenPayload.oauthPayload?
             /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             ///
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/webhook`.
             public struct webhookPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook/url`.
+                /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/webhook/url`.
                 public var url: Swift.String
                 /// Creates a new `webhookPayload`.
                 ///
@@ -2039,43 +2567,50 @@ public enum Components {
             }
             /// Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             ///
-            /// - Remark: Generated from `#/components/schemas/SlackTokenResponse/webhook`.
-            public var webhook: Components.Schemas.SlackTokenResponse.webhookPayload?
-            /// Creates a new `SlackTokenResponse`.
+            /// - Remark: Generated from `#/components/schemas/SlackTokenPayload/webhook`.
+            public var webhook: Components.Schemas.SlackTokenPayload.webhookPayload?
+            /// Creates a new `SlackTokenPayload`.
             ///
             /// - Parameters:
-            ///   - created_at:
-            ///   - discarded_at:
-            ///   - id:
             ///   - oauth:
-            ///   - updated_at:
             ///   - webhook: Obtained directly from the incoming_webhook object in the installation response from the Slack API.
             public init(
-                created_at: Foundation.Date,
-                discarded_at: Foundation.Date? = nil,
-                id: Swift.String,
-                oauth: Components.Schemas.SlackTokenResponse.oauthPayload? = nil,
-                updated_at: Foundation.Date? = nil,
-                webhook: Components.Schemas.SlackTokenResponse.webhookPayload? = nil
+                oauth: Components.Schemas.SlackTokenPayload.oauthPayload? = nil,
+                webhook: Components.Schemas.SlackTokenPayload.webhookPayload? = nil
             ) {
-                self.created_at = created_at
-                self.discarded_at = discarded_at
-                self.id = id
                 self.oauth = oauth
-                self.updated_at = updated_at
                 self.webhook = webhook
             }
             public enum CodingKeys: String, CodingKey {
-                case created_at
-                case discarded_at
-                case id
                 case oauth
-                case updated_at
                 case webhook
+            }
+            public init(from decoder: any Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                self.oauth = try container.decodeIfPresent(
+                    Components.Schemas.SlackTokenPayload.oauthPayload.self,
+                    forKey: .oauth
+                )
+                self.webhook = try container.decodeIfPresent(
+                    Components.Schemas.SlackTokenPayload.webhookPayload.self,
+                    forKey: .webhook
+                )
+                try decoder.ensureNoAdditionalProperties(knownKeys: [
+                    "oauth",
+                    "webhook"
+                ])
             }
         }
         /// - Remark: Generated from `#/components/schemas/TeamsToken`.
         public struct TeamsToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/TeamsToken/updated_at`.
+            public var updated_at: Foundation.Date?
             /// - Remark: Generated from `#/components/schemas/TeamsToken/webhook`.
             public struct webhookPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/TeamsToken/webhook/url`.
@@ -2096,44 +2631,6 @@ public enum Components {
             /// Creates a new `TeamsToken`.
             ///
             /// - Parameters:
-            ///   - webhook:
-            public init(webhook: Components.Schemas.TeamsToken.webhookPayload? = nil) {
-                self.webhook = webhook
-            }
-            public enum CodingKeys: String, CodingKey {
-                case webhook
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse`.
-        public struct TeamsTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/updated_at`.
-            public var updated_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook`.
-            public struct webhookPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook/url`.
-                public var url: Swift.String?
-                /// Creates a new `webhookPayload`.
-                ///
-                /// - Parameters:
-                ///   - url:
-                public init(url: Swift.String? = nil) {
-                    self.url = url
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case url
-                }
-            }
-            /// - Remark: Generated from `#/components/schemas/TeamsTokenResponse/webhook`.
-            public var webhook: Components.Schemas.TeamsTokenResponse.webhookPayload?
-            /// Creates a new `TeamsTokenResponse`.
-            ///
-            /// - Parameters:
             ///   - created_at:
             ///   - discarded_at:
             ///   - id:
@@ -2144,7 +2641,7 @@ public enum Components {
                 discarded_at: Foundation.Date? = nil,
                 id: Swift.String,
                 updated_at: Foundation.Date? = nil,
-                webhook: Components.Schemas.TeamsTokenResponse.webhookPayload? = nil
+                webhook: Components.Schemas.TeamsToken.webhookPayload? = nil
             ) {
                 self.created_at = created_at
                 self.discarded_at = discarded_at
@@ -2157,6 +2654,59 @@ public enum Components {
                 case discarded_at
                 case id
                 case updated_at
+                case webhook
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/TeamsTokenCollection`.
+        public struct TeamsTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenCollection/data`.
+            public var data: [Components.Schemas.TeamsToken]?
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `TeamsTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.TeamsToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload`.
+        public struct TeamsTokenPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload/webhook`.
+            public struct webhookPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload/webhook/url`.
+                public var url: Swift.String?
+                /// Creates a new `webhookPayload`.
+                ///
+                /// - Parameters:
+                ///   - url:
+                public init(url: Swift.String? = nil) {
+                    self.url = url
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case url
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/TeamsTokenPayload/webhook`.
+            public var webhook: Components.Schemas.TeamsTokenPayload.webhookPayload?
+            /// Creates a new `TeamsTokenPayload`.
+            ///
+            /// - Parameters:
+            ///   - webhook:
+            public init(webhook: Components.Schemas.TeamsTokenPayload.webhookPayload? = nil) {
+                self.webhook = webhook
+            }
+            public enum CodingKeys: String, CodingKey {
                 case webhook
             }
         }
@@ -2214,10 +2764,16 @@ public enum Components {
         }
         /// - Remark: Generated from `#/components/schemas/WebPushToken`.
         public struct WebPushToken: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/discarded_at`.
+            public var discarded_at: Foundation.Date?
             /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
             ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/endpoint`.
             public var endpoint: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/id`.
+            public var id: Swift.String
             /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
             ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
@@ -2225,19 +2781,19 @@ public enum Components {
                 /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/auth`.
-                public var auth: Swift.String
+                public var auth: OpenAPIRuntime.Base64EncodedData
                 /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 ///
                 /// - Remark: Generated from `#/components/schemas/WebPushToken/keys/p256dh`.
-                public var p256dh: Swift.String
+                public var p256dh: OpenAPIRuntime.Base64EncodedData
                 /// Creates a new `keysPayload`.
                 ///
                 /// - Parameters:
                 ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
                 ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
                 public init(
-                    auth: Swift.String,
-                    p256dh: Swift.String
+                    auth: OpenAPIRuntime.Base64EncodedData,
+                    p256dh: OpenAPIRuntime.Base64EncodedData
                 ) {
                     self.auth = auth
                     self.p256dh = p256dh
@@ -2251,71 +2807,9 @@ public enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/WebPushToken/keys`.
             public var keys: Components.Schemas.WebPushToken.keysPayload
-            /// Creates a new `WebPushToken`.
-            ///
-            /// - Parameters:
-            ///   - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
-            ///   - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
-            public init(
-                endpoint: Swift.String,
-                keys: Components.Schemas.WebPushToken.keysPayload
-            ) {
-                self.endpoint = endpoint
-                self.keys = keys
-            }
-            public enum CodingKeys: String, CodingKey {
-                case endpoint
-                case keys
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse`.
-        public struct WebPushTokenResponse: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/discarded_at`.
-            public var discarded_at: Foundation.Date?
-            /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/endpoint`.
-            public var endpoint: Swift.String
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/id`.
-            public var id: Swift.String
-            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
-            public struct keysPayload: Codable, Hashable, Sendable {
-                /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
-                ///
-                /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/auth`.
-                public var auth: Swift.String
-                /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
-                ///
-                /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys/p256dh`.
-                public var p256dh: Swift.String
-                /// Creates a new `keysPayload`.
-                ///
-                /// - Parameters:
-                ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
-                ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
-                public init(
-                    auth: Swift.String,
-                    p256dh: Swift.String
-                ) {
-                    self.auth = auth
-                    self.p256dh = p256dh
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case auth
-                    case p256dh
-                }
-            }
-            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/keys`.
-            public var keys: Components.Schemas.WebPushTokenResponse.keysPayload
-            /// - Remark: Generated from `#/components/schemas/WebPushTokenResponse/updated_at`.
+            /// - Remark: Generated from `#/components/schemas/WebPushToken/updated_at`.
             public var updated_at: Foundation.Date?
-            /// Creates a new `WebPushTokenResponse`.
+            /// Creates a new `WebPushToken`.
             ///
             /// - Parameters:
             ///   - created_at:
@@ -2329,7 +2823,7 @@ public enum Components {
                 discarded_at: Foundation.Date? = nil,
                 endpoint: Swift.String,
                 id: Swift.String,
-                keys: Components.Schemas.WebPushTokenResponse.keysPayload,
+                keys: Components.Schemas.WebPushToken.keysPayload,
                 updated_at: Foundation.Date? = nil
             ) {
                 self.created_at = created_at
@@ -2348,6 +2842,85 @@ public enum Components {
                 case updated_at
             }
         }
+        /// - Remark: Generated from `#/components/schemas/WebPushTokenCollection`.
+        public struct WebPushTokenCollection: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenCollection/data`.
+            public var data: [Components.Schemas.WebPushToken]?
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenCollection/links`.
+            public var links: Components.Schemas.Links?
+            /// Creates a new `WebPushTokenCollection`.
+            ///
+            /// - Parameters:
+            ///   - data:
+            ///   - links:
+            public init(
+                data: [Components.Schemas.WebPushToken]? = nil,
+                links: Components.Schemas.Links? = nil
+            ) {
+                self.data = data
+                self.links = links
+            }
+            public enum CodingKeys: String, CodingKey {
+                case data
+                case links
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload`.
+        public struct WebPushTokenPayload: Codable, Hashable, Sendable {
+            /// The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/endpoint`.
+            public var endpoint: Swift.String
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys`.
+            public struct keysPayload: Codable, Hashable, Sendable {
+                /// The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///
+                /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys/auth`.
+                public var auth: OpenAPIRuntime.Base64EncodedData
+                /// The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
+                ///
+                /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys/p256dh`.
+                public var p256dh: OpenAPIRuntime.Base64EncodedData
+                /// Creates a new `keysPayload`.
+                ///
+                /// - Parameters:
+                ///   - auth: The authentication secret obtained from PushSubscription.getKey('auth'). Used to encrypt push messages for this subscription.
+                ///   - p256dh: The P-256 ECDH public key obtained from PushSubscription.getKey('p256dh'). Used to encrypt push messages for this subscription.
+                public init(
+                    auth: OpenAPIRuntime.Base64EncodedData,
+                    p256dh: OpenAPIRuntime.Base64EncodedData
+                ) {
+                    self.auth = auth
+                    self.p256dh = p256dh
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case auth
+                    case p256dh
+                }
+            }
+            /// The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebPushTokenPayload/keys`.
+            public var keys: Components.Schemas.WebPushTokenPayload.keysPayload
+            /// Creates a new `WebPushTokenPayload`.
+            ///
+            /// - Parameters:
+            ///   - endpoint: The push subscription URL obtained from PushSubscription.endpoint after calling registration.pushManager.subscribe(). This is the unique URL for this device that push messages will be sent to.
+            ///   - keys: The encryption keys from the PushSubscription.getKey() method, needed to encrypt push messages for this subscription.
+            public init(
+                endpoint: Swift.String,
+                keys: Components.Schemas.WebPushTokenPayload.keysPayload
+            ) {
+                self.endpoint = endpoint
+                self.keys = keys
+            }
+            public enum CodingKeys: String, CodingKey {
+                case endpoint
+                case keys
+            }
+        }
     }
     /// Types generated from the `#/components/parameters` section of the OpenAPI document.
     public enum Parameters {}
@@ -2361,12 +2934,539 @@ public enum Components {
 
 /// API operations, with input and output types, generated from `#/paths` in the OpenAPI document.
 public enum Operations {
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Inbox tokens
+    ///
+    /// Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(list_inbox_tokens)`.
+    public enum list_inbox_tokens {
+        public static let id: Swift.String = "list_inbox_tokens"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/query`.
+            public struct Query: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/query/ending_before`.
+                public var ending_before: Swift.String?
+                /// Creates a new `Query`.
+                ///
+                /// - Parameters:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
+                public init(
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil
+                ) {
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
+                }
+            }
+            public var query: Operations.list_inbox_tokens.Input.Query
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_inbox_tokens.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_inbox_tokens.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.list_inbox_tokens.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - query:
+            ///   - headers:
+            public init(
+                query: Operations.list_inbox_tokens.Input.Query = .init(),
+                headers: Operations.list_inbox_tokens.Input.Headers = .init()
+            ) {
+                self.query = query
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.InboxTokenResponseCollection)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.InboxTokenResponseCollection {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.list_inbox_tokens.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.list_inbox_tokens.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/get(list_inbox_tokens)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.list_inbox_tokens.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.list_inbox_tokens.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Save an Inbox token
+    ///
+    /// Saves the Inbox token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/in_app/inbox/tokens`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/put(save_inbox_token)`.
+    public enum save_inbox_token {
+        public static let id: Swift.String = "save_inbox_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/PUT/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_inbox_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_inbox_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.save_inbox_token.Input.Headers
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/PUT/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.InboxToken)
+            }
+            public var body: Operations.save_inbox_token.Input.Body?
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.save_inbox_token.Input.Headers = .init(),
+                body: Operations.save_inbox_token.Input.Body? = nil
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/PUT/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.InboxToken)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.InboxToken {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.save_inbox_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.save_inbox_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/put(save_inbox_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_inbox_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_inbox_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Fetch an Inbox token
+    ///
+    /// Fetches details of a specific Inbox token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(fetch_inbox_token)`.
+    public enum fetch_inbox_token {
+        public static let id: Swift.String = "fetch_inbox_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_inbox_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_inbox_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_inbox_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_inbox_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_inbox_token.Input.Path,
+                headers: Operations.fetch_inbox_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.InboxTokenResponse)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.InboxTokenResponse {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.fetch_inbox_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.fetch_inbox_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/get(fetch_inbox_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.fetch_inbox_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.fetch_inbox_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Delete an Inbox token
+    ///
+    /// Deletes one of the authenticated user's Inbox tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    ///
+    /// - Remark: HTTP `DELETE /channels/in_app/inbox/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(delete_inbox_token)`.
+    public enum delete_inbox_token {
+        public static let id: Swift.String = "delete_inbox_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/DELETE/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/DELETE/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.delete_inbox_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/DELETE/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_inbox_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_inbox_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.delete_inbox_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.delete_inbox_token.Input.Path,
+                headers: Operations.delete_inbox_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/DELETE/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/in_app/inbox/tokens/{token_id}/DELETE/responses/200/content/application\/json`.
+                    case json(Components.Schemas.DiscardResult)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.DiscardResult {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.delete_inbox_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.delete_inbox_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/in_app/inbox/tokens/{token_id}/delete(delete_inbox_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.delete_inbox_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.delete_inbox_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// List all APNs tokens
+    ///
+    /// Lists all APNs tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(get_mobile_push_apns_tokens)`.
-    public enum get_mobile_push_apns_tokens {
-        public static let id: Swift.String = "get_mobile_push_apns_tokens"
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(list_apns_tokens)`.
+    public enum list_apns_tokens {
+        public static let id: Swift.String = "list_apns_tokens"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
@@ -2392,27 +3492,27 @@ public enum Operations {
                     self.ending_before = ending_before
                 }
             }
-            public var query: Operations.get_mobile_push_apns_tokens.Input.Query
+            public var query: Operations.list_apns_tokens.Input.Query
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_apns_tokens.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_apns_tokens.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_apns_tokens.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_apns_tokens.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_mobile_push_apns_tokens.Input.Headers
+            public var headers: Operations.list_apns_tokens.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.get_mobile_push_apns_tokens.Input.Query = .init(),
-                headers: Operations.get_mobile_push_apns_tokens.Input.Headers = .init()
+                query: Operations.list_apns_tokens.Input.Query = .init(),
+                headers: Operations.list_apns_tokens.Input.Headers = .init()
             ) {
                 self.query = query
                 self.headers = headers
@@ -2423,12 +3523,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfAPNSTokenResponses)
+                    case json(Components.Schemas.APNSTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfAPNSTokenResponses {
+                    public var json: Components.Schemas.APNSTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2438,26 +3538,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_mobile_push_apns_tokens.Output.Ok.Body
+                public var body: Operations.list_apns_tokens.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_mobile_push_apns_tokens.Output.Ok.Body) {
+                public init(body: Operations.list_apns_tokens.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(get_mobile_push_apns_tokens)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/get(list_apns_tokens)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_mobile_push_apns_tokens.Output.Ok)
+            case ok(Operations.list_apns_tokens.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_mobile_push_apns_tokens.Output.Ok {
+            public var ok: Operations.list_apns_tokens.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -2501,49 +3601,181 @@ public enum Operations {
             }
         }
     }
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save an APNs token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/apns/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/post(save_mobile_push_apns_token)`.
-    public enum save_mobile_push_apns_token {
-        public static let id: Swift.String = "save_mobile_push_apns_token"
+    /// Saves the APNs token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/apns/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/put(save_apns_token)`.
+    public enum save_apns_token {
+        public static let id: Swift.String = "save_apns_token"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/header`.
+            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/PUT/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_mobile_push_apns_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_apns_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_mobile_push_apns_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_apns_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.save_mobile_push_apns_token.Input.Headers
-            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/requestBody`.
+            public var headers: Operations.save_apns_token.Input.Headers
+            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.APNSToken)
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.APNSTokenPayload)
             }
-            public var body: Operations.save_mobile_push_apns_token.Input.Body?
+            public var body: Operations.save_apns_token.Input.Body?
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.save_mobile_push_apns_token.Input.Headers = .init(),
-                body: Operations.save_mobile_push_apns_token.Input.Body? = nil
+                headers: Operations.save_apns_token.Input.Headers = .init(),
+                body: Operations.save_apns_token.Input.Body? = nil
             ) {
                 self.headers = headers
                 self.body = body
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/POST/responses/201/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.APNSTokenPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.APNSTokenPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.save_apns_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.save_apns_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/put(save_apns_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_apns_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_apns_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Fetch an APNs token
+    ///
+    /// Fetches details of a specific APNs token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(fetch_apns_token)`.
+    public enum fetch_apns_token {
+        public static let id: Swift.String = "fetch_apns_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_apns_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_apns_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_apns_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_apns_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_apns_token.Input.Path,
+                headers: Operations.fetch_apns_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content/application\/json`.
                     case json(Components.Schemas.APNSToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -2559,154 +3791,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_mobile_push_apns_token.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.save_mobile_push_apns_token.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created
-            ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/post(save_mobile_push_apns_token)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_mobile_push_apns_token.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_mobile_push_apns_token.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
-    ///
-    /// - Remark: HTTP `GET /channels/mobile_push/apns/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(get_mobile_push_apns_token)`.
-    public enum get_mobile_push_apns_token {
-        public static let id: Swift.String = "get_mobile_push_apns_token"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/path/token_id`.
-                public var token_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - token_id:
-                public init(token_id: Swift.String) {
-                    self.token_id = token_id
-                }
-            }
-            public var path: Operations.get_mobile_push_apns_token.Input.Path
-            /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_apns_token.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_apns_token.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_mobile_push_apns_token.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_mobile_push_apns_token.Input.Path,
-                headers: Operations.get_mobile_push_apns_token.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.APNSTokenResponse)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.APNSTokenResponse {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_mobile_push_apns_token.Output.Ok.Body
+                public var body: Operations.fetch_apns_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_mobile_push_apns_token.Output.Ok.Body) {
+                public init(body: Operations.fetch_apns_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(get_mobile_push_apns_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/get(fetch_apns_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_mobile_push_apns_token.Output.Ok)
+            case ok(Operations.fetch_apns_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_mobile_push_apns_token.Output.Ok {
+            public var ok: Operations.fetch_apns_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -2750,12 +3854,14 @@ public enum Operations {
             }
         }
     }
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete an APNs token
+    ///
+    /// Deletes one of the authenticated user's APNs tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/apns/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(discard_mobile_push_apns_token)`.
-    public enum discard_mobile_push_apns_token {
-        public static let id: Swift.String = "discard_mobile_push_apns_token"
+    /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(delete_apns_token)`.
+    public enum delete_apns_token {
+        public static let id: Swift.String = "delete_apns_token"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
@@ -2769,27 +3875,27 @@ public enum Operations {
                     self.token_id = token_id
                 }
             }
-            public var path: Operations.discard_mobile_push_apns_token.Input.Path
+            public var path: Operations.delete_apns_token.Input.Path
             /// - Remark: Generated from `#/paths/channels/mobile_push/apns/tokens/{token_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_mobile_push_apns_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_apns_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_mobile_push_apns_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_apns_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.discard_mobile_push_apns_token.Input.Headers
+            public var headers: Operations.delete_apns_token.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.discard_mobile_push_apns_token.Input.Path,
-                headers: Operations.discard_mobile_push_apns_token.Input.Headers = .init()
+                path: Operations.delete_apns_token.Input.Path,
+                headers: Operations.delete_apns_token.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -2815,26 +3921,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.discard_mobile_push_apns_token.Output.Ok.Body
+                public var body: Operations.delete_apns_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.discard_mobile_push_apns_token.Output.Ok.Body) {
+                public init(body: Operations.delete_apns_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(discard_mobile_push_apns_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/apns/tokens/{token_id}/delete(delete_apns_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.discard_mobile_push_apns_token.Output.Ok)
+            case ok(Operations.delete_apns_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.discard_mobile_push_apns_token.Output.Ok {
+            public var ok: Operations.delete_apns_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -2878,12 +3984,14 @@ public enum Operations {
             }
         }
     }
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Expo tokens
+    ///
+    /// Lists all Expo tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(get_mobile_push_expo_tokens)`.
-    public enum get_mobile_push_expo_tokens {
-        public static let id: Swift.String = "get_mobile_push_expo_tokens"
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(list_expo_tokens)`.
+    public enum list_expo_tokens {
+        public static let id: Swift.String = "list_expo_tokens"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
@@ -2909,27 +4017,27 @@ public enum Operations {
                     self.ending_before = ending_before
                 }
             }
-            public var query: Operations.get_mobile_push_expo_tokens.Input.Query
+            public var query: Operations.list_expo_tokens.Input.Query
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_expo_tokens.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_expo_tokens.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_expo_tokens.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_expo_tokens.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_mobile_push_expo_tokens.Input.Headers
+            public var headers: Operations.list_expo_tokens.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.get_mobile_push_expo_tokens.Input.Query = .init(),
-                headers: Operations.get_mobile_push_expo_tokens.Input.Headers = .init()
+                query: Operations.list_expo_tokens.Input.Query = .init(),
+                headers: Operations.list_expo_tokens.Input.Headers = .init()
             ) {
                 self.query = query
                 self.headers = headers
@@ -2940,12 +4048,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfExpoTokenResponses)
+                    case json(Components.Schemas.ExpoTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfExpoTokenResponses {
+                    public var json: Components.Schemas.ExpoTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2955,26 +4063,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_mobile_push_expo_tokens.Output.Ok.Body
+                public var body: Operations.list_expo_tokens.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_mobile_push_expo_tokens.Output.Ok.Body) {
+                public init(body: Operations.list_expo_tokens.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(get_mobile_push_expo_tokens)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/get(list_expo_tokens)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_mobile_push_expo_tokens.Output.Ok)
+            case ok(Operations.list_expo_tokens.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_mobile_push_expo_tokens.Output.Ok {
+            public var ok: Operations.list_expo_tokens.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3018,49 +4126,181 @@ public enum Operations {
             }
         }
     }
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save an Expo token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/expo/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/post(save_mobile_push_expo_token)`.
-    public enum save_mobile_push_expo_token {
-        public static let id: Swift.String = "save_mobile_push_expo_token"
+    /// Saves the Expo token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/expo/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/put(save_expo_token)`.
+    public enum save_expo_token {
+        public static let id: Swift.String = "save_expo_token"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/header`.
+            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/PUT/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_mobile_push_expo_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_expo_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_mobile_push_expo_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_expo_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.save_mobile_push_expo_token.Input.Headers
-            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/requestBody`.
+            public var headers: Operations.save_expo_token.Input.Headers
+            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.ExpoToken)
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.ExpoTokenPayload)
             }
-            public var body: Operations.save_mobile_push_expo_token.Input.Body?
+            public var body: Operations.save_expo_token.Input.Body?
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.save_mobile_push_expo_token.Input.Headers = .init(),
-                body: Operations.save_mobile_push_expo_token.Input.Body? = nil
+                headers: Operations.save_expo_token.Input.Headers = .init(),
+                body: Operations.save_expo_token.Input.Body? = nil
             ) {
                 self.headers = headers
                 self.body = body
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/POST/responses/201/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ExpoTokenPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ExpoTokenPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.save_expo_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.save_expo_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/put(save_expo_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_expo_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_expo_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Fetch an Expo token
+    ///
+    /// Fetches details of a specific Expo token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(fetch_expo_token)`.
+    public enum fetch_expo_token {
+        public static let id: Swift.String = "fetch_expo_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_expo_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_expo_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_expo_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_expo_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_expo_token.Input.Path,
+                headers: Operations.fetch_expo_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content/application\/json`.
                     case json(Components.Schemas.ExpoToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -3076,154 +4316,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_mobile_push_expo_token.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.save_mobile_push_expo_token.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created
-            ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/post(save_mobile_push_expo_token)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_mobile_push_expo_token.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_mobile_push_expo_token.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
-    ///
-    /// - Remark: HTTP `GET /channels/mobile_push/expo/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(get_mobile_push_expo_token)`.
-    public enum get_mobile_push_expo_token {
-        public static let id: Swift.String = "get_mobile_push_expo_token"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/path/token_id`.
-                public var token_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - token_id:
-                public init(token_id: Swift.String) {
-                    self.token_id = token_id
-                }
-            }
-            public var path: Operations.get_mobile_push_expo_token.Input.Path
-            /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_expo_token.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_expo_token.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_mobile_push_expo_token.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_mobile_push_expo_token.Input.Path,
-                headers: Operations.get_mobile_push_expo_token.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ExpoTokenResponse)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ExpoTokenResponse {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_mobile_push_expo_token.Output.Ok.Body
+                public var body: Operations.fetch_expo_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_mobile_push_expo_token.Output.Ok.Body) {
+                public init(body: Operations.fetch_expo_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(get_mobile_push_expo_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/get(fetch_expo_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_mobile_push_expo_token.Output.Ok)
+            case ok(Operations.fetch_expo_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_mobile_push_expo_token.Output.Ok {
+            public var ok: Operations.fetch_expo_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3267,12 +4379,14 @@ public enum Operations {
             }
         }
     }
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete an Expo token
+    ///
+    /// Deletes one of the authenticated user's Expo tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/expo/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(discard_mobile_push_expo_token)`.
-    public enum discard_mobile_push_expo_token {
-        public static let id: Swift.String = "discard_mobile_push_expo_token"
+    /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(delete_expo_token)`.
+    public enum delete_expo_token {
+        public static let id: Swift.String = "delete_expo_token"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
@@ -3286,27 +4400,27 @@ public enum Operations {
                     self.token_id = token_id
                 }
             }
-            public var path: Operations.discard_mobile_push_expo_token.Input.Path
+            public var path: Operations.delete_expo_token.Input.Path
             /// - Remark: Generated from `#/paths/channels/mobile_push/expo/tokens/{token_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_mobile_push_expo_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_expo_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_mobile_push_expo_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_expo_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.discard_mobile_push_expo_token.Input.Headers
+            public var headers: Operations.delete_expo_token.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.discard_mobile_push_expo_token.Input.Path,
-                headers: Operations.discard_mobile_push_expo_token.Input.Headers = .init()
+                path: Operations.delete_expo_token.Input.Path,
+                headers: Operations.delete_expo_token.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -3332,26 +4446,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.discard_mobile_push_expo_token.Output.Ok.Body
+                public var body: Operations.delete_expo_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.discard_mobile_push_expo_token.Output.Ok.Body) {
+                public init(body: Operations.delete_expo_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(discard_mobile_push_expo_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/expo/tokens/{token_id}/delete(delete_expo_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.discard_mobile_push_expo_token.Output.Ok)
+            case ok(Operations.delete_expo_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.discard_mobile_push_expo_token.Output.Ok {
+            public var ok: Operations.delete_expo_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3395,12 +4509,14 @@ public enum Operations {
             }
         }
     }
-    /// Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all FCM tokens
+    ///
+    /// Lists all FCM tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(get_mobile_push_fcm_tokens)`.
-    public enum get_mobile_push_fcm_tokens {
-        public static let id: Swift.String = "get_mobile_push_fcm_tokens"
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(list_fcm_tokens)`.
+    public enum list_fcm_tokens {
+        public static let id: Swift.String = "list_fcm_tokens"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
@@ -3426,27 +4542,27 @@ public enum Operations {
                     self.ending_before = ending_before
                 }
             }
-            public var query: Operations.get_mobile_push_fcm_tokens.Input.Query
+            public var query: Operations.list_fcm_tokens.Input.Query
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_fcm_tokens.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_fcm_tokens.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_fcm_tokens.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_fcm_tokens.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_mobile_push_fcm_tokens.Input.Headers
+            public var headers: Operations.list_fcm_tokens.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.get_mobile_push_fcm_tokens.Input.Query = .init(),
-                headers: Operations.get_mobile_push_fcm_tokens.Input.Headers = .init()
+                query: Operations.list_fcm_tokens.Input.Query = .init(),
+                headers: Operations.list_fcm_tokens.Input.Headers = .init()
             ) {
                 self.query = query
                 self.headers = headers
@@ -3457,12 +4573,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfFCMTokenResponses)
+                    case json(Components.Schemas.FCMTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfFCMTokenResponses {
+                    public var json: Components.Schemas.FCMTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3472,26 +4588,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_mobile_push_fcm_tokens.Output.Ok.Body
+                public var body: Operations.list_fcm_tokens.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_mobile_push_fcm_tokens.Output.Ok.Body) {
+                public init(body: Operations.list_fcm_tokens.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(get_mobile_push_fcm_tokens)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/get(list_fcm_tokens)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_mobile_push_fcm_tokens.Output.Ok)
+            case ok(Operations.list_fcm_tokens.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_mobile_push_fcm_tokens.Output.Ok {
+            public var ok: Operations.list_fcm_tokens.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3535,49 +4651,181 @@ public enum Operations {
             }
         }
     }
-    /// Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a FCM token
     ///
-    /// - Remark: HTTP `POST /channels/mobile_push/fcm/tokens`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/post(save_mobile_push_fcm_token)`.
-    public enum save_mobile_push_fcm_token {
-        public static let id: Swift.String = "save_mobile_push_fcm_token"
+    /// Saves the FCM token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/mobile_push/fcm/tokens`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/put(save_fcm_token)`.
+    public enum save_fcm_token {
+        public static let id: Swift.String = "save_fcm_token"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/header`.
+            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/PUT/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_mobile_push_fcm_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_fcm_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_mobile_push_fcm_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_fcm_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.save_mobile_push_fcm_token.Input.Headers
-            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/requestBody`.
+            public var headers: Operations.save_fcm_token.Input.Headers
+            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.FCMToken)
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.FCMTokenPayload)
             }
-            public var body: Operations.save_mobile_push_fcm_token.Input.Body?
+            public var body: Operations.save_fcm_token.Input.Body?
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.save_mobile_push_fcm_token.Input.Headers = .init(),
-                body: Operations.save_mobile_push_fcm_token.Input.Body? = nil
+                headers: Operations.save_fcm_token.Input.Headers = .init(),
+                body: Operations.save_fcm_token.Input.Body? = nil
             ) {
                 self.headers = headers
                 self.body = body
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/POST/responses/201/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.FCMTokenPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.FCMTokenPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.save_fcm_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.save_fcm_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/put(save_fcm_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_fcm_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_fcm_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Fetch a FCM token
+    ///
+    /// Fetches details of a specific FCM token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(fetch_fcm_token)`.
+    public enum fetch_fcm_token {
+        public static let id: Swift.String = "fetch_fcm_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_fcm_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_fcm_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_fcm_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_fcm_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_fcm_token.Input.Path,
+                headers: Operations.fetch_fcm_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content/application\/json`.
                     case json(Components.Schemas.FCMToken)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -3593,154 +4841,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_mobile_push_fcm_token.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.save_mobile_push_fcm_token.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created
-            ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/post(save_mobile_push_fcm_token)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_mobile_push_fcm_token.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_mobile_push_fcm_token.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
-    ///
-    /// - Remark: HTTP `GET /channels/mobile_push/fcm/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(get_mobile_push_fcm_token)`.
-    public enum get_mobile_push_fcm_token {
-        public static let id: Swift.String = "get_mobile_push_fcm_token"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/path/token_id`.
-                public var token_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - token_id:
-                public init(token_id: Swift.String) {
-                    self.token_id = token_id
-                }
-            }
-            public var path: Operations.get_mobile_push_fcm_token.Input.Path
-            /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_fcm_token.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_mobile_push_fcm_token.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_mobile_push_fcm_token.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_mobile_push_fcm_token.Input.Path,
-                headers: Operations.get_mobile_push_fcm_token.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.FCMTokenResponse)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.FCMTokenResponse {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_mobile_push_fcm_token.Output.Ok.Body
+                public var body: Operations.fetch_fcm_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_mobile_push_fcm_token.Output.Ok.Body) {
+                public init(body: Operations.fetch_fcm_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(get_mobile_push_fcm_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/get(fetch_fcm_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_mobile_push_fcm_token.Output.Ok)
+            case ok(Operations.fetch_fcm_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_mobile_push_fcm_token.Output.Ok {
+            public var ok: Operations.fetch_fcm_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3784,12 +4904,14 @@ public enum Operations {
             }
         }
     }
-    /// Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Delete a FCM token
+    ///
+    /// Deletes one of the authenticated user's FCM tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/mobile_push/fcm/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(discard_mobile_push_fcm_token)`.
-    public enum discard_mobile_push_fcm_token {
-        public static let id: Swift.String = "discard_mobile_push_fcm_token"
+    /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(delete_fcm_token)`.
+    public enum delete_fcm_token {
+        public static let id: Swift.String = "delete_fcm_token"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
@@ -3803,27 +4925,27 @@ public enum Operations {
                     self.token_id = token_id
                 }
             }
-            public var path: Operations.discard_mobile_push_fcm_token.Input.Path
+            public var path: Operations.delete_fcm_token.Input.Path
             /// - Remark: Generated from `#/paths/channels/mobile_push/fcm/tokens/{token_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_mobile_push_fcm_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_fcm_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_mobile_push_fcm_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_fcm_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.discard_mobile_push_fcm_token.Input.Headers
+            public var headers: Operations.delete_fcm_token.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.discard_mobile_push_fcm_token.Input.Path,
-                headers: Operations.discard_mobile_push_fcm_token.Input.Headers = .init()
+                path: Operations.delete_fcm_token.Input.Path,
+                headers: Operations.delete_fcm_token.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -3849,26 +4971,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.discard_mobile_push_fcm_token.Output.Ok.Body
+                public var body: Operations.delete_fcm_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.discard_mobile_push_fcm_token.Output.Ok.Body) {
+                public init(body: Operations.delete_fcm_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(discard_mobile_push_fcm_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/mobile_push/fcm/tokens/{token_id}/delete(delete_fcm_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.discard_mobile_push_fcm_token.Output.Ok)
+            case ok(Operations.delete_fcm_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.discard_mobile_push_fcm_token.Output.Ok {
+            public var ok: Operations.delete_fcm_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3912,12 +5034,14 @@ public enum Operations {
             }
         }
     }
-    /// Lists all slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Slack tokens
+    ///
+    /// Lists all Slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/slack/tokens`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/get(get_slack_tokens)`.
-    public enum get_slack_tokens {
-        public static let id: Swift.String = "get_slack_tokens"
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/get(list_slack_tokens)`.
+    public enum list_slack_tokens {
+        public static let id: Swift.String = "list_slack_tokens"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
@@ -3943,27 +5067,27 @@ public enum Operations {
                     self.ending_before = ending_before
                 }
             }
-            public var query: Operations.get_slack_tokens.Input.Query
+            public var query: Operations.list_slack_tokens.Input.Query
             /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_slack_tokens.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_slack_tokens.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_slack_tokens.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_slack_tokens.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_slack_tokens.Input.Headers
+            public var headers: Operations.list_slack_tokens.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.get_slack_tokens.Input.Query = .init(),
-                headers: Operations.get_slack_tokens.Input.Headers = .init()
+                query: Operations.list_slack_tokens.Input.Query = .init(),
+                headers: Operations.list_slack_tokens.Input.Headers = .init()
             ) {
                 self.query = query
                 self.headers = headers
@@ -3974,12 +5098,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/slack/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfSlackTokenResponses)
+                    case json(Components.Schemas.SlackTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfSlackTokenResponses {
+                    public var json: Components.Schemas.SlackTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3989,26 +5113,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_slack_tokens.Output.Ok.Body
+                public var body: Operations.list_slack_tokens.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_slack_tokens.Output.Ok.Body) {
+                public init(body: Operations.list_slack_tokens.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/slack/tokens/get(get_slack_tokens)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/slack/tokens/get(list_slack_tokens)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_slack_tokens.Output.Ok)
+            case ok(Operations.list_slack_tokens.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_slack_tokens.Output.Ok {
+            public var ok: Operations.list_slack_tokens.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4052,14 +5176,16 @@ public enum Operations {
             }
         }
     }
-    /// Saves a slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a Slack token
     ///
-    /// - Remark: HTTP `POST /channels/slack/tokens`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/post(save_slack_token)`.
+    /// Saves the Slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/slack/tokens`.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/put(save_slack_token)`.
     public enum save_slack_token {
         public static let id: Swift.String = "save_slack_token"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/header`.
+            /// - Remark: Generated from `#/paths/channels/slack/tokens/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_slack_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -4071,10 +5197,10 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_slack_token.Input.Headers
-            /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/channels/slack/tokens/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.SlackToken)
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.SlackTokenPayload)
             }
             public var body: Operations.save_slack_token.Input.Body?
             /// Creates a new `Input`.
@@ -4091,144 +5217,16 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/responses/201/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/slack/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.SlackToken)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.SlackToken {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.save_slack_token.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.save_slack_token.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created
-            ///
-            /// - Remark: Generated from `#/paths//channels/slack/tokens/post(save_slack_token)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_slack_token.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_slack_token.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Retrieves details of a specific slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
-    ///
-    /// - Remark: HTTP `GET /channels/slack/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(get_slack_token)`.
-    public enum get_slack_token {
-        public static let id: Swift.String = "get_slack_token"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/path/token_id`.
-                public var token_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - token_id:
-                public init(token_id: Swift.String) {
-                    self.token_id = token_id
-                }
-            }
-            public var path: Operations.get_slack_token.Input.Path
-            /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_slack_token.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_slack_token.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_slack_token.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_slack_token.Input.Path,
-                headers: Operations.get_slack_token.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content`.
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.SlackTokenResponse)
+                    /// - Remark: Generated from `#/paths/channels/slack/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.SlackTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.SlackTokenResponse {
+                    public var json: Components.Schemas.SlackTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4238,26 +5236,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_slack_token.Output.Ok.Body
+                public var body: Operations.save_slack_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_slack_token.Output.Ok.Body) {
+                public init(body: Operations.save_slack_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(get_slack_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/slack/tokens/put(save_slack_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_slack_token.Output.Ok)
+            case ok(Operations.save_slack_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_slack_token.Output.Ok {
+            public var ok: Operations.save_slack_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4301,12 +5299,144 @@ public enum Operations {
             }
         }
     }
-    /// Revokes one of the authenticated user's slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Fetch a Slack token
+    ///
+    /// Fetches details of a specific Slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/slack/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(fetch_slack_token)`.
+    public enum fetch_slack_token {
+        public static let id: Swift.String = "fetch_slack_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_slack_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_slack_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_slack_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_slack_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_slack_token.Input.Path,
+                headers: Operations.fetch_slack_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.SlackToken)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.SlackToken {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.fetch_slack_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.fetch_slack_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/get(fetch_slack_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.fetch_slack_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.fetch_slack_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Delete a Slack token
+    ///
+    /// Deletes one of the authenticated user's Slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/slack/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(discard_slack_token)`.
-    public enum discard_slack_token {
-        public static let id: Swift.String = "discard_slack_token"
+    /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(delete_slack_token)`.
+    public enum delete_slack_token {
+        public static let id: Swift.String = "delete_slack_token"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
@@ -4320,27 +5450,27 @@ public enum Operations {
                     self.token_id = token_id
                 }
             }
-            public var path: Operations.discard_slack_token.Input.Path
+            public var path: Operations.delete_slack_token.Input.Path
             /// - Remark: Generated from `#/paths/channels/slack/tokens/{token_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_slack_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_slack_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_slack_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_slack_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.discard_slack_token.Input.Headers
+            public var headers: Operations.delete_slack_token.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.discard_slack_token.Input.Path,
-                headers: Operations.discard_slack_token.Input.Headers = .init()
+                path: Operations.delete_slack_token.Input.Path,
+                headers: Operations.delete_slack_token.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -4366,26 +5496,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.discard_slack_token.Output.Ok.Body
+                public var body: Operations.delete_slack_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.discard_slack_token.Output.Ok.Body) {
+                public init(body: Operations.delete_slack_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(discard_slack_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/slack/tokens/{token_id}/delete(delete_slack_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.discard_slack_token.Output.Ok)
+            case ok(Operations.delete_slack_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.discard_slack_token.Output.Ok {
+            public var ok: Operations.delete_slack_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4429,12 +5559,14 @@ public enum Operations {
             }
         }
     }
-    /// Lists all teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Teams tokens
+    ///
+    /// Lists all Teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/teams/tokens`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/get(get_teams_tokens)`.
-    public enum get_teams_tokens {
-        public static let id: Swift.String = "get_teams_tokens"
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/get(list_teams_tokens)`.
+    public enum list_teams_tokens {
+        public static let id: Swift.String = "list_teams_tokens"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
@@ -4460,27 +5592,27 @@ public enum Operations {
                     self.ending_before = ending_before
                 }
             }
-            public var query: Operations.get_teams_tokens.Input.Query
+            public var query: Operations.list_teams_tokens.Input.Query
             /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_teams_tokens.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_teams_tokens.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_teams_tokens.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_teams_tokens.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_teams_tokens.Input.Headers
+            public var headers: Operations.list_teams_tokens.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.get_teams_tokens.Input.Query = .init(),
-                headers: Operations.get_teams_tokens.Input.Headers = .init()
+                query: Operations.list_teams_tokens.Input.Query = .init(),
+                headers: Operations.list_teams_tokens.Input.Headers = .init()
             ) {
                 self.query = query
                 self.headers = headers
@@ -4491,12 +5623,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/teams/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfTeamsTokenResponses)
+                    case json(Components.Schemas.TeamsTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfTeamsTokenResponses {
+                    public var json: Components.Schemas.TeamsTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4506,26 +5638,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_teams_tokens.Output.Ok.Body
+                public var body: Operations.list_teams_tokens.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_teams_tokens.Output.Ok.Body) {
+                public init(body: Operations.list_teams_tokens.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/teams/tokens/get(get_teams_tokens)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/teams/tokens/get(list_teams_tokens)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_teams_tokens.Output.Ok)
+            case ok(Operations.list_teams_tokens.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_teams_tokens.Output.Ok {
+            public var ok: Operations.list_teams_tokens.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4569,14 +5701,16 @@ public enum Operations {
             }
         }
     }
-    /// Saves a teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a Teams token
     ///
-    /// - Remark: HTTP `POST /channels/teams/tokens`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/post(save_teams_token)`.
+    /// Saves the Teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/teams/tokens`.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/put(save_teams_token)`.
     public enum save_teams_token {
         public static let id: Swift.String = "save_teams_token"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/header`.
+            /// - Remark: Generated from `#/paths/channels/teams/tokens/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_teams_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -4588,10 +5722,10 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_teams_token.Input.Headers
-            /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/channels/teams/tokens/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.TeamsToken)
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.TeamsTokenPayload)
             }
             public var body: Operations.save_teams_token.Input.Body?
             /// Creates a new `Input`.
@@ -4608,144 +5742,16 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/responses/201/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/teams/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.TeamsToken)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.TeamsToken {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.save_teams_token.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.save_teams_token.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created
-            ///
-            /// - Remark: Generated from `#/paths//channels/teams/tokens/post(save_teams_token)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_teams_token.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_teams_token.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Retrieves details of a specific teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
-    ///
-    /// - Remark: HTTP `GET /channels/teams/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(get_teams_token)`.
-    public enum get_teams_token {
-        public static let id: Swift.String = "get_teams_token"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/path/token_id`.
-                public var token_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - token_id:
-                public init(token_id: Swift.String) {
-                    self.token_id = token_id
-                }
-            }
-            public var path: Operations.get_teams_token.Input.Path
-            /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_teams_token.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_teams_token.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_teams_token.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_teams_token.Input.Path,
-                headers: Operations.get_teams_token.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content`.
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.TeamsTokenResponse)
+                    /// - Remark: Generated from `#/paths/channels/teams/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.TeamsTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.TeamsTokenResponse {
+                    public var json: Components.Schemas.TeamsTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4755,26 +5761,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_teams_token.Output.Ok.Body
+                public var body: Operations.save_teams_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_teams_token.Output.Ok.Body) {
+                public init(body: Operations.save_teams_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(get_teams_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/teams/tokens/put(save_teams_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_teams_token.Output.Ok)
+            case ok(Operations.save_teams_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_teams_token.Output.Ok {
+            public var ok: Operations.save_teams_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4818,12 +5824,144 @@ public enum Operations {
             }
         }
     }
-    /// Revokes one of the authenticated user's teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Fetch a Teams token
+    ///
+    /// Fetches details of a specific Teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/teams/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(fetch_teams_token)`.
+    public enum fetch_teams_token {
+        public static let id: Swift.String = "fetch_teams_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_teams_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_teams_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_teams_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_teams_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_teams_token.Input.Path,
+                headers: Operations.fetch_teams_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.TeamsToken)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.TeamsToken {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.fetch_teams_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.fetch_teams_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/get(fetch_teams_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.fetch_teams_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.fetch_teams_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Delete a Teams token
+    ///
+    /// Deletes one of the authenticated user's Teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/teams/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(discard_teams_token)`.
-    public enum discard_teams_token {
-        public static let id: Swift.String = "discard_teams_token"
+    /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(delete_teams_token)`.
+    public enum delete_teams_token {
+        public static let id: Swift.String = "delete_teams_token"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
@@ -4837,27 +5975,27 @@ public enum Operations {
                     self.token_id = token_id
                 }
             }
-            public var path: Operations.discard_teams_token.Input.Path
+            public var path: Operations.delete_teams_token.Input.Path
             /// - Remark: Generated from `#/paths/channels/teams/tokens/{token_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_teams_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_teams_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_teams_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_teams_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.discard_teams_token.Input.Headers
+            public var headers: Operations.delete_teams_token.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.discard_teams_token.Input.Path,
-                headers: Operations.discard_teams_token.Input.Headers = .init()
+                path: Operations.delete_teams_token.Input.Path,
+                headers: Operations.delete_teams_token.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -4883,26 +6021,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.discard_teams_token.Output.Ok.Body
+                public var body: Operations.delete_teams_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.discard_teams_token.Output.Ok.Body) {
+                public init(body: Operations.delete_teams_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(discard_teams_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/teams/tokens/{token_id}/delete(delete_teams_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.discard_teams_token.Output.Ok)
+            case ok(Operations.delete_teams_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.discard_teams_token.Output.Ok {
+            public var ok: Operations.delete_teams_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4946,12 +6084,14 @@ public enum Operations {
             }
         }
     }
-    /// Lists all web_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+    /// List all Web Push tokens
+    ///
+    /// Lists all Web Push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
     ///
     /// - Remark: HTTP `GET /channels/web_push/tokens`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(get_web_push_tokens)`.
-    public enum get_web_push_tokens {
-        public static let id: Swift.String = "get_web_push_tokens"
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(list_web_push_tokens)`.
+    public enum list_web_push_tokens {
+        public static let id: Swift.String = "list_web_push_tokens"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/query`.
             public struct Query: Sendable, Hashable {
@@ -4977,27 +6117,27 @@ public enum Operations {
                     self.ending_before = ending_before
                 }
             }
-            public var query: Operations.get_web_push_tokens.Input.Query
+            public var query: Operations.list_web_push_tokens.Input.Query
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_web_push_tokens.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_web_push_tokens.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_web_push_tokens.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_web_push_tokens.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_web_push_tokens.Input.Headers
+            public var headers: Operations.list_web_push_tokens.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
             public init(
-                query: Operations.get_web_push_tokens.Input.Query = .init(),
-                headers: Operations.get_web_push_tokens.Input.Headers = .init()
+                query: Operations.list_web_push_tokens.Input.Query = .init(),
+                headers: Operations.list_web_push_tokens.Input.Headers = .init()
             ) {
                 self.query = query
                 self.headers = headers
@@ -5008,12 +6148,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/channels/web_push/tokens/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.ArrayOfWebPushTokenResponses)
+                    case json(Components.Schemas.WebPushTokenCollection)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.ArrayOfWebPushTokenResponses {
+                    public var json: Components.Schemas.WebPushTokenCollection {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5023,26 +6163,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_web_push_tokens.Output.Ok.Body
+                public var body: Operations.list_web_push_tokens.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_web_push_tokens.Output.Ok.Body) {
+                public init(body: Operations.list_web_push_tokens.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(get_web_push_tokens)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/web_push/tokens/get(list_web_push_tokens)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_web_push_tokens.Output.Ok)
+            case ok(Operations.list_web_push_tokens.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_web_push_tokens.Output.Ok {
+            public var ok: Operations.list_web_push_tokens.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5086,14 +6226,16 @@ public enum Operations {
             }
         }
     }
-    /// Saves a web_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    /// Save a Web Push token
     ///
-    /// - Remark: HTTP `POST /channels/web_push/tokens`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/post(save_web_push_token)`.
+    /// Saves the Web Push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+    ///
+    /// - Remark: HTTP `PUT /channels/web_push/tokens`.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/put(save_web_push_token)`.
     public enum save_web_push_token {
         public static let id: Swift.String = "save_web_push_token"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/header`.
+            /// - Remark: Generated from `#/paths/channels/web_push/tokens/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_web_push_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -5105,10 +6247,10 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_web_push_token.Input.Headers
-            /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/channels/web_push/tokens/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.WebPushToken)
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.WebPushTokenPayload)
             }
             public var body: Operations.save_web_push_token.Input.Body?
             /// Creates a new `Input`.
@@ -5125,144 +6267,16 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/responses/201/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/web_push/tokens/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.WebPushToken)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.WebPushToken {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.save_web_push_token.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.save_web_push_token.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created
-            ///
-            /// - Remark: Generated from `#/paths//channels/web_push/tokens/post(save_web_push_token)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_web_push_token.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_web_push_token.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
-    ///
-    /// - Remark: HTTP `GET /channels/web_push/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(get_web_push_token)`.
-    public enum get_web_push_token {
-        public static let id: Swift.String = "get_web_push_token"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/path/token_id`.
-                public var token_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - token_id:
-                public init(token_id: Swift.String) {
-                    self.token_id = token_id
-                }
-            }
-            public var path: Operations.get_web_push_token.Input.Path
-            /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_web_push_token.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_web_push_token.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_web_push_token.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_web_push_token.Input.Path,
-                headers: Operations.get_web_push_token.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content`.
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.WebPushTokenResponse)
+                    /// - Remark: Generated from `#/paths/channels/web_push/tokens/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.WebPushTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.WebPushTokenResponse {
+                    public var json: Components.Schemas.WebPushTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5272,26 +6286,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_web_push_token.Output.Ok.Body
+                public var body: Operations.save_web_push_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_web_push_token.Output.Ok.Body) {
+                public init(body: Operations.save_web_push_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(get_web_push_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/web_push/tokens/put(save_web_push_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_web_push_token.Output.Ok)
+            case ok(Operations.save_web_push_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_web_push_token.Output.Ok {
+            public var ok: Operations.save_web_push_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5335,12 +6349,144 @@ public enum Operations {
             }
         }
     }
-    /// Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+    /// Fetch a Web Push token
+    ///
+    /// Fetches details of a specific Web Push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+    ///
+    /// - Remark: HTTP `GET /channels/web_push/tokens/{token_id}`.
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(fetch_web_push_token)`.
+    public enum fetch_web_push_token {
+        public static let id: Swift.String = "fetch_web_push_token"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/path/token_id`.
+                public var token_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - token_id:
+                public init(token_id: Swift.String) {
+                    self.token_id = token_id
+                }
+            }
+            public var path: Operations.fetch_web_push_token.Input.Path
+            /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_web_push_token.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_web_push_token.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_web_push_token.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_web_push_token.Input.Path,
+                headers: Operations.fetch_web_push_token.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.WebPushToken)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.WebPushToken {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.fetch_web_push_token.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.fetch_web_push_token.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/get(fetch_web_push_token)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.fetch_web_push_token.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.fetch_web_push_token.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Delete a Web Push token
+    ///
+    /// Deletes one of the authenticated user's Web Push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
     ///
     /// - Remark: HTTP `DELETE /channels/web_push/tokens/{token_id}`.
-    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(discard_web_push_token)`.
-    public enum discard_web_push_token {
-        public static let id: Swift.String = "discard_web_push_token"
+    /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(delete_web_push_token)`.
+    public enum delete_web_push_token {
+        public static let id: Swift.String = "delete_web_push_token"
         public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
@@ -5354,27 +6500,27 @@ public enum Operations {
                     self.token_id = token_id
                 }
             }
-            public var path: Operations.discard_web_push_token.Input.Path
+            public var path: Operations.delete_web_push_token.Input.Path
             /// - Remark: Generated from `#/paths/channels/web_push/tokens/{token_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_web_push_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_web_push_token.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.discard_web_push_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_web_push_token.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.discard_web_push_token.Input.Headers
+            public var headers: Operations.delete_web_push_token.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.discard_web_push_token.Input.Path,
-                headers: Operations.discard_web_push_token.Input.Headers = .init()
+                path: Operations.delete_web_push_token.Input.Path,
+                headers: Operations.delete_web_push_token.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -5400,26 +6546,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.discard_web_push_token.Output.Ok.Body
+                public var body: Operations.delete_web_push_token.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.discard_web_push_token.Output.Ok.Body) {
+                public init(body: Operations.delete_web_push_token.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(discard_web_push_token)/responses/200`.
+            /// - Remark: Generated from `#/paths//channels/web_push/tokens/{token_id}/delete(delete_web_push_token)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.discard_web_push_token.Output.Ok)
+            case ok(Operations.delete_web_push_token.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.discard_web_push_token.Output.Ok {
+            public var ok: Operations.delete_web_push_token.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5463,14 +6609,16 @@ public enum Operations {
             }
         }
     }
-    /// Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save an Inbox installation
     ///
-    /// - Remark: HTTP `POST /integrations/inbox/installations`.
-    /// - Remark: Generated from `#/paths//integrations/inbox/installations/post(save_inbox_installation)`.
+    /// Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/inbox/installations`.
+    /// - Remark: Generated from `#/paths//integrations/inbox/installations/put(save_inbox_installation)`.
     public enum save_inbox_installation {
         public static let id: Swift.String = "save_inbox_installation"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/header`.
+            /// - Remark: Generated from `#/paths/integrations/inbox/installations/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_inbox_installation.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -5482,10 +6630,10 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_inbox_installation.Input.Headers
-            /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/integrations/inbox/installations/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.InboxConfig)
+                /// - Remark: Generated from `#/paths/integrations/inbox/installations/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.InboxConfigPayload)
             }
             public var body: Operations.save_inbox_installation.Input.Body?
             /// Creates a new `Input`.
@@ -5502,16 +6650,16 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/integrations/inbox/installations/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/integrations/inbox/installations/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.InboxConfig)
+                    /// - Remark: Generated from `#/paths/integrations/inbox/installations/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.InboxConfigPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.InboxConfig {
+                    public var json: Components.Schemas.InboxConfigPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5521,33 +6669,33 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_inbox_installation.Output.Created.Body
-                /// Creates a new `Created`.
+                public var body: Operations.save_inbox_installation.Output.Ok.Body
+                /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.save_inbox_installation.Output.Created.Body) {
+                public init(body: Operations.save_inbox_installation.Output.Ok.Body) {
                     self.body = body
                 }
             }
-            /// Created
+            /// OK
             ///
-            /// - Remark: Generated from `#/paths//integrations/inbox/installations/post(save_inbox_installation)/responses/201`.
+            /// - Remark: Generated from `#/paths//integrations/inbox/installations/put(save_inbox_installation)/responses/200`.
             ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_inbox_installation.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_inbox_installation.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
             ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_inbox_installation.Output.Created {
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_inbox_installation.Output.Ok {
                 get throws {
                     switch self {
-                    case let .created(response):
+                    case let .ok(response):
                         return response
                     default:
                         try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
+                            expectedStatus: "ok",
                             response: self
                         )
                     }
@@ -5584,7 +6732,9 @@ public enum Operations {
             }
         }
     }
-    /// Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start an Inbox installation
+    ///
+    /// Initiates the installation flow for an Inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/inbox/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/inbox/installations/start/post(start_inbox_installation)`.
@@ -5616,12 +6766,12 @@ public enum Operations {
                 /// - Remark: Generated from `#/paths/integrations/inbox/installations/start/POST/responses/201/content`.
                 @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/integrations/inbox/installations/start/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.InboxConfig)
+                    case json(Components.Schemas.InboxConfigPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.InboxConfig {
+                    public var json: Components.Schemas.InboxConfigPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5694,14 +6844,16 @@ public enum Operations {
             }
         }
     }
-    /// Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Slack installation
     ///
-    /// - Remark: HTTP `POST /integrations/slack/installations`.
-    /// - Remark: Generated from `#/paths//integrations/slack/installations/post(save_slack_installation)`.
+    /// Creates a new installation of a Slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/slack/installations`.
+    /// - Remark: Generated from `#/paths//integrations/slack/installations/put(save_slack_installation)`.
     public enum save_slack_installation {
         public static let id: Swift.String = "save_slack_installation"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/integrations/slack/installations/POST/header`.
+            /// - Remark: Generated from `#/paths/integrations/slack/installations/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_slack_installation.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -5713,9 +6865,9 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_slack_installation.Input.Headers
-            /// - Remark: Generated from `#/paths/integrations/slack/installations/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/integrations/slack/installations/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/slack/installations/POST/requestBody/content/application\/json`.
+                /// - Remark: Generated from `#/paths/integrations/slack/installations/PUT/requestBody/content/application\/json`.
                 case json(Components.Schemas.SlackInstallation)
             }
             public var body: Operations.save_slack_installation.Input.Body?
@@ -5733,10 +6885,10 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/slack/installations/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/integrations/slack/installations/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/integrations/slack/installations/POST/responses/201/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/integrations/slack/installations/PUT/responses/200/content/application\/json`.
                     case json(Components.Schemas.SlackInstallation)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -5752,33 +6904,33 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_slack_installation.Output.Created.Body
-                /// Creates a new `Created`.
+                public var body: Operations.save_slack_installation.Output.Ok.Body
+                /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.save_slack_installation.Output.Created.Body) {
+                public init(body: Operations.save_slack_installation.Output.Ok.Body) {
                     self.body = body
                 }
             }
-            /// Created
+            /// OK
             ///
-            /// - Remark: Generated from `#/paths//integrations/slack/installations/post(save_slack_installation)/responses/201`.
+            /// - Remark: Generated from `#/paths//integrations/slack/installations/put(save_slack_installation)/responses/200`.
             ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_slack_installation.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_slack_installation.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
             ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_slack_installation.Output.Created {
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_slack_installation.Output.Ok {
                 get throws {
                     switch self {
-                    case let .created(response):
+                    case let .ok(response):
                         return response
                     default:
                         try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
+                            expectedStatus: "ok",
                             response: self
                         )
                     }
@@ -5815,7 +6967,9 @@ public enum Operations {
             }
         }
     }
-    /// Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.
+    /// Finish a Slack installation
+    ///
+    /// Completes the installation flow for the Slack integration. This endpoint is typically called after the user has completed any required authorization steps with Slack.
     ///
     /// - Remark: HTTP `POST /integrations/slack/installations/finish`.
     /// - Remark: Generated from `#/paths//integrations/slack/installations/finish/post(finish_slack_installation)`.
@@ -5936,7 +7090,9 @@ public enum Operations {
             }
         }
     }
-    /// Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start a Slack installation
+    ///
+    /// Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/slack/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/slack/installations/start/post(start_slack_installation)`.
@@ -6057,14 +7213,16 @@ public enum Operations {
             }
         }
     }
-    /// Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Templates installation
     ///
-    /// - Remark: HTTP `POST /integrations/templates/installations`.
-    /// - Remark: Generated from `#/paths//integrations/templates/installations/post(save_templates_installation)`.
+    /// Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/templates/installations`.
+    /// - Remark: Generated from `#/paths//integrations/templates/installations/put(save_templates_installation)`.
     public enum save_templates_installation {
         public static let id: Swift.String = "save_templates_installation"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/integrations/templates/installations/POST/header`.
+            /// - Remark: Generated from `#/paths/integrations/templates/installations/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_templates_installation.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -6076,9 +7234,9 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_templates_installation.Input.Headers
-            /// - Remark: Generated from `#/paths/integrations/templates/installations/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/integrations/templates/installations/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/templates/installations/POST/requestBody/content/application\/json`.
+                /// - Remark: Generated from `#/paths/integrations/templates/installations/PUT/requestBody/content/application\/json`.
                 case json(Components.Schemas.TemplatesInstallation)
             }
             public var body: Operations.save_templates_installation.Input.Body?
@@ -6096,10 +7254,10 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/templates/installations/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/integrations/templates/installations/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/integrations/templates/installations/POST/responses/201/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/integrations/templates/installations/PUT/responses/200/content/application\/json`.
                     case json(Components.Schemas.TemplatesInstallation)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -6115,33 +7273,33 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_templates_installation.Output.Created.Body
-                /// Creates a new `Created`.
+                public var body: Operations.save_templates_installation.Output.Ok.Body
+                /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.save_templates_installation.Output.Created.Body) {
+                public init(body: Operations.save_templates_installation.Output.Ok.Body) {
                     self.body = body
                 }
             }
-            /// Created
+            /// OK
             ///
-            /// - Remark: Generated from `#/paths//integrations/templates/installations/post(save_templates_installation)/responses/201`.
+            /// - Remark: Generated from `#/paths//integrations/templates/installations/put(save_templates_installation)/responses/200`.
             ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_templates_installation.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_templates_installation.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
             ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_templates_installation.Output.Created {
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_templates_installation.Output.Ok {
                 get throws {
                     switch self {
-                    case let .created(response):
+                    case let .ok(response):
                         return response
                     default:
                         try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
+                            expectedStatus: "ok",
                             response: self
                         )
                     }
@@ -6178,14 +7336,16 @@ public enum Operations {
             }
         }
     }
-    /// Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    /// Save a Web Push installation
     ///
-    /// - Remark: HTTP `POST /integrations/web_push/installations`.
-    /// - Remark: Generated from `#/paths//integrations/web_push/installations/post(save_web_push_installation)`.
+    /// Creates a new installation of a Web Push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+    ///
+    /// - Remark: HTTP `PUT /integrations/web_push/installations`.
+    /// - Remark: Generated from `#/paths//integrations/web_push/installations/put(save_web_push_installation)`.
     public enum save_web_push_installation {
         public static let id: Swift.String = "save_web_push_installation"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/header`.
+            /// - Remark: Generated from `#/paths/integrations/web_push/installations/PUT/header`.
             public struct Headers: Sendable, Hashable {
                 public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.save_web_push_installation.AcceptableContentType>]
                 /// Creates a new `Headers`.
@@ -6197,10 +7357,10 @@ public enum Operations {
                 }
             }
             public var headers: Operations.save_web_push_installation.Input.Headers
-            /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/requestBody`.
+            /// - Remark: Generated from `#/paths/integrations/web_push/installations/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.WebPushToken)
+                /// - Remark: Generated from `#/paths/integrations/web_push/installations/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.WebPushTokenPayload)
             }
             public var body: Operations.save_web_push_installation.Input.Body?
             /// Creates a new `Input`.
@@ -6217,16 +7377,16 @@ public enum Operations {
             }
         }
         @frozen public enum Output: Sendable, Hashable {
-            public struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/responses/201/content`.
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/integrations/web_push/installations/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/integrations/web_push/installations/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.WebPushToken)
+                    /// - Remark: Generated from `#/paths/integrations/web_push/installations/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.WebPushTokenPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.WebPushToken {
+                    public var json: Components.Schemas.WebPushTokenPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -6236,33 +7396,33 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.save_web_push_installation.Output.Created.Body
-                /// Creates a new `Created`.
+                public var body: Operations.save_web_push_installation.Output.Ok.Body
+                /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.save_web_push_installation.Output.Created.Body) {
+                public init(body: Operations.save_web_push_installation.Output.Ok.Body) {
                     self.body = body
                 }
             }
-            /// Created
+            /// OK
             ///
-            /// - Remark: Generated from `#/paths//integrations/web_push/installations/post(save_web_push_installation)/responses/201`.
+            /// - Remark: Generated from `#/paths//integrations/web_push/installations/put(save_web_push_installation)/responses/200`.
             ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.save_web_push_installation.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.save_web_push_installation.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
             ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            public var created: Operations.save_web_push_installation.Output.Created {
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.save_web_push_installation.Output.Ok {
                 get throws {
                     switch self {
-                    case let .created(response):
+                    case let .ok(response):
                         return response
                     default:
                         try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
+                            expectedStatus: "ok",
                             response: self
                         )
                     }
@@ -6299,7 +7459,9 @@ public enum Operations {
             }
         }
     }
-    /// Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+    /// Start a Web Push installation
+    ///
+    /// Initiates the installation flow for a Web Push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
     ///
     /// - Remark: HTTP `POST /integrations/web_push/installations/start`.
     /// - Remark: Generated from `#/paths//integrations/web_push/installations/start/post(start_web_push_installation)`.
@@ -6407,6 +7569,739 @@ public enum Operations {
                     .json
                 ]
             }
+        }
+    }
+    /// List all notifications
+    ///
+    /// Lists all notifications for a user.
+    ///
+    /// - Remark: HTTP `GET /notifications`.
+    /// - Remark: Generated from `#/paths//notifications/get(list_notifications)`.
+    public enum list_notifications {
+        public static let id: Swift.String = "list_notifications"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/GET/query`.
+            public struct Query: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/GET/query/limit`.
+                public var limit: Swift.Int?
+                /// - Remark: Generated from `#/paths/notifications/GET/query/starting_after`.
+                public var starting_after: Swift.String?
+                /// - Remark: Generated from `#/paths/notifications/GET/query/ending_before`.
+                public var ending_before: Swift.String?
+                /// - Remark: Generated from `#/paths/notifications/GET/query/status`.
+                public var status: Swift.String?
+                /// - Remark: Generated from `#/paths/notifications/GET/query/category`.
+                public var category: Swift.String?
+                /// - Remark: Generated from `#/paths/notifications/GET/query/topic`.
+                public var topic: Swift.String?
+                /// Creates a new `Query`.
+                ///
+                /// - Parameters:
+                ///   - limit:
+                ///   - starting_after:
+                ///   - ending_before:
+                ///   - status:
+                ///   - category:
+                ///   - topic:
+                public init(
+                    limit: Swift.Int? = nil,
+                    starting_after: Swift.String? = nil,
+                    ending_before: Swift.String? = nil,
+                    status: Swift.String? = nil,
+                    category: Swift.String? = nil,
+                    topic: Swift.String? = nil
+                ) {
+                    self.limit = limit
+                    self.starting_after = starting_after
+                    self.ending_before = ending_before
+                    self.status = status
+                    self.category = category
+                    self.topic = topic
+                }
+            }
+            public var query: Operations.list_notifications.Input.Query
+            /// - Remark: Generated from `#/paths/notifications/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_notifications.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.list_notifications.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.list_notifications.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - query:
+            ///   - headers:
+            public init(
+                query: Operations.list_notifications.Input.Query = .init(),
+                headers: Operations.list_notifications.Input.Headers = .init()
+            ) {
+                self.query = query
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/notifications/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.NotificationCollection)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.NotificationCollection {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.list_notifications.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.list_notifications.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//notifications/get(list_notifications)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.list_notifications.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.list_notifications.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Archive all notifications
+    ///
+    /// Archive all notifications.
+    ///
+    /// - Remark: HTTP `POST /notifications/archive`.
+    /// - Remark: Generated from `#/paths//notifications/archive/post(archive_all_notifications)`.
+    public enum archive_all_notifications {
+        public static let id: Swift.String = "archive_all_notifications"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/archive/POST/query`.
+            public struct Query: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/archive/POST/query/category`.
+                public var category: Swift.String?
+                /// - Remark: Generated from `#/paths/notifications/archive/POST/query/topic`.
+                public var topic: Swift.String?
+                /// Creates a new `Query`.
+                ///
+                /// - Parameters:
+                ///   - category:
+                ///   - topic:
+                public init(
+                    category: Swift.String? = nil,
+                    topic: Swift.String? = nil
+                ) {
+                    self.category = category
+                    self.topic = topic
+                }
+            }
+            public var query: Operations.archive_all_notifications.Input.Query
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - query:
+            public init(query: Operations.archive_all_notifications.Input.Query = .init()) {
+                self.query = query
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                public init() {}
+            }
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/archive/post(archive_all_notifications)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.archive_all_notifications.Output.NoContent)
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/archive/post(archive_all_notifications)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            public static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            public var noContent: Operations.archive_all_notifications.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+    }
+    /// Mark all notifications read
+    ///
+    /// Marks all notifications as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/read`.
+    /// - Remark: Generated from `#/paths//notifications/read/post(mark_all_notifications_read)`.
+    public enum mark_all_notifications_read {
+        public static let id: Swift.String = "mark_all_notifications_read"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/read/POST/query`.
+            public struct Query: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/read/POST/query/category`.
+                public var category: Swift.String?
+                /// - Remark: Generated from `#/paths/notifications/read/POST/query/topic`.
+                public var topic: Swift.String?
+                /// Creates a new `Query`.
+                ///
+                /// - Parameters:
+                ///   - category:
+                ///   - topic:
+                public init(
+                    category: Swift.String? = nil,
+                    topic: Swift.String? = nil
+                ) {
+                    self.category = category
+                    self.topic = topic
+                }
+            }
+            public var query: Operations.mark_all_notifications_read.Input.Query
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - query:
+            public init(query: Operations.mark_all_notifications_read.Input.Query = .init()) {
+                self.query = query
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                public init() {}
+            }
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/read/post(mark_all_notifications_read)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.mark_all_notifications_read.Output.NoContent)
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/read/post(mark_all_notifications_read)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            public static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            public var noContent: Operations.mark_all_notifications_read.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+    }
+    /// Fetch a notification
+    ///
+    /// Gets a notification by ID.
+    ///
+    /// - Remark: HTTP `GET /notifications/{notification_id}`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/get(fetch_notification)`.
+    public enum fetch_notification {
+        public static let id: Swift.String = "fetch_notification"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/{notification_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/{notification_id}/GET/path/notification_id`.
+                public var notification_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - notification_id:
+                public init(notification_id: Swift.String) {
+                    self.notification_id = notification_id
+                }
+            }
+            public var path: Operations.fetch_notification.Input.Path
+            /// - Remark: Generated from `#/paths/notifications/{notification_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_notification.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.fetch_notification.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.fetch_notification.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.fetch_notification.Input.Path,
+                headers: Operations.fetch_notification.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/{notification_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/notifications/{notification_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Notification)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Notification {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.fetch_notification.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.fetch_notification.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// OK
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/get(fetch_notification)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.fetch_notification.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.fetch_notification.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Archive a notification
+    ///
+    /// Archive a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/archive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)`.
+    public enum archive_notification {
+        public static let id: Swift.String = "archive_notification"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/{notification_id}/archive/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/{notification_id}/archive/POST/path/notification_id`.
+                public var notification_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - notification_id:
+                public init(notification_id: Swift.String) {
+                    self.notification_id = notification_id
+                }
+            }
+            public var path: Operations.archive_notification.Input.Path
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            public init(path: Operations.archive_notification.Input.Path) {
+                self.path = path
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                public init() {}
+            }
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.archive_notification.Output.NoContent)
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/archive/post(archive_notification)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            public static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            public var noContent: Operations.archive_notification.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+    }
+    /// Mark a notification read
+    ///
+    /// Marks a notification as read.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/read`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)`.
+    public enum mark_notification_read {
+        public static let id: Swift.String = "mark_notification_read"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/{notification_id}/read/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/{notification_id}/read/POST/path/notification_id`.
+                public var notification_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - notification_id:
+                public init(notification_id: Swift.String) {
+                    self.notification_id = notification_id
+                }
+            }
+            public var path: Operations.mark_notification_read.Input.Path
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            public init(path: Operations.mark_notification_read.Input.Path) {
+                self.path = path
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                public init() {}
+            }
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.mark_notification_read.Output.NoContent)
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/read/post(mark_notification_read)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            public static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            public var noContent: Operations.mark_notification_read.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+    }
+    /// Unarchive a notification
+    ///
+    /// Unarchives a notification.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unarchive`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)`.
+    public enum unarchive_notification {
+        public static let id: Swift.String = "unarchive_notification"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/{notification_id}/unarchive/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/{notification_id}/unarchive/POST/path/notification_id`.
+                public var notification_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - notification_id:
+                public init(notification_id: Swift.String) {
+                    self.notification_id = notification_id
+                }
+            }
+            public var path: Operations.unarchive_notification.Input.Path
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            public init(path: Operations.unarchive_notification.Input.Path) {
+                self.path = path
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                public init() {}
+            }
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.unarchive_notification.Output.NoContent)
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/unarchive/post(unarchive_notification)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            public static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            public var noContent: Operations.unarchive_notification.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+    }
+    /// Mark a notification unread
+    ///
+    /// Marks a notification as unread.
+    ///
+    /// - Remark: HTTP `POST /notifications/{notification_id}/unread`.
+    /// - Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)`.
+    public enum mark_notification_unread {
+        public static let id: Swift.String = "mark_notification_unread"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/notifications/{notification_id}/unread/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/notifications/{notification_id}/unread/POST/path/notification_id`.
+                public var notification_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - notification_id:
+                public init(notification_id: Swift.String) {
+                    self.notification_id = notification_id
+                }
+            }
+            public var path: Operations.mark_notification_unread.Input.Path
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            public init(path: Operations.mark_notification_unread.Input.Path) {
+                self.path = path
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                public init() {}
+            }
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.mark_notification_unread.Output.NoContent)
+            /// No Content
+            ///
+            /// - Remark: Generated from `#/paths//notifications/{notification_id}/unread/post(mark_notification_unread)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            public static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            public var noContent: Operations.mark_notification_unread.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
     }
 }
