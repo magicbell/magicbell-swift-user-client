@@ -11,7 +11,9 @@
 public enum start_slack_installation
 ```
 
-Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+Start a Slack installation
+
+Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
 
 - Remark: HTTP `POST /integrations/slack/installations/start`.
 - Remark: Generated from `#/paths//integrations/slack/installations/start/post(start_slack_installation)`.
