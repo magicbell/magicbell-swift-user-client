@@ -27,6 +27,8 @@ public struct authed_userPayload: Codable, Hashable, Sendable
 public var access_token: Swift.String?
 ```
 
+User token returned from the OAuth exchange.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/authed_user/access_token`.
 
 ### `expires_in`
@@ -34,6 +36,8 @@ public var access_token: Swift.String?
 ```swift
 public var expires_in: Swift.Int?
 ```
+
+Seconds until the user token expires.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/authed_user/expires_in`.
 
@@ -43,6 +47,8 @@ public var expires_in: Swift.Int?
 public var id: Swift.String
 ```
 
+Slack user ID for the installer.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/authed_user/id`.
 
 ### `refresh_token`
@@ -50,6 +56,8 @@ public var id: Swift.String
 ```swift
 public var refresh_token: Swift.String?
 ```
+
+Refresh token for the authed user.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/authed_user/refresh_token`.
 
@@ -59,6 +67,8 @@ public var refresh_token: Swift.String?
 public var scope: Swift.String?
 ```
 
+Space-delimited OAuth scopes granted to the user token.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/authed_user/scope`.
 
 ### `token_type`
@@ -66,6 +76,8 @@ public var scope: Swift.String?
 ```swift
 public var token_type: Swift.String?
 ```
+
+Token type value provided by Slack.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/authed_user/token_type`.
 
@@ -86,20 +98,20 @@ public init(
 Creates a new `authed_userPayload`.
 
 - Parameters:
-  - access_token:
-  - expires_in:
-  - id:
-  - refresh_token:
-  - scope:
-  - token_type:
+  - access_token: User token returned from the OAuth exchange.
+  - expires_in: Seconds until the user token expires.
+  - id: Slack user ID for the installer.
+  - refresh_token: Refresh token for the authed user.
+  - scope: Space-delimited OAuth scopes granted to the user token.
+  - token_type: Token type value provided by Slack.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| access_token |  |
-| expires_in |  |
-| id |  |
-| refresh_token |  |
-| scope |  |
-| token_type |  |
+| access_token | User token returned from the OAuth exchange. |
+| expires_in | Seconds until the user token expires. |
+| id | Slack user ID for the installer. |
+| refresh_token | Refresh token for the authed user. |
+| scope | Space-delimited OAuth scopes granted to the user token. |
+| token_type | Token type value provided by Slack. |

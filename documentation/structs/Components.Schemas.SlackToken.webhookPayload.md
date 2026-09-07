@@ -24,6 +24,8 @@ Obtained directly from the incoming_webhook object in the installation response 
 public var url: Swift.String
 ```
 
+The URL for the incoming webhook from Slack
+
 - Remark: Generated from `#/components/schemas/SlackToken/webhook/url`.
 
 ## Methods
@@ -36,10 +38,10 @@ public init(url: Swift.String)
 Creates a new `webhookPayload`.
 
 - Parameters:
-  - url:
+  - url: The URL for the incoming webhook from Slack
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| url |  |
+| url | The URL for the incoming webhook from Slack |

@@ -23,6 +23,8 @@ public struct enterprisePayload: Codable, Hashable, Sendable
 public var id: Swift.String
 ```
 
+Enterprise grid identifier.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/enterprise/id`.
 
 ### `name`
@@ -30,6 +32,8 @@ public var id: Swift.String
 ```swift
 public var name: Swift.String
 ```
+
+Enterprise grid name.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/enterprise/name`.
 
@@ -46,12 +50,12 @@ public init(
 Creates a new `enterprisePayload`.
 
 - Parameters:
-  - id:
-  - name:
+  - id: Enterprise grid identifier.
+  - name: Enterprise grid name.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| id |  |
-| name |  |
+| id | Enterprise grid identifier. |
+| name | Enterprise grid name. |

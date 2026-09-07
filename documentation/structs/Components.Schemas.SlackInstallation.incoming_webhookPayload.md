@@ -24,6 +24,8 @@ public struct incoming_webhookPayload: Codable, Hashable, Sendable
 public var channel: Swift.String
 ```
 
+Human readable name for the webhook channel.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/incoming_webhook/channel`.
 
 ### `configuration_url`
@@ -32,6 +34,8 @@ public var channel: Swift.String
 public var configuration_url: Swift.String
 ```
 
+URL users can visit to manage the webhook.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/incoming_webhook/configuration_url`.
 
 ### `url`
@@ -39,6 +43,8 @@ public var configuration_url: Swift.String
 ```swift
 public var url: Swift.String
 ```
+
+Webhook URL that Slack posts events to.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/incoming_webhook/url`.
 
@@ -56,14 +62,14 @@ public init(
 Creates a new `incoming_webhookPayload`.
 
 - Parameters:
-  - channel:
-  - configuration_url:
-  - url:
+  - channel: Human readable name for the webhook channel.
+  - configuration_url: URL users can visit to manage the webhook.
+  - url: Webhook URL that Slack posts events to.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| channel |  |
-| configuration_url |  |
-| url |  |
+| channel | Human readable name for the webhook channel. |
+| configuration_url | URL users can visit to manage the webhook. |
+| url | Webhook URL that Slack posts events to. |

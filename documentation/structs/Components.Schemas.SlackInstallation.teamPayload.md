@@ -23,6 +23,8 @@ public struct teamPayload: Codable, Hashable, Sendable
 public var id: Swift.String
 ```
 
+Workspace ID where the app was installed.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/team/id`.
 
 ### `name`
@@ -30,6 +32,8 @@ public var id: Swift.String
 ```swift
 public var name: Swift.String?
 ```
+
+Workspace name where the app was installed.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/team/name`.
 
@@ -46,12 +50,12 @@ public init(
 Creates a new `teamPayload`.
 
 - Parameters:
-  - id:
-  - name:
+  - id: Workspace ID where the app was installed.
+  - name: Workspace name where the app was installed.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| id |  |
-| name |  |
+| id | Workspace ID where the app was installed. |
+| name | Workspace name where the app was installed. |

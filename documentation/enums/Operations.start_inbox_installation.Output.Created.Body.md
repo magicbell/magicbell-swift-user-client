@@ -19,7 +19,7 @@
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.InboxConfig)
+case json(Components.Schemas.InboxConfigPayload)
 ```
 
 - Remark: Generated from `#/paths/integrations/inbox/installations/start/POST/responses/201/content/application\/json`.
@@ -28,7 +28,7 @@ case json(Components.Schemas.InboxConfig)
 ### `json`
 
 ```swift
-public var json: Components.Schemas.InboxConfig
+public var json: Components.Schemas.InboxConfigPayload
 ```
 
 The associated value of the enum case if `self` is `.json`.

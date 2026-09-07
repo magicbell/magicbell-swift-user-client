@@ -1,0 +1,61 @@
+**STRUCT**
+
+# `Operations.fetch_unread_notifications_count.Input.Query`
+
+**Contents**
+
+- [Properties](#properties)
+  - `category`
+  - `topic`
+- [Methods](#methods)
+  - `init(category:topic:)`
+
+```swift
+public struct Query: Sendable, Hashable
+```
+
+- Remark: Generated from `#/paths/notifications/unread/count/GET/query`.
+
+## Properties
+### `category`
+
+```swift
+public var category: Swift.String?
+```
+
+filter notifications by their category
+
+- Remark: Generated from `#/paths/notifications/unread/count/GET/query/category`.
+
+### `topic`
+
+```swift
+public var topic: Swift.String?
+```
+
+filter notifications by their topic
+
+- Remark: Generated from `#/paths/notifications/unread/count/GET/query/topic`.
+
+## Methods
+### `init(category:topic:)`
+
+```swift
+public init(
+    category: Swift.String? = nil,
+    topic: Swift.String? = nil
+)
+```
+
+Creates a new `Query`.
+
+- Parameters:
+  - category: filter notifications by their category
+  - topic: filter notifications by their topic
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| category | filter notifications by their category |
+| topic | filter notifications by their topic |
