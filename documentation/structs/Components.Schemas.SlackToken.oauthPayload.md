@@ -24,6 +24,8 @@ public struct oauthPayload: Codable, Hashable, Sendable
 public var channel_id: Swift.String
 ```
 
+The ID of the Slack channel this installation is associated with
+
 - Remark: Generated from `#/components/schemas/SlackToken/oauth/channel_id`.
 
 ### `installation_id`
@@ -32,6 +34,8 @@ public var channel_id: Swift.String
 public var installation_id: Swift.String
 ```
 
+A unique identifier for this Slack workspace installation
+
 - Remark: Generated from `#/components/schemas/SlackToken/oauth/installation_id`.
 
 ### `scope`
@@ -39,6 +43,8 @@ public var installation_id: Swift.String
 ```swift
 public var scope: Swift.String?
 ```
+
+The OAuth scope granted during installation
 
 - Remark: Generated from `#/components/schemas/SlackToken/oauth/scope`.
 
@@ -56,14 +62,14 @@ public init(
 Creates a new `oauthPayload`.
 
 - Parameters:
-  - channel_id:
-  - installation_id:
-  - scope:
+  - channel_id: The ID of the Slack channel this installation is associated with
+  - installation_id: A unique identifier for this Slack workspace installation
+  - scope: The OAuth scope granted during installation
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| channel_id |  |
-| installation_id |  |
-| scope |  |
+| channel_id | The ID of the Slack channel this installation is associated with |
+| installation_id | A unique identifier for this Slack workspace installation |
+| scope | The OAuth scope granted during installation |

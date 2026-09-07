@@ -13,7 +13,7 @@
 public struct Headers: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/channels/web_push/tokens/POST/header`.
+- Remark: Generated from `#/paths/channels/web_push/tokens/PUT/header`.
 
 ## Properties
 ### `accept`

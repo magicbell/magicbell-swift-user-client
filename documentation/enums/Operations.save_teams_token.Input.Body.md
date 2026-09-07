@@ -11,13 +11,13 @@
 @frozen public enum Body: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody`.
+- Remark: Generated from `#/paths/channels/teams/tokens/PUT/requestBody`.
 
 ## Cases
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.TeamsToken)
+case json(Components.Schemas.TeamsTokenPayload)
 ```
 
-- Remark: Generated from `#/paths/channels/teams/tokens/POST/requestBody/content/application\/json`.
+- Remark: Generated from `#/paths/channels/teams/tokens/PUT/requestBody/content/application\/json`.
