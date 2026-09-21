@@ -20,4 +20,4 @@ Server URLs defined in the OpenAPI document.
 public static func server1() throws -> Foundation.URL
 ```
 
-MagicBell REST API Base URL
+MagicBell API (v2) Base URL

@@ -1,0 +1,21 @@
+**STRUCT**
+
+# `Operations.mark_notification_read.Output.NoContent`
+
+**Contents**
+
+- [Methods](#methods)
+  - `init()`
+
+```swift
+public struct NoContent: Sendable, Hashable
+```
+
+## Methods
+### `init()`
+
+```swift
+public init()
+```
+
+Creates a new `NoContent`.

@@ -23,6 +23,8 @@ public struct WebPushStartInstallationResponse: Codable, Hashable, Sendable
 public var auth_token: Swift.String
 ```
 
+Auth secret returned from PushSubscription.getKey('auth').
+
 - Remark: Generated from `#/components/schemas/WebPushStartInstallationResponse/auth_token`.
 
 ### `public_key`
@@ -30,6 +32,8 @@ public var auth_token: Swift.String
 ```swift
 public var public_key: Swift.String
 ```
+
+VAPID public key generated for this web push installation.
 
 - Remark: Generated from `#/components/schemas/WebPushStartInstallationResponse/public_key`.
 
@@ -46,12 +50,12 @@ public init(
 Creates a new `WebPushStartInstallationResponse`.
 
 - Parameters:
-  - auth_token:
-  - public_key:
+  - auth_token: Auth secret returned from PushSubscription.getKey('auth').
+  - public_key: VAPID public key generated for this web push installation.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| auth_token |  |
-| public_key |  |
+| auth_token | Auth secret returned from PushSubscription.getKey(‘auth’). |
+| public_key | VAPID public key generated for this web push installation. |

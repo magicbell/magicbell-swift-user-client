@@ -26,6 +26,8 @@ public struct SlackStartInstall: Codable, Hashable, Sendable
 public var app_id: Swift.String
 ```
 
+Slack app ID that the installation flow should use.
+
 - Remark: Generated from `#/components/schemas/SlackStartInstall/app_id`.
 
 ### `auth_url`
@@ -33,6 +35,8 @@ public var app_id: Swift.String
 ```swift
 public var auth_url: Swift.String?
 ```
+
+Optional override for the authorization URL returned to the client.
 
 - Remark: Generated from `#/components/schemas/SlackStartInstall/auth_url`.
 
@@ -42,6 +46,8 @@ public var auth_url: Swift.String?
 public var extra_scopes: [Swift.String]?
 ```
 
+Additional OAuth scopes to request during installation.
+
 - Remark: Generated from `#/components/schemas/SlackStartInstall/extra_scopes`.
 
 ### `redirect_url`
@@ -49,6 +55,8 @@ public var extra_scopes: [Swift.String]?
 ```swift
 public var redirect_url: Swift.String?
 ```
+
+Custom redirect URL to use after OAuth completes.
 
 - Remark: Generated from `#/components/schemas/SlackStartInstall/redirect_url`.
 
@@ -67,19 +75,19 @@ public init(
 Creates a new `SlackStartInstall`.
 
 - Parameters:
-  - app_id:
-  - auth_url:
-  - extra_scopes:
-  - redirect_url:
+  - app_id: Slack app ID that the installation flow should use.
+  - auth_url: Optional override for the authorization URL returned to the client.
+  - extra_scopes: Additional OAuth scopes to request during installation.
+  - redirect_url: Custom redirect URL to use after OAuth completes.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| app_id |  |
-| auth_url |  |
-| extra_scopes |  |
-| redirect_url |  |
+| app_id | Slack app ID that the installation flow should use. |
+| auth_url | Optional override for the authorization URL returned to the client. |
+| extra_scopes | Additional OAuth scopes to request during installation. |
+| redirect_url | Custom redirect URL to use after OAuth completes. |
 
 ### `init(from:)`
 
