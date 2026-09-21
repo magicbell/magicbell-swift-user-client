@@ -34,6 +34,8 @@ public struct SlackInstallation: Codable, Hashable, Sendable
 public var access_token: Swift.String
 ```
 
+Bot token returned from the Slack OAuth exchange.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/access_token`.
 
 ### `app_id`
@@ -41,6 +43,8 @@ public var access_token: Swift.String
 ```swift
 public var app_id: Swift.String
 ```
+
+Slack app identifier for the installed app.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/app_id`.
 
@@ -58,6 +62,8 @@ public var authed_user: Components.Schemas.SlackInstallation.authed_userPayload
 public var bot_user_id: Swift.String?
 ```
 
+Slack user ID of the installed bot.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/bot_user_id`.
 
 ### `enterprise`
@@ -74,6 +80,8 @@ public var enterprise: Components.Schemas.SlackInstallation.enterprisePayload?
 public var expires_in: Swift.Int?
 ```
 
+Seconds until the bot access token expires.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/expires_in`.
 
 ### `id`
@@ -81,6 +89,8 @@ public var expires_in: Swift.Int?
 ```swift
 public var id: Swift.String?
 ```
+
+Unique identifier MagicBell assigns to the Slack installation.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/id`.
 
@@ -98,6 +108,8 @@ public var incoming_webhook: Components.Schemas.SlackInstallation.incoming_webho
 public var is_enterprise_install: Swift.Bool?
 ```
 
+Indicates whether the installation occurred on an enterprise grid.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/is_enterprise_install`.
 
 ### `refresh_token`
@@ -106,6 +118,8 @@ public var is_enterprise_install: Swift.Bool?
 public var refresh_token: Swift.String?
 ```
 
+Refresh token for regenerating the bot access token.
+
 - Remark: Generated from `#/components/schemas/SlackInstallation/refresh_token`.
 
 ### `scope`
@@ -113,6 +127,8 @@ public var refresh_token: Swift.String?
 ```swift
 public var scope: Swift.String?
 ```
+
+Space-delimited OAuth scopes granted to the bot token.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/scope`.
 
@@ -129,6 +145,8 @@ public var team: Components.Schemas.SlackInstallation.teamPayload
 ```swift
 public var token_type: Swift.String?
 ```
+
+Type of bot token returned by Slack.
 
 - Remark: Generated from `#/components/schemas/SlackInstallation/token_type`.
 
@@ -156,34 +174,34 @@ public init(
 Creates a new `SlackInstallation`.
 
 - Parameters:
-  - access_token:
-  - app_id:
+  - access_token: Bot token returned from the Slack OAuth exchange.
+  - app_id: Slack app identifier for the installed app.
   - authed_user:
-  - bot_user_id:
+  - bot_user_id: Slack user ID of the installed bot.
   - enterprise:
-  - expires_in:
-  - id:
+  - expires_in: Seconds until the bot access token expires.
+  - id: Unique identifier MagicBell assigns to the Slack installation.
   - incoming_webhook:
-  - is_enterprise_install:
-  - refresh_token:
-  - scope:
+  - is_enterprise_install: Indicates whether the installation occurred on an enterprise grid.
+  - refresh_token: Refresh token for regenerating the bot access token.
+  - scope: Space-delimited OAuth scopes granted to the bot token.
   - team:
-  - token_type:
+  - token_type: Type of bot token returned by Slack.
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| access_token |  |
-| app_id |  |
+| access_token | Bot token returned from the Slack OAuth exchange. |
+| app_id | Slack app identifier for the installed app. |
 | authed_user |  |
-| bot_user_id |  |
+| bot_user_id | Slack user ID of the installed bot. |
 | enterprise |  |
-| expires_in |  |
-| id |  |
+| expires_in | Seconds until the bot access token expires. |
+| id | Unique identifier MagicBell assigns to the Slack installation. |
 | incoming_webhook |  |
-| is_enterprise_install |  |
-| refresh_token |  |
-| scope |  |
+| is_enterprise_install | Indicates whether the installation occurred on an enterprise grid. |
+| refresh_token | Refresh token for regenerating the bot access token. |
+| scope | Space-delimited OAuth scopes granted to the bot token. |
 | team |  |
-| token_type |  |
+| token_type | Type of bot token returned by Slack. |

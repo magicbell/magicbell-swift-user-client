@@ -11,7 +11,7 @@
 public enum Server1
 ```
 
-MagicBell REST API Base URL
+MagicBell API (v2) Base URL
 
 ## Methods
 ### `url()`
@@ -20,4 +20,4 @@ MagicBell REST API Base URL
 public static func url() throws -> Foundation.URL
 ```
 
-MagicBell REST API Base URL
+MagicBell API (v2) Base URL

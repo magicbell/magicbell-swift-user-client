@@ -11,13 +11,13 @@
 @frozen public enum Body: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody`.
+- Remark: Generated from `#/paths/integrations/inbox/installations/PUT/requestBody`.
 
 ## Cases
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.InboxConfig)
+case json(Components.Schemas.InboxConfigPayload)
 ```
 
-- Remark: Generated from `#/paths/integrations/inbox/installations/POST/requestBody/content/application\/json`.
+- Remark: Generated from `#/paths/integrations/inbox/installations/PUT/requestBody/content/application\/json`.

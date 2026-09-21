@@ -12,7 +12,7 @@
 @frozen public enum installation_idPayload: String, Codable, Hashable, Sendable, CaseIterable
 ```
 
-(Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+The APNs environment this token belongs to. If omitted we assume it targets `production`.
 
 - Remark: Generated from `#/components/schemas/APNSToken/installation_id`.
 

@@ -11,7 +11,7 @@
 @frozen public enum Body: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/integrations/slack/installations/POST/requestBody`.
+- Remark: Generated from `#/paths/integrations/slack/installations/PUT/requestBody`.
 
 ## Cases
 ### `json(_:)`
@@ -20,4 +20,4 @@
 case json(Components.Schemas.SlackInstallation)
 ```
 
-- Remark: Generated from `#/paths/integrations/slack/installations/POST/requestBody/content/application\/json`.
+- Remark: Generated from `#/paths/integrations/slack/installations/PUT/requestBody/content/application\/json`.

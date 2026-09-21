@@ -13,7 +13,7 @@
 public struct Headers: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/channels/teams/tokens/POST/header`.
+- Remark: Generated from `#/paths/channels/teams/tokens/PUT/header`.
 
 ## Properties
 ### `accept`

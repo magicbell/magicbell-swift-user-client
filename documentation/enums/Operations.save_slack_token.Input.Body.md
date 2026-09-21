@@ -11,13 +11,13 @@
 @frozen public enum Body: Sendable, Hashable
 ```
 
-- Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody`.
+- Remark: Generated from `#/paths/channels/slack/tokens/PUT/requestBody`.
 
 ## Cases
 ### `json(_:)`
 
 ```swift
-case json(Components.Schemas.SlackToken)
+case json(Components.Schemas.SlackTokenPayload)
 ```
 
-- Remark: Generated from `#/paths/channels/slack/tokens/POST/requestBody/content/application\/json`.
+- Remark: Generated from `#/paths/channels/slack/tokens/PUT/requestBody/content/application\/json`.
